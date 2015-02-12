@@ -325,10 +325,20 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2K-4Z-uSd">
+                                <rect key="frame" x="0.0" y="366" width="320" height="202"/>
+                                <color key="backgroundColor" red="0.38790246210000001" green="0.035130901970000003" blue="0.3755042093" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="t2K-4Z-uSd" secondAttribute="height" multiplier="160:101" id="4zh-cR-g3S"/>
+                                    <constraint firstAttribute="width" constant="320" id="eds-DI-Th6"/>
+                                    <constraint firstAttribute="height" constant="202" id="pIH-mg-LRJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="jBH-hk-vnb" secondAttribute="centerX" id="0lJ-z0-xNy"/>
+                            <constraint firstItem="pdc-O4-txs" firstAttribute="top" secondItem="t2K-4Z-uSd" secondAttribute="bottom" id="1S5-ya-eKI"/>
                             <constraint firstItem="jBH-hk-vnb" firstAttribute="top" secondItem="Ewn-Ii-dlR" secondAttribute="bottom" constant="35" id="5Wx-Ci-upj"/>
                             <constraint firstAttribute="centerX" secondItem="aej-Lf-Sge" secondAttribute="centerX" id="AgK-cO-k48"/>
                             <constraint firstItem="6Zq-0y-PTZ" firstAttribute="top" secondItem="fAb-BY-Rx3" secondAttribute="bottom" constant="8" id="P9q-T4-OIy"/>
@@ -339,6 +349,7 @@
                             <constraint firstAttribute="centerX" secondItem="rzD-yf-op3" secondAttribute="centerX" id="pzK-re-JHj"/>
                             <constraint firstAttribute="centerX" secondItem="6Zq-0y-PTZ" secondAttribute="centerX" id="tzr-er-PjT"/>
                             <constraint firstItem="Ewn-Ii-dlR" firstAttribute="top" secondItem="aej-Lf-Sge" secondAttribute="bottom" constant="14" id="wKe-ga-dt2"/>
+                            <constraint firstAttribute="centerX" secondItem="t2K-4Z-uSd" secondAttribute="centerX" id="xnP-WE-EuW"/>
                             <constraint firstItem="6Zq-0y-PTZ" firstAttribute="width" secondItem="6Zq-0y-PTZ" secondAttribute="height" multiplier="99:41" id="yp4-5D-wvn"/>
                             <constraint firstAttribute="centerX" secondItem="Ewn-Ii-dlR" secondAttribute="centerX" id="zfb-aX-wak"/>
                         </constraints>
