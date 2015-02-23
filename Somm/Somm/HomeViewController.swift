@@ -9,18 +9,33 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var usernameLabel: UILabel!
-    
+    var usernameString = "\n Welcome "
     
     @IBAction func logoutTapped(sender: UIButton) {
+        
+        let appDomain = NSBundle.mainBundle().bundleIdentifier
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
+        
+
         self.performSegueWithIdentifier("goto_login", sender: self)
         
     }
     
+    
     override func viewDidAppear(animated: Bool) {
-        self.performSegueWithIdentifier("goto_login", sender: self)
+        super.viewDidAppear(true)
         
+        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
+        if (isLoggedIn != 1) {
+            self.performSegueWithIdentifier("goto_login", sender: self)
+        } else {
+            usernameString += prefs.valueForKey("USERNAME") as NSString
+            usernameString += "! \n Somm recommends"
+
+            self.usernameLabel.text = usernameString
+        }
     }
     
     override func viewDidLoad() {
