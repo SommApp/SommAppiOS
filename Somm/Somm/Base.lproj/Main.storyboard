@@ -125,7 +125,7 @@
                     <navigationItem key="navigationItem" title="Home" id="n1k-k3-j0d"/>
                     <connections>
                         <outlet property="usernameLabel" destination="CFE-a9-WPj" id="q4J-za-XPn"/>
-                        <segue destination="V7J-8N-Vdp" kind="presentation" id="tiG-S2-hvs"/>
+                        <segue destination="V7J-8N-Vdp" kind="presentation" identifier="goto_login" id="tiG-S2-hvs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -347,6 +347,9 @@
                                         <state key="normal" title="have an account? login now">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="gotoLogin:" destination="8sz-d9-3OK" eventType="touchUpInside" id="wzE-ak-uxk"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.38790246210000001" green="0.035130901970000003" blue="0.3755042093" alpha="1" colorSpace="calibratedRGB"/>
