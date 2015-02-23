@@ -32,11 +32,8 @@ class ViewController: UIViewController {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
             
-            self.usernameLabel.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
-            self.usernameLabel.numberOfLines = 4
-
             usernameString += prefs.valueForKey("USERNAME") as NSString
-            usernameString += "! \n Somm recommends"
+            usernameString += "!"
 
             self.usernameLabel.text = usernameString
         }
