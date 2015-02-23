@@ -90,6 +90,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="z4V-uq-f44"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.38790246210000001" green="0.035130901970000003" blue="0.3755042093" alpha="1" colorSpace="calibratedRGB"/>
@@ -121,6 +124,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="n1k-k3-j0d"/>
                     <connections>
+                        <outlet property="usernameLabel" destination="CFE-a9-WPj" id="q4J-za-XPn"/>
                         <segue destination="V7J-8N-Vdp" kind="presentation" id="tiG-S2-hvs"/>
                     </connections>
                 </viewController>
@@ -128,10 +132,10 @@
             </objects>
             <point key="canvasLocation" x="877" y="1090"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="mV5-iG-tb9">
             <objects>
-                <viewController id="V7J-8N-Vdp" sceneMemberID="viewController">
+                <viewController id="V7J-8N-Vdp" customClass="LoginViewController" customModule="Somm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pib-YF-vjh"/>
                         <viewControllerLayoutGuide type="bottom" id="rUn-El-4w7"/>
@@ -171,6 +175,9 @@
                                     <color key="titleColor" red="0.38790246210000001" green="0.035130901970000003" blue="0.3755042093" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signinTapped:" destination="V7J-8N-Vdp" eventType="touchUpInside" id="2Hj-TO-Kr9"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itw-3h-HUQ">
                                 <rect key="frame" x="0.0" y="365" width="320" height="203"/>
@@ -238,15 +245,19 @@
                             <constraint firstAttribute="centerX" secondItem="itw-3h-HUQ" secondAttribute="centerX" id="qrv-m1-8vu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txtPassword" destination="Q5h-vo-xeg" id="SsR-uL-Fo8"/>
+                        <outlet property="txtUsername" destination="VFE-Kj-9yY" id="TWl-bg-dS5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkd-ns-dav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1304" y="1090"/>
         </scene>
-        <!--View Controller-->
+        <!--Signup View Controller-->
         <scene sceneID="UWA-3l-822">
             <objects>
-                <viewController id="8sz-d9-3OK" sceneMemberID="viewController">
+                <viewController id="8sz-d9-3OK" customClass="SignupViewController" customModule="Somm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fAb-BY-Rx3"/>
                         <viewControllerLayoutGuide type="bottom" id="pdc-O4-txs"/>
@@ -324,9 +335,20 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signupTapped:" destination="8sz-d9-3OK" eventType="touchUpInside" id="Z6X-5d-Zx6"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2K-4Z-uSd">
                                 <rect key="frame" x="0.0" y="366" width="320" height="202"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVv-hA-BEb">
+                                        <rect key="frame" x="64" y="39" width="192" height="30"/>
+                                        <state key="normal" title="have an account? login now">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.38790246210000001" green="0.035130901970000003" blue="0.3755042093" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="t2K-4Z-uSd" secondAttribute="height" multiplier="160:101" id="4zh-cR-g3S"/>
@@ -359,6 +381,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="txtEmail" destination="rzD-yf-op3" id="rbC-8I-SUF"/>
+                        <outlet property="txtFirstName" destination="NdL-Fe-O0T" id="xbt-oP-yuu"/>
+                        <outlet property="txtPassword" destination="aej-Lf-Sge" id="xqm-D5-37y"/>
+                        <outlet property="txtPassword2" destination="Ewn-Ii-dlR" id="gAb-LR-9Mk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0U-ir-DU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

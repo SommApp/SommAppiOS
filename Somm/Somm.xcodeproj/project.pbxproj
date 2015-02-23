@@ -13,6 +13,8 @@
 		B3D3B9E41A8C390F0047307E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3B9E31A8C390F0047307E /* Images.xcassets */; };
 		B3D3B9E71A8C390F0047307E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D3B9E51A8C390F0047307E /* LaunchScreen.xib */; };
 		B3D3B9F31A8C39100047307E /* SommTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3B9F21A8C39100047307E /* SommTests.swift */; };
+		B3FA92C31A9B881600F47CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA92C21A9B881600F47CD8 /* LoginViewController.swift */; };
+		B3FA92C51A9B88F000F47CD8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA92C41A9B88F000F47CD8 /* SignupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		B3D3B9EC1A8C39100047307E /* SommTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SommTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D3B9F11A8C39100047307E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3D3B9F21A8C39100047307E /* SommTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SommTests.swift; sourceTree = "<group>"; };
+		B3FA92C21A9B881600F47CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B3FA92C41A9B88F000F47CD8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +83,12 @@
 			children = (
 				B3D3B9DC1A8C390F0047307E /* AppDelegate.swift */,
 				B3D3B9DE1A8C390F0047307E /* ViewController.swift */,
+				B3FA92C21A9B881600F47CD8 /* LoginViewController.swift */,
 				B3D3B9E01A8C390F0047307E /* Main.storyboard */,
 				B3D3B9E31A8C390F0047307E /* Images.xcassets */,
 				B3D3B9E51A8C390F0047307E /* LaunchScreen.xib */,
 				B3D3B9DA1A8C390F0047307E /* Supporting Files */,
+				B3FA92C41A9B88F000F47CD8 /* SignupViewController.swift */,
 			);
 			path = Somm;
 			sourceTree = "<group>";
@@ -212,7 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3FA92C31A9B881600F47CD8 /* LoginViewController.swift in Sources */,
 				B3D3B9DF1A8C390F0047307E /* ViewController.swift in Sources */,
+				B3FA92C51A9B88F000F47CD8 /* SignupViewController.swift in Sources */,
 				B3D3B9DD1A8C390F0047307E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +413,7 @@
 				B3D3B9F81A8C39100047307E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B3D3B9F91A8C39100047307E /* Build configuration list for PBXNativeTarget "SommTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +422,7 @@
 				B3D3B9FB1A8C39100047307E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
