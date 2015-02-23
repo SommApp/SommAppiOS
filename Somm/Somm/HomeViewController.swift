@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
-    var usernameString = "\n Welcome "
+    var usernameString = "Welcome "
     
     @IBAction func logoutTapped(sender: UIButton) {
         
@@ -31,6 +31,10 @@ class ViewController: UIViewController {
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
+            
+            self.usernameLabel.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
+            self.usernameLabel.numberOfLines = 4
+
             usernameString += prefs.valueForKey("USERNAME") as NSString
             usernameString += "! \n Somm recommends"
 
