@@ -15,6 +15,8 @@
 		B3D3B9F31A8C39100047307E /* SommTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3B9F21A8C39100047307E /* SommTests.swift */; };
 		B3FA92C31A9B881600F47CD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA92C21A9B881600F47CD8 /* LoginViewController.swift */; };
 		B3FA92C51A9B88F000F47CD8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA92C41A9B88F000F47CD8 /* SignupViewController.swift */; };
+		B3FA92C91A9CE0E400F47CD8 /* TestSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA92C81A9CE0E400F47CD8 /* TestSignupViewController.swift */; };
+		B3FA92CA1A9CE3CE00F47CD8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA92C41A9B88F000F47CD8 /* SignupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,7 @@
 		B3D3B9F21A8C39100047307E /* SommTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SommTests.swift; sourceTree = "<group>"; };
 		B3FA92C21A9B881600F47CD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B3FA92C41A9B88F000F47CD8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		B3FA92C81A9CE0E400F47CD8 /* TestSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSignupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,7 @@
 				B3D3B9E31A8C390F0047307E /* Images.xcassets */,
 				B3D3B9E51A8C390F0047307E /* LaunchScreen.xib */,
 				B3D3B9DA1A8C390F0047307E /* Supporting Files */,
+				B3FA92C81A9CE0E400F47CD8 /* TestSignupViewController.swift */,
 			);
 			path = Somm;
 			sourceTree = "<group>";
@@ -229,6 +233,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3FA92CA1A9CE3CE00F47CD8 /* SignupViewController.swift in Sources */,
+				B3FA92C91A9CE0E400F47CD8 /* TestSignupViewController.swift in Sources */,
 				B3D3B9F31A8C39100047307E /* SommTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

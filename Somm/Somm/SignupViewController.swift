@@ -42,9 +42,6 @@ class SignupViewController: UIViewController {
         var password:NSString = txtPassword.text as NSString
         var confirm_password:NSString = txtPassword2.text as NSString
         
-        
-        
-        
         if ( username.isEqualToString("") || password.isEqualToString("") ) {
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
@@ -138,6 +135,11 @@ class SignupViewController: UIViewController {
         return true
     }
 
+    
+    func isUsernamePassBlank(username: String, password: String) -> Bool {
+        
+        return true;
+    }
     
     
         
