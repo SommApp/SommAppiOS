@@ -116,6 +116,10 @@ class SignupViewController: UIViewController {
         return true
     }
 
+    func containsEmail(#email:NSString) -> Bool{
+        
+        return false
+    }
     
     func isUsernamePassBlank(#email: NSString, password: NSString) -> Bool {
         if (email.isEqualToString("") || password.isEqualToString("")){

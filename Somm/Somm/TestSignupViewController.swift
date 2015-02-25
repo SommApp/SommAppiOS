@@ -33,5 +33,13 @@ class TestSignupViewController: XCTestCase {
         var result = testObj?.isUsernamePassBlank(email:"", password: "a")
         XCTAssert(result==true)
     }
+    
+    
+    func testContainsEmail_Returns_true_given_email(){
+        var result = testObj?.containsEmail(email: "connor@con.com")
+        XCTAssert(result==true)
+    }
+    
+    
 }
 
