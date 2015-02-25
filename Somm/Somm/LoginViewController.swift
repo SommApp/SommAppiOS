@@ -51,18 +51,9 @@ class LoginViewController: UIViewController {
             var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
             if ( urlData != nil ) {
                 let res = response as NSHTTPURLResponse!;
-
                 processResponse(email, res: res, urlData: urlData!)
             } else {
-                var alertView:UIAlertView = UIAlertView()
-                alertView.title = "Sign in Failed!"
-                alertView.message = "Connection Failure"
-                if let error = reponseError {
-                    alertView.message = (error.localizedDescription)
-                }
-                alertView.delegate = self
-                alertView.addButtonWithTitle("OK")
-                alertView.show()
+                displayFailure(error_msg)
             }
         }
         
@@ -96,8 +87,6 @@ class LoginViewController: UIViewController {
             displayFailure(error_msg)
         }
     }
-    
-    
     func displayFailure(error_msg: NSString){
         var alertView:UIAlertView = UIAlertView()
         alertView.title = "Sign in Failed!"
@@ -110,7 +99,6 @@ class LoginViewController: UIViewController {
         alertView.addButtonWithTitle("OK")
         alertView.show()
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
