@@ -138,7 +138,7 @@ class SignupViewController: UIViewController {
     
     func isUsernamePassBlank(username: String, password: String) -> Bool {
         
-        return false;
+        return true;
     }
     
     
