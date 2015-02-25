@@ -21,4 +21,8 @@ class TestSignupViewController: XCTestCase {
         var result = testObj?.isUsernamePassBlank("", password: "")
         XCTAssert(result==true)
     }
+    func testIsUsernamePassBlank_Returns_False_Given_a_username_password() {
+        var result = testObj?.isUsernamePassBlank("a", password: "a")
+        XCTAssert(result==false)
+    }
 }
