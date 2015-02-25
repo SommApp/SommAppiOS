@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3251B1F1A9E33E6009D0B3C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3251B1E1A9E33E6009D0B3C /* CoreLocation.framework */; };
 		B39F723C1A9E240C006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
 		B39F723D1A9E2444006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
 		B3A5D78C1A9E2053002D65BE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA92C21A9B881600F47CD8 /* LoginViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B3251B1E1A9E33E6009D0B3C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B39F723B1A9E240C006B1AFE /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		B3D3B9D71A8C390F0047307E /* Somm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Somm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D3B9DB1A8C390F0047307E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3251B1F1A9E33E6009D0B3C /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +81,7 @@
 		B3D3B9CE1A8C390F0047307E = {
 			isa = PBXGroup;
 			children = (
+				B3251B1E1A9E33E6009D0B3C /* CoreLocation.framework */,
 				B3D3B9D91A8C390F0047307E /* Somm */,
 				B3D3B9EF1A8C39100047307E /* SommTests */,
 				B3D3B9D81A8C390F0047307E /* Products */,

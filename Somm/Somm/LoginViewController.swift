@@ -27,14 +27,7 @@ class LoginViewController: UIViewController {
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
-        } else if (!stringHelper.containsEmail(email)) {
-            var alertView:UIAlertView = UIAlertView()
-            alertView.title = "Sign in Failed!"
-            alertView.message = "You did not enter a correct email address!"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
-            alertView.show()
-        } else {
+        }  else {
             var post:NSString = "username=\(email)&password=\(password)"
             NSLog("PostData: %@",post);
             var url:NSURL = NSURL(string:"https://dipinkrishna.com/jsonlogin2.php")!
