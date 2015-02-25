@@ -64,16 +64,14 @@ class SignupViewController: UIViewController {
             if ( urlData != nil ) {
                 let res = response as NSHTTPURLResponse!;
                 NSLog("Response code: %ld", res.statusCode);
-                if (res.statusCode >= 200 && res.statusCode < 300)
-                {
+                if (res.statusCode >= 200 && res.statusCode < 300) {
                     var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
                     NSLog("Response ==> %@", responseData);
                     var error: NSError?
                     let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as NSDictionary
                     let success:NSInteger = jsonData.valueForKey("success") as NSInteger
                     NSLog("Success: %ld", success);
-                    if(success == 1)
-                    {
+                    if(success == 1) {
                         NSLog("Sign Up SUCCESS");
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } else {
@@ -123,9 +121,4 @@ class SignupViewController: UIViewController {
         textField.resignFirstResponder()
         return true
     }
-
-    
-    
-        
-
 }
