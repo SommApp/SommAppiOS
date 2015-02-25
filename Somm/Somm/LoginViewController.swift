@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
         var username:NSString = txtUsername.text
         var password:NSString = txtPassword.text
         
-        if ( username.isEqualToString("") || password.isEqualToString("") ) {
+        if ( isUsernamePassBlank(email: username, password: password) ) {
             
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign in Failed!"
@@ -121,6 +121,17 @@ class LoginViewController: UIViewController {
         
     }
     
+    
+    func isUsernamePassBlank(#email: NSString, password: NSString) -> Bool {
+        if (email.isEqualToString("") || password.isEqualToString("")){
+            return true
+        } else {
+            return false;
+        }
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -132,15 +143,4 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

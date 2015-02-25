@@ -13,36 +13,17 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtPassword2: UITextField!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    /*
-    // #pragma mark - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    }
-    */
-
     
     @IBAction func signupTapped(sender: UIButton) {
-        var username:NSString = txtEmail.text as NSString
+        var email:NSString = txtEmail.text as NSString
         var password:NSString = txtPassword.text as NSString
         var confirm_password:NSString = txtPassword2.text as NSString
         
-        if ( username.isEqualToString("") || password.isEqualToString("") ) {
+        if (isUsernamePassBlank(email: email, password: password)) {
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Please enter Username and Password"
@@ -57,7 +38,7 @@ class SignupViewController: UIViewController {
             alertView.addButtonWithTitle("OK")
             alertView.show()
         } else {
-            var post:NSString = "username=\(username)&password=\(password)&c_password=\(confirm_password)"
+            var post:NSString = "username=\(email)&password=\(password)&c_password=\(confirm_password)"
             NSLog("PostData: %@",post);
             var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonsignup.php")!
             var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
@@ -136,9 +117,8 @@ class SignupViewController: UIViewController {
     }
 
     
-    func isUsernamePassBlank(#username: NSString, password: NSString) -> Bool {
-
-        if (username.isEqualToString("") || password.isEqualToString("")){
+    func isUsernamePassBlank(#email: NSString, password: NSString) -> Bool {
+        if (email.isEqualToString("") || password.isEqualToString("")){
             return true
         } else {
             return false;
