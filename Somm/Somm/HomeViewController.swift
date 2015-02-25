@@ -10,9 +10,21 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
+    @IBOutlet weak var txtLocation: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var txtUpdate: UILabel!
+    
+    
+    @IBAction func btnReset(sender: AnyObject) {
+        self.txtUpdate.text = ""
+    }
+
+    
+    
     var usernameString = "Welcome "
     let locationManager = CLLocationManager()
+    
+    
 
     @IBAction func locationTapped(sender: AnyObject) {
         println("Location tapped")
@@ -23,9 +35,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func significantLocTapped(sender: AnyObject) {
-        
-        locationManager.startMonitoringSignificantLocationChanges()
-        
         
     }
     
@@ -47,12 +56,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             usernameString += "!"
             self.usernameLabel.text = usernameString
         }
+        
+        println("Start")
+        
+        locationManager.delegate = self
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
+
+        
     }
     
-    
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        println(locations[0].coordinate.longitude)
         
+        var long = locations[locations.endIndex-1].coordinate.longitude
+        var lat = locations[locations.endIndex-1].coordinate.latitude
+        
+        var latLong = "\(long),\(lat)"
+
+        println(latLong)
+
+        self.txtUpdate.text = "Updated"
+        self.txtLocation.text = latLong
+        
+
+/*
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
             
             if (error != nil) {
@@ -66,9 +95,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             } else {
                 println("Problem with the data received from geocoder")
             }
-        })
+        })*/
     }
-    
+    /*
     func displayLocationInfo(placemark: CLPlacemark?) {
         if let containsPlacemark = placemark {
             //stop updating location to save battery life
@@ -83,7 +112,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             println(country)
         }
         
-    }
+    }*/
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
