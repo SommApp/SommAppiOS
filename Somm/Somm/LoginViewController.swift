@@ -10,25 +10,31 @@ import UIKit
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var txtUsername: UITextField!
-
     @IBOutlet weak var txtPassword: UITextField!
-    
+    var stringHelper :StringHelper = StringHelper()
     
     @IBAction func signinTapped(sender: UIButton) {
-        var username:NSString = txtUsername.text
+        var email:NSString = txtUsername.text
         var password:NSString = txtPassword.text
-        
-        if ( isUsernamePassBlank(email: username, password: password) ) {
-            
+
+
+        if (stringHelper.isEmailPassBlank(email: email, password: password)) {
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign in Failed!"
             alertView.message = "Please enter Username and Password"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
+        } else if (!stringHelper.containsEmail(email)) {
+            var alertView:UIAlertView = UIAlertView()
+            alertView.title = "Sign in Failed!"
+            alertView.message = "You did not enter a correct email address!"
+            alertView.delegate = self
+            alertView.addButtonWithTitle("OK")
+            alertView.show()
         } else {
             
-            var post:NSString = "username=\(username)&password=\(password)"
+            var post:NSString = "username=\(email)&password=\(password)"
             
             NSLog("PostData: %@",post);
             
@@ -76,7 +82,7 @@ class LoginViewController: UIViewController {
                         NSLog("Login SUCCESS");
                         
                         var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-                        prefs.setObject(username, forKey: "USERNAME")
+                        prefs.setObject(email, forKey: "USERNAME")
                         prefs.setInteger(1, forKey: "ISLOGGEDIN")
                         prefs.synchronize()
                         
@@ -119,15 +125,6 @@ class LoginViewController: UIViewController {
             }
         }
         
-    }
-    
-    
-    func isUsernamePassBlank(#email: NSString, password: NSString) -> Bool {
-        if (email.isEqualToString("") || password.isEqualToString("")){
-            return true
-        } else {
-            return false;
-        }
     }
     
     

@@ -13,27 +13,36 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtPassword2: UITextField!
+    var stringHelper :StringHelper = StringHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func signupTapped(sender: UIButton) {
+        var name:NSString = txtFirstName.text as NSString
         var email:NSString = txtEmail.text as NSString
         var password:NSString = txtPassword.text as NSString
         var confirm_password:NSString = txtPassword2.text as NSString
         
-        if (isUsernamePassBlank(email: email, password: password)) {
+        if (stringHelper.isEmailPassBlank(email: email, password: password)||name.isEqualToString("")) {
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
-            alertView.message = "Please enter Username and Password"
+            alertView.message = "Please enter your Name, Email, and Password"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
         } else if ( !password.isEqual(confirm_password) ) {
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
-            alertView.message = "Passwords doesn't Match"
+            alertView.message = "Passwords don't Match"
+            alertView.delegate = self
+            alertView.addButtonWithTitle("OK")
+            alertView.show()
+        } else if (!stringHelper.containsEmail(email)){
+            var alertView:UIAlertView = UIAlertView()
+            alertView.title = "Sign Up Failed!"
+            alertView.message = "You did not enter a correct email address!"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
@@ -103,7 +112,6 @@ class SignupViewController: UIViewController {
                 alertView.show()
             }
         }
-        
     }
     
     @IBAction func gotoLogin(sender: UIButton) {
@@ -116,22 +124,6 @@ class SignupViewController: UIViewController {
         return true
     }
 
-    func containsEmail(#email:NSString) -> Bool{
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        
-        if let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx) {
-            return emailTest.evaluateWithObject(email)
-        }
-        return false
-    }
-    
-    func isUsernamePassBlank(#email: NSString, password: NSString) -> Bool {
-        if (email.isEqualToString("") || password.isEqualToString("")){
-            return true
-        } else {
-            return false;
-        }
-    }
     
     
         
