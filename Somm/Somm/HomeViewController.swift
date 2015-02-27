@@ -24,7 +24,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var usernameString = "Welcome "
     let locationManager = CLLocationManager()
     
-    
 
     @IBAction func locationTapped(sender: AnyObject) {
         println("Location tapped")
@@ -34,9 +33,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
-    @IBAction func significantLocTapped(sender: AnyObject) {
-        
-    }
     
     
     
