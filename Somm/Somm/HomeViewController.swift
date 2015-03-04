@@ -27,9 +27,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBAction func locationTapped(sender: AnyObject) {
         println("Location tapped")
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.requestAlwaysAuthorization()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+//        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
     
@@ -54,7 +54,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         println("Start")
-        
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -77,7 +76,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.txtLocation.text = latLong
         
 
-/*
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
             
             if (error != nil) {
@@ -91,9 +89,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             } else {
                 println("Problem with the data received from geocoder")
             }
-        })*/
+        })
     }
-    /*
     func displayLocationInfo(placemark: CLPlacemark?) {
         if let containsPlacemark = placemark {
             //stop updating location to save battery life
@@ -108,7 +105,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             println(country)
         }
         
-    }*/
+    }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
