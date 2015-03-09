@@ -10,6 +10,7 @@
 		B3251B1F1A9E33E6009D0B3C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3251B1E1A9E33E6009D0B3C /* CoreLocation.framework */; };
 		B39F723C1A9E240C006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
 		B39F723D1A9E2444006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
+		B3A247C11AADF3CB001C0891 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A247C01AADF3CB001C0891 /* Reachability.swift */; };
 		B3A5D78C1A9E2053002D65BE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FA92C21A9B881600F47CD8 /* LoginViewController.swift */; };
 		B3D3B9DD1A8C390F0047307E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3B9DC1A8C390F0047307E /* AppDelegate.swift */; };
 		B3D3B9DF1A8C390F0047307E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3B9DE1A8C390F0047307E /* HomeViewController.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		B3251B1E1A9E33E6009D0B3C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B39F723B1A9E240C006B1AFE /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
+		B3A247C01AADF3CB001C0891 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "../../../../../Downloads/Reachability.swift-master/Reachability.swift"; sourceTree = "<group>"; };
 		B3D3B9D71A8C390F0047307E /* Somm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Somm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D3B9DB1A8C390F0047307E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3D3B9DC1A8C390F0047307E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				B3FA92C21A9B881600F47CD8 /* LoginViewController.swift */,
 				B3FA92C41A9B88F000F47CD8 /* SignupViewController.swift */,
 				B39F723B1A9E240C006B1AFE /* StringHelper.swift */,
+				B3A247C01AADF3CB001C0891 /* Reachability.swift */,
 				B3D3B9E01A8C390F0047307E /* Main.storyboard */,
 				B3D3B9E31A8C390F0047307E /* Images.xcassets */,
 				B3D3B9E51A8C390F0047307E /* LaunchScreen.xib */,
@@ -242,6 +245,7 @@
 			files = (
 				B3FA92C31A9B881600F47CD8 /* LoginViewController.swift in Sources */,
 				B3D3B9DF1A8C390F0047307E /* HomeViewController.swift in Sources */,
+				B3A247C11AADF3CB001C0891 /* Reachability.swift in Sources */,
 				B3FA92C51A9B88F000F47CD8 /* SignupViewController.swift in Sources */,
 				B39F723C1A9E240C006B1AFE /* StringHelper.swift in Sources */,
 				B3D3B9DD1A8C390F0047307E /* AppDelegate.swift in Sources */,

@@ -44,6 +44,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        let reachability = Reachability.reachabilityForInternetConnection()
+
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn != 1) {
@@ -54,12 +56,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             self.usernameLabel.text = usernameString
         }
         
+        
+   
+        reachability.whenUnreachable = { reachability in
+            self.displayFailure("network")
+        }
+        reachability.startNotifier()
+
+        
+        
         println("Start")
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringSignificantLocationChanges()
+        
 
         
     }
@@ -111,17 +123,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
-        displayFailure()
+        displayFailure("location")
     }
 
     
-    func displayFailure(){
-        
+    func displayFailure(error: NSString){
         var alertView:UIAlertView = UIAlertView()
-        alertView.title = "Location cannot be found"
-        alertView.message = "Please enable location services: settings > privacy > location services"
+
+        if (error.isEqualToString("location")){
+            alertView.title = "Location cannot be found"
+            alertView.message = "Please enable location services: settings > privacy > location services"
+        } else if (error.isEqualToString("network"))  {
+            alertView.title = "Network error"
+            alertView.message = "Internet connection required for application to function properly"
+        }
         alertView.delegate = self
         alertView.addButtonWithTitle("OK")
         alertView.show()
