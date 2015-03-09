@@ -17,6 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func btnReset(sender: AnyObject) {
         self.txtUpdate.text = ""
+        self.txtLocation.textColor = UIColor.blackColor()()
     }
 
     
@@ -74,7 +75,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
         self.txtUpdate.text = "Updated"
         self.txtLocation.text = latLong
-        
+        self.txtLocation.textColor = UIColor.redColor()
 
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
             
