@@ -17,7 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func btnReset(sender: AnyObject) {
         self.txtUpdate.text = ""
-        self.txtLocation.textColor = UIColor.blackColor()()
+        self.txtLocation.textColor = UIColor.blackColor()
     }
 
     
@@ -92,6 +92,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         })
     }
+    
+ 
+    
     func displayLocationInfo(placemark: CLPlacemark?) {
         if let containsPlacemark = placemark {
             //stop updating location to save battery life
@@ -110,8 +113,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
+        displayFailure()
     }
 
+    
+    func displayFailure(){
+        
+        var alertView:UIAlertView = UIAlertView()
+        alertView.title = "Location cannot be found"
+        alertView.message = "Please enable location services: settings > privacy > location services"
+        alertView.delegate = self
+        alertView.addButtonWithTitle("OK")
+        alertView.show()
+    }
     
     
 
