@@ -68,7 +68,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         var long = locations[locations.endIndex-1].coordinate.longitude
         var lat = locations[locations.endIndex-1].coordinate.latitude
         
-        var latLong = "\(long),\(lat)"
+        var latLong = "\(long),\n\(lat)"
 
         println(latLong)
 
