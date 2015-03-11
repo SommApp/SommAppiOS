@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    @IBOutlet weak var txtUsername: UITextField!
+    @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     var stringHelper :StringHelper = StringHelper()
 
@@ -17,13 +17,13 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func signinTapped(sender: UIButton) {
-        var email:NSString = txtUsername.text
+        var email:NSString = txtEmail.text
         var password:NSString = txtPassword.text
 
         if (stringHelper.isEmailPassBlank(email: email, password: password)) {
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign in Failed!"
-            alertView.message = "Please enter Username and Password"
+            alertView.message = "Please enter Email and Password"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
-        } else {            var post:NSString = "username=\(email)&password=\(password)"
+        } else {            var post:NSString = "email=\(email)&password=\(password)"
             NSLog("PostData: %@",post);
             var url:NSURL = NSURL(string:"https://dipinkrishna.com/jsonlogin2.php")!
             var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!

@@ -55,36 +55,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             usernameString += "!"
             self.usernameLabel.text = usernameString
         }
-        
-        
-   
         reachability.whenUnreachable = { reachability in
             self.displayFailure("network")
         }
         reachability.startNotifier()
-
-        
-        
         println("Start")
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringSignificantLocationChanges()
-        
-
-        
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        
         var long = locations[locations.endIndex-1].coordinate.longitude
         var lat = locations[locations.endIndex-1].coordinate.latitude
-        
         var latLong = "\(long),\n\(lat)"
-
         println(latLong)
-
         self.txtUpdate.text = "Updated"
         self.txtLocation.text = latLong
         self.txtLocation.textColor = UIColor.redColor()

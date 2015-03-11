@@ -47,9 +47,10 @@ class SignupViewController: UIViewController {
             alertView.addButtonWithTitle("OK")
             alertView.show()
         } else {
-            var post:NSString = "username=\(email)&password=\(password)&c_password=\(confirm_password)"
+            var post:NSString = "name=\(name)&email=\(email)&password=\(password)&c_password=\(confirm_password)"
             NSLog("PostData: %@",post);
-            var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonsignup.php")!
+            //https://dipinkrishna.com/jsonsignup.php
+            var url:NSURL = NSURL(string: "http://52.11.190.66/mobile/register.php")!
             var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             var postLength:NSString = String( postData.length )
             var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
