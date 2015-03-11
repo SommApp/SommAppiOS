@@ -36,7 +36,8 @@ class LoginViewController: UIViewController {
             alertView.show()
         } else {            var post:NSString = "email=\(email)&password=\(password)"
             NSLog("PostData: %@",post);
-            var url:NSURL = NSURL(string:"https://dipinkrishna.com/jsonlogin2.php")!
+            //https://dipinkrishna.com/jsonlogin2.php
+            var url:NSURL = NSURL(string:"http://52.11.190.66/mobile/login.php")!
             var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             var postLength:NSString = String( postData.length )
             var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)

@@ -172,9 +172,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="n1k-k3-j0d"/>
                     <connections>
+                        <outlet property="emailLabel" destination="CFE-a9-WPj" id="4Pz-60-nTQ"/>
                         <outlet property="txtLocation" destination="kxf-AT-klr" id="3TI-et-sES"/>
                         <outlet property="txtUpdate" destination="qsj-jq-vmA" id="Eth-5H-rf2"/>
-                        <outlet property="usernameLabel" destination="CFE-a9-WPj" id="q4J-za-XPn"/>
                         <segue destination="V7J-8N-Vdp" kind="presentation" identifier="goto_login" id="tiG-S2-hvs"/>
                     </connections>
                 </viewController>

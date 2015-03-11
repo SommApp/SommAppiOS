@@ -11,8 +11,8 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var txtLocation: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var txtUpdate: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     
     
     @IBAction func btnReset(sender: AnyObject) {
@@ -22,7 +22,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     
     
-    var usernameString = "Welcome "
+    var emailString = "Welcome "
     let locationManager = CLLocationManager()
     
 
@@ -51,9 +51,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
-            usernameString += prefs.valueForKey("USERNAME") as NSString
-            usernameString += "!"
-            self.usernameLabel.text = usernameString
+            emailString += prefs.valueForKey("USERNAME") as NSString
+            emailString += "!"
+            self.emailLabel.text = emailString
         }
         reachability.whenUnreachable = { reachability in
             self.displayFailure("network")
