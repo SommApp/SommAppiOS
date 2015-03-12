@@ -122,4 +122,10 @@ class SignupViewController: UIViewController {
         textField.resignFirstResponder()
         return true
     }
+    
+    override func touchesBegan(touches: NSSet,
+        withEvent event: UIEvent){
+            self.view.endEditing(true);
+            super.touchesBegan(touches, withEvent: event)
+    }
 }
