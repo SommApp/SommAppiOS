@@ -108,4 +108,14 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func touchesBegan(touches: NSSet,
+        withEvent event: UIEvent){
+            self.view.endEditing(true);
+            super.touchesBegan(touches, withEvent: event)
+    }
+    
+
+    
+    
 }
