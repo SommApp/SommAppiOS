@@ -30,10 +30,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBAction func locationTapped(sender: AnyObject) {
         println("Location tapped")
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.startUpdatingLocation()
     }
     
     
@@ -61,11 +61,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         reachability.startNotifier()
         println("Start")
-        //locationManager.delegate = self
-        //locationManager.distanceFilter = kCLDistanceFilterNone
-        //locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        //locationManager.requestAlwaysAuthorization()
-        //locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.delegate = self
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -74,9 +74,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         var latLong = "\(long),\n\(lat)"
         var interval = locations[locations.endIndex-1].timeIntervalSinceNow
         
-        if(abs(interval)>300){
+        /*if(abs(interval)>300){
             sendGps(latLong)
-        }
+        }*/
+        sendGps(latLong)
         println(latLong)
         self.txtUpdate.text = "Updated"
         self.txtLocation.text = latLong
@@ -88,7 +89,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         var email = prefs.valueForKey("EMAIL") as NSString
         var post:NSString = "gps=\(gps)&email=\(email)"
         NSLog("PostData: %@",post);
-        var url:NSURL = NSURL(string:"http://52.11.190.66/mobile/login.php")!
+        var url:NSURL = NSURL(string:"http://smiil.es:1337/gps")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
@@ -102,7 +103,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
         if ( urlData != nil ) {
             let res = response as NSHTTPURLResponse!;
-            processResponse(email, res: res, urlData: urlData!)
+            //processResponse(email, res: res, urlData: urlData!)
         } else {
             displayFailure(error_msg)
         }
@@ -139,7 +140,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     func displayFailure(error: NSString){
         var alertView:UIAlertView = UIAlertView()
-
         if (error.isEqualToString("location")){
             alertView.title = "Location cannot be found"
             alertView.message = "Please enable location services: settings > privacy > location services"

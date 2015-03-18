@@ -34,7 +34,8 @@ class LoginViewController: UIViewController {
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
-        } else {            var post:NSString = "email=\(email)&password=\(password)"
+        } else {
+            var post:NSString = "email=\(email)&password=\(password)"
             NSLog("PostData: %@",post);
             //https://dipinkrishna.com/jsonlogin2.php
             var url:NSURL = NSURL(string:"http://52.11.190.66/mobile/login.php")!
