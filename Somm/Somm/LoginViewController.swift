@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
             if(success == 1) {
                 NSLog("Login SUCCESS");
                 var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-                prefs.setObject(email, forKey: "USERNAME")
+                prefs.setObject(email, forKey: "EMAIL")
                 prefs.setInteger(1, forKey: "ISLOGGEDIN")
                 prefs.synchronize()
                 self.dismissViewControllerAnimated(true, completion: nil)
