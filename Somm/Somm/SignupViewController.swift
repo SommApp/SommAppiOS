@@ -49,7 +49,6 @@ class SignupViewController: UIViewController {
         } else {
             var post:NSString = "name=\(name)&email=\(email)&password=\(password)&c_password=\(confirm_password)"
             NSLog("PostData: %@",post);
-            //https://dipinkrishna.com/jsonsignup.php
             var url:NSURL = NSURL(string: "http://52.11.190.66/mobile/register.php")!
             var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             var postLength:NSString = String( postData.length )
