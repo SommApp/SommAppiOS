@@ -37,13 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         //maybe ask user if they want to store checkin?
 
         
-        /* if(visit.departureDate.isEqualToDate(NSDate.distantFuture()){
-        println("We have arrived somewhere")
+        
+        
+        if(visit.departureDate.isEqualToDate(NSDate.distantFuture())){
+            println("We have arrived somewhere")
         
         } else {
+            println("We have left somewhere")
         
-        
-        }*/
+        }
         /*
         if ([visit.departureDate isEqual: [NSDate distantFuture]]) {
         n.alertBody = [NSString stringWithFormat:@"didVisit: We arrived somewhere!"];
