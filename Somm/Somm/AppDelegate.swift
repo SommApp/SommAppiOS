@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         
         //Store visit in model
-        if(store.saveVisit(visit)){
+        if(store.saveVisit(visit!)){
             println("Save Success");
         } else {
             println("Save Failure")

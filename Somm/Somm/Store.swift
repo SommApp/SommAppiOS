@@ -16,7 +16,7 @@ class Store: NSObject {
     var visits = [NSManagedObject]()
 
     
-    func saveVisit(visit:CLVisit)-> Bool{
+    func saveVisit(aVisit:CLVisit)-> Bool{
 //arrivalDate:NSDate, departureDate:NSDate, timeStamp:NSDate, latitude:Double, longitude:Double
         let appDelegate =
         UIApplication.sharedApplication().delegate as AppDelegate
@@ -30,11 +30,14 @@ class Store: NSObject {
             insertIntoManagedObjectContext:managedContext)
 
         //Save info into model
-        visit.setValue(visit.arrivalDate, forKey: "arrivalDate")
-        visit.setValue(departureDate, forKey: "departureDate")
-        visit.setValue(timeStamp, forKey: "timeStamp")
-        visit.setValue(latitude, forKey: "latitude")
-        visit.setValue(longitude, forKey: "longitude")
+
+
+
+        visit.setValue(aVisit.arrivalDate, forKey: "arrivalDate")
+        visit.setValue(aVisit.departureDate, forKey: "departureDate")
+        visit.setValue(NSDate(), forKey: "timeStamp")
+        visit.setValue(aVisit.coordinate.latitude, forKey: "latitude")
+        visit.setValue(aVisit.coordinate.longitude, forKey: "longitude")
 
         
         //Return false if error occurs for saving
