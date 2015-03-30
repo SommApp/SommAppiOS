@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+
+class ViewController: UIViewController {
     @IBOutlet weak var txtLocation: UILabel!
     @IBOutlet weak var txtUpdate: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -62,52 +62,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         println("Start")
     }
     
-    func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
-        
-        
-        
-       /* if(visit.departureDate.isEqualToDate(NSDate.distantFuture()){
-            println("We have arrived somewhere")
-        
-        } else {
-        
-        
-        }*/
-        /*
-        if ([visit.departureDate isEqual: [NSDate distantFuture]]) {
-            n.alertBody = [NSString stringWithFormat:@"didVisit: We arrived somewhere!"];
-        } else {
-            n.alertBody = @"didVisit: We left somewhere!";
-        }
-        */
-        
-        //Need to add handling multiple visits
-        println("Visit: \(visit)")
-
-        println("Arrival\(visit.arrivalDate)")
-        println("Departure\(visit.departureDate)")
-        println("Coords \(visit.coordinate)")
-        
-    
-    
-    }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        var long = locations[locations.endIndex-1].coordinate.longitude
-        var lat = locations[locations.endIndex-1].coordinate.latitude
-        var latLong = "\(long),\n\(lat)"
-        var interval = locations[locations.endIndex-1].timeIntervalSinceNow
-        
-        /*if(abs(interval)>300){
-            sendGps(latLong)
-        }*/
-        sendGps(latLong)
-        println(latLong)
-        self.txtUpdate.text = "Updated"
-        self.txtLocation.text = latLong
-        self.txtLocation.textColor = UIColor.redColor()
-        
-    }
+  
     
     func sendGps(gps: NSString){
         var email = prefs.valueForKey("EMAIL") as NSString
@@ -157,14 +112,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println("Error while updating location " + error.localizedDescription)
-        displayFailure("location")
-    }
     
-
-    
-
     func displayFailure(error: NSString){
         var alertView:UIAlertView = UIAlertView()
         if (error.isEqualToString("location")){
@@ -178,7 +126,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         alertView.addButtonWithTitle("OK")
         alertView.show()
     }
-    
+
     
 
     override func didReceiveMemoryWarning() {
