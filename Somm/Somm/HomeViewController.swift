@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
 
+
     
     @IBAction func btnReset(sender: AnyObject) {
         self.txtUpdate.text = ""
