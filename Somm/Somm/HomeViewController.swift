@@ -15,35 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
-
-
-    
-    @IBAction func btnReset(sender: AnyObject) {
-        self.txtUpdate.text = ""
-        self.txtLocation.textColor = UIColor.blackColor()
-    }
-
-    
-    
     var emailString = "Welcome "
+    let store = Store()
     
-
-    @IBAction func locationTapped(sender: AnyObject) {
-        println("Location tapped")
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-//        locationManager.requestAlwaysAuthorization()
-//        locationManager.startUpdatingLocation()
-    }
-    
-    
-    
-    
-    @IBAction func logoutTapped(sender: UIButton) {
-        let appDomain = NSBundle.mainBundle().bundleIdentifier
-        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
-        self.performSegueWithIdentifier("goto_login", sender: self)
-    }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         let reachability = Reachability.reachabilityForInternetConnection()
@@ -55,6 +29,8 @@ class ViewController: UIViewController {
             emailString += prefs.valueForKey("EMAIL") as NSString
             emailString += "!"
             self.emailLabel.text = emailString
+            
+            sendVisits()
         }
         reachability.whenUnreachable = { reachability in
             self.displayFailure("network")
@@ -63,11 +39,38 @@ class ViewController: UIViewController {
         println("Start")
     }
     
+    func sendVisits(){
+        var visits = store.grabVisit()
+        if (visits[0].isEqualToString("Failed")){
+            println("Failed to grab visits")
+        } else {
+            var timeStamp: NSDate
+            var arrivalDate: NSDate
+            var departureDate: NSDate
+            var longitude: Double
+            var latitude: Double
+
+            
+            for visit in visits{
+                timeStamp = visit.valueForKey("timeStamp") as NSDate!
+                arrivalDate = visit.valueForKey("arrivalDate") as NSDate!
+                departureDate = visit.valueForKey("departureDate") as NSDate!
+                longitude = visit.valueForKey("longitude") as Double!
+                latitude = visit.valueForKey("latitude") as Double!
+                sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: latitude)
+                
+            }
+            
+            
+        }
+        
+        
+    }
   
     
-    func sendGps(gps: NSString){
+    func sendGps(timeStamp: NSDate, arrivalDate: NSDate, departureDate: NSDate, longitude: Double, latitude:Double){
         var email = prefs.valueForKey("EMAIL") as NSString
-        var post:NSString = "gps=\(gps)&email=\(email)"
+        var post:NSString = "gps=\(timeStamp)&email=\(email)"
         NSLog("PostData: %@",post);
         var url:NSURL = NSURL(string:"http://smiil.es:1337/gps")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
@@ -128,7 +131,12 @@ class ViewController: UIViewController {
         alertView.show()
     }
 
-    
+    @IBAction func logoutTapped(sender: UIButton) {
+        let appDomain = NSBundle.mainBundle().bundleIdentifier
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
+        self.performSegueWithIdentifier("goto_login", sender: self)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

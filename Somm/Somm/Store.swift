@@ -30,9 +30,6 @@ class Store: NSObject {
             insertIntoManagedObjectContext:managedContext)
 
         //Save info into model
-
-
-
         visit.setValue(aVisit.arrivalDate, forKey: "arrivalDate")
         visit.setValue(aVisit.departureDate, forKey: "departureDate")
         visit.setValue(NSDate(), forKey: "timeStamp")
