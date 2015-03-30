@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 class Store: NSObject {
    // let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
@@ -15,23 +16,21 @@ class Store: NSObject {
     var visits = [NSManagedObject]()
 
     
-    func saveVisit(arrivalDate:NSDate, departureDate:NSDate, timeStamp:NSDate, latitude:Double, longitude:Double )-> Bool{
-        //1
+    func saveVisit(visit:CLVisit)-> Bool{
+//arrivalDate:NSDate, departureDate:NSDate, timeStamp:NSDate, latitude:Double, longitude:Double
         let appDelegate =
         UIApplication.sharedApplication().delegate as AppDelegate
-        
         let managedContext = appDelegate.managedObjectContext!
         
-        //2
         let entity =  NSEntityDescription.entityForName("Visit",
             inManagedObjectContext:
             managedContext)
         
         let visit = NSManagedObject(entity: entity!,
             insertIntoManagedObjectContext:managedContext)
-        
-        //3
-        visit.setValue(arrivalDate, forKey: "arrivalDate")
+
+        //Save info into model
+        visit.setValue(visit.arrivalDate, forKey: "arrivalDate")
         visit.setValue(departureDate, forKey: "departureDate")
         visit.setValue(timeStamp, forKey: "timeStamp")
         visit.setValue(latitude, forKey: "latitude")
@@ -49,25 +48,22 @@ class Store: NSObject {
 
     }
     
-    func grabVisit(name:String) -> NSArray{
-        //1
+    func grabVisit() -> NSArray{
         let appDelegate =
         UIApplication.sharedApplication().delegate as AppDelegate
-        
         let managedContext = appDelegate.managedObjectContext!
         
-        //2
-        let fetchRequest = NSFetchRequest(entityName:"Person")
-        
-        //3
+        let fetchRequest = NSFetchRequest(entityName:"Visit")
+    
         var error: NSError?
         
+        //Grab results from model
         let fetchedResults =
         managedContext.executeFetchRequest(fetchRequest,
             error: &error) as [NSManagedObject]?
         
         if let results = fetchedResults {
-            return visits
+            return results
         } else {
             println("Could not fetch \(error), \(error!.userInfo)")
             var arr = ["Failed","\(error)"]

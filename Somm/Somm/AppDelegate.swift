@@ -10,11 +10,13 @@ import UIKit
 import CoreLocation
 import CoreData
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate {
     
     var window: UIWindow?
     let locationManager = CLLocationManager()
+    let store = Store()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -32,28 +34,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         
-        //store visit in database
-        //maybe ask user if they want to store checkin?
-
-        
-        
+        //Store visit in model
+        if(store.saveVisit(visit)){
+            println("Save Success");
+        } else {
+            println("Save Failure")
+        }
         
         if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as NSDate)){
             println("We have arrived somewhere")
         
         } else {
             println("We have left somewhere")
-        
+            
         }
-        /*
-        if ([visit.departureDate isEqual: [NSDate distantFuture]]) {
-        n.alertBody = [NSString stringWithFormat:@"didVisit: We arrived somewhere!"];
-        } else {
-        n.alertBody = @"didVisit: We left somewhere!";
-        }
-        */
-        
-        //Need to add handling multiple visits
         println("Visit: \(visit)")
         
         println("Arrival\(visit.arrivalDate)")
