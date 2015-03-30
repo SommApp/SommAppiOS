@@ -41,7 +41,7 @@ class Store: NSObject {
         //5
     }
     
-    func grabVisit(name:String){
+    func grabVisit(name:String) -> NSArray{
         //1
         let appDelegate =
         UIApplication.sharedApplication().delegate as AppDelegate
@@ -59,9 +59,11 @@ class Store: NSObject {
             error: &error) as [NSManagedObject]?
         
         if let results = fetchedResults {
-            people = results
+            return visits
         } else {
             println("Could not fetch \(error), \(error!.userInfo)")
+            var arr = ["Failed","\(error)"]
+            return arr
         }
         
     }
