@@ -25,7 +25,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     var emailString = "Welcome "
-    let locationManager = CLLocationManager()
     
 
     @IBAction func locationTapped(sender: AnyObject) {
@@ -61,13 +60,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         reachability.startNotifier()
         println("Start")
-        locationManager.delegate = self
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startMonitoringSignificantLocationChanges()
-        locationManager.startMonitoringVisits()
-        
     }
     
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
