@@ -9,7 +9,16 @@
 import UIKit
 import CoreData
 
-
 class Store: NSObject {
-   
+    var persistentStoreCoordinator: NSPersistentStoreCoordinator?
+    
+    init() {
+        super.init()
+        if(self){
+            
+            
+        }
+    }
+
+
 }
