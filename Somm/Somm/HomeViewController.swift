@@ -72,6 +72,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         
+        
+        
+       /* if(visit.departureDate.isEqualToDate(NSDate.distantFuture()){
+            println("We have arrived somewhere")
+        
+        } else {
+        
+        
+        }*/
+        /*
+        if ([visit.departureDate isEqual: [NSDate distantFuture]]) {
+            n.alertBody = [NSString stringWithFormat:@"didVisit: We arrived somewhere!"];
+        } else {
+            n.alertBody = @"didVisit: We left somewhere!";
+        }
+        */
+        
         //Need to add handling multiple visits
         println("Visit: \(visit)")
 
