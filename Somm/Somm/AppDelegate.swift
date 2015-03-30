@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.startMonitoringSignificantLocationChanges()
         locationManager.startMonitoringVisits()
         
 
@@ -34,7 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         
-        
+        //store visit in database
+        //maybe ask user if they want to store checkin?
+
         
         /* if(visit.departureDate.isEqualToDate(NSDate.distantFuture()){
         println("We have arrived somewhere")
@@ -68,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         var latLong = "\(long),\n\(lat)"
         var interval = locations[locations.endIndex-1].timeIntervalSinceNow
 
-        
+        //store gps in database
         
         //sendGps(latLong)
         println(latLong)
