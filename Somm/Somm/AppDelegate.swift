@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         
         
         
-        if(visit.departureDate.isEqualToDate(NSDate.distantFuture())){
+        if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as NSDate)){
             println("We have arrived somewhere")
         
         } else {

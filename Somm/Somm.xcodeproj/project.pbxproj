@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B30F58081AC9AB3D007636E4 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30F58071AC9AB3D007636E4 /* Store.swift */; };
 		B3251B1F1A9E33E6009D0B3C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3251B1E1A9E33E6009D0B3C /* CoreLocation.framework */; };
 		B39F723C1A9E240C006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
 		B39F723D1A9E2444006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B30F58071AC9AB3D007636E4 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B3251B1E1A9E33E6009D0B3C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B39F723B1A9E240C006B1AFE /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		B3A247C01AADF3CB001C0891 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "../../../../../Downloads/Reachability.swift-master/Reachability.swift"; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				B3FA92C41A9B88F000F47CD8 /* SignupViewController.swift */,
 				B39F723B1A9E240C006B1AFE /* StringHelper.swift */,
 				B3A247C01AADF3CB001C0891 /* Reachability.swift */,
+				B30F58071AC9AB3D007636E4 /* Store.swift */,
 				B3D3B9E01A8C390F0047307E /* Main.storyboard */,
 				B3D3B9E31A8C390F0047307E /* Images.xcassets */,
 				B3D3B9E51A8C390F0047307E /* LaunchScreen.xib */,
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B30F58081AC9AB3D007636E4 /* Store.swift in Sources */,
 				B3FA92C31A9B881600F47CD8 /* LoginViewController.swift in Sources */,
 				B3D3B9DF1A8C390F0047307E /* HomeViewController.swift in Sources */,
 				B3A247C11AADF3CB001C0891 /* Reachability.swift in Sources */,
