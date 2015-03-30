@@ -65,9 +65,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        //locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.startMonitoringSignificantLocationChanges()
         locationManager.startMonitoringVisits()
         
+    }
+    
+    func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
+        
+        //Need to add handling multiple visits
+        println("Visit: \(visit)")
+
+        println("Arrival\(visit.arrivalDate)")
+        println("Departure\(visit.departureDate)")
+        println("Coords \(visit.coordinate)")
+        
+    
+    
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -139,6 +152,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         println("Error while updating location " + error.localizedDescription)
         displayFailure("location")
     }
+    
+
+    
 
     func displayFailure(error: NSString){
         var alertView:UIAlertView = UIAlertView()
