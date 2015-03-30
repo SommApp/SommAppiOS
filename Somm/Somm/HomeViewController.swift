@@ -29,7 +29,6 @@ class ViewController: UIViewController {
             emailString += prefs.valueForKey("EMAIL") as NSString
             emailString += "!"
             self.emailLabel.text = emailString
-            
             sendVisits()
         }
         reachability.whenUnreachable = { reachability in
@@ -66,10 +65,21 @@ class ViewController: UIViewController {
         
         
     }
+    
+    
   
     
     func sendGps(timeStamp: NSDate, arrivalDate: NSDate, departureDate: NSDate, longitude: Double, latitude:Double){
         var email = prefs.valueForKey("EMAIL") as NSString
+        
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "LONG"
+        let timeStampConv = dateFormatter.stringFromDate(timeStamp)
+        let arrivalDateConv = dateFormatter.stringFromDate(arrivalDate)
+        let departureDateConv = dateFormatter.stringFromDate(departureDate)
+
+        
         var post:NSString = "gps=\(timeStamp)&email=\(email)"
         NSLog("PostData: %@",post);
         var url:NSURL = NSURL(string:"http://smiil.es:1337/gps")!
