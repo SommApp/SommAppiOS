@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		B30F58081AC9AB3D007636E4 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30F58071AC9AB3D007636E4 /* Store.swift */; };
 		B30F580A1AC9AC7A007636E4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30F58091AC9AC79007636E4 /* CoreData.framework */; };
-		B30F58101AC9AE00007636E4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B30F580E1AC9AE00007636E4 /* Model.xcdatamodeld */; };
 		B30F58141AC9AF47007636E4 /* Visit.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F58131AC9AF47007636E4 /* Visit.m */; };
+		B30F58471AC9FD6A007636E4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B30F580E1AC9AE00007636E4 /* Model.xcdatamodeld */; };
 		B3251B1F1A9E33E6009D0B3C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3251B1E1A9E33E6009D0B3C /* CoreLocation.framework */; };
 		B39F723C1A9E240C006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
 		B39F723D1A9E2444006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
@@ -287,9 +287,9 @@
 				B30F58081AC9AB3D007636E4 /* Store.swift in Sources */,
 				B3FA92C31A9B881600F47CD8 /* LoginViewController.swift in Sources */,
 				B3D3B9DF1A8C390F0047307E /* HomeViewController.swift in Sources */,
-				B30F58101AC9AE00007636E4 /* Model.xcdatamodeld in Sources */,
 				B3A247C11AADF3CB001C0891 /* Reachability.swift in Sources */,
 				B3FA92C51A9B88F000F47CD8 /* SignupViewController.swift in Sources */,
+				B30F58471AC9FD6A007636E4 /* Model.xcdatamodeld in Sources */,
 				B30F58141AC9AF47007636E4 /* Visit.m in Sources */,
 				B39F723C1A9E240C006B1AFE /* StringHelper.swift in Sources */,
 				B3D3B9DD1A8C390F0047307E /* AppDelegate.swift in Sources */,
