@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     }
     
     func sendVisits(){
+        
         if let visits = store.grabVisit() as? [NSManagedObject]{
             var timeStamp: NSDate
             var arrivalDate: NSDate

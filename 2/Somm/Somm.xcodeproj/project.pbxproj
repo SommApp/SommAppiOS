@@ -19,6 +19,7 @@
 		B33FDEFF1ACC62080086B4C2 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FDEFD1ACC62080086B4C2 /* StringHelper.swift */; };
 		B33FDF001ACC62080086B4C2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FDEFE1ACC62080086B4C2 /* Reachability.swift */; };
 		B33FDF041ACC62220086B4C2 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FDF031ACC62220086B4C2 /* Store.swift */; };
+		B375A2571ACC642000B99011 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B375A2561ACC642000B99011 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		B33FDEFD1ACC62080086B4C2 /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringHelper.swift; path = ../../../Somm/Somm/StringHelper.swift; sourceTree = "<group>"; };
 		B33FDEFE1ACC62080086B4C2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "../../../../../../Downloads/Reachability.swift-master/Reachability.swift"; sourceTree = "<group>"; };
 		B33FDF031ACC62220086B4C2 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = ../../../Somm/Somm/Store.swift; sourceTree = "<group>"; };
+		B375A2561ACC642000B99011 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B375A2571ACC642000B99011 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +74,7 @@
 		B33FDEBF1ACC618D0086B4C2 = {
 			isa = PBXGroup;
 			children = (
+				B375A2561ACC642000B99011 /* CoreLocation.framework */,
 				B33FDECA1ACC618D0086B4C2 /* Somm */,
 				B33FDEE31ACC618D0086B4C2 /* SommTests */,
 				B33FDEC91ACC618D0086B4C2 /* Products */,
@@ -453,6 +457,7 @@
 				B33FDEEC1ACC618D0086B4C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B33FDEED1ACC618D0086B4C2 /* Build configuration list for PBXNativeTarget "SommTests" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +466,7 @@
 				B33FDEEF1ACC618D0086B4C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -8,11 +8,99 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    let locationManager = CLLocationManager()
+    let store = Store()
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //Monitor visits and significant location changes
+        locationManager.delegate = self
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startMonitoringVisits()
+        
+        //var visitt: CLVisit!
+        var visitt = CLVisit()
+        
+        
+        store.saveVisit(visitt)
+        
+        
+        
+        return true
+    }
+    
+    
+    func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
+        
+        //Store visit in model
+        if(store.saveVisit(visit!)){
+            println("Save Success");
+        } else {
+            println("Save Failure")
+        }
+        
+        if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as NSDate)){
+            println("We have arrived somewhere")
+            
+        } else {
+            println("We have left somewhere")
+            
+        }
+        println("Visit: \(visit)")
+        
+        println("Arrival\(visit.arrivalDate)")
+        println("Departure\(visit.departureDate)")
+        println("Coords \(visit.coordinate)")
+        
+        
+        
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        var long = locations[locations.endIndex-1].coordinate.longitude
+        var lat = locations[locations.endIndex-1].coordinate.latitude
+        var latLong = "\(long),\n\(lat)"
+        var interval = locations[locations.endIndex-1].timeIntervalSinceNow
+        
+        //store gps in database
+        
+        //sendGps(latLong)
+        println(latLong)
+        
+        
+    }
+    
+    
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("Error while updating location " + error.localizedDescription)
+        displayFailure("location")
+    }
+    
+    
+    
+    
+    func displayFailure(error: NSString){
+        var alertView:UIAlertView = UIAlertView()
+        if (error.isEqualToString("location")){
+            alertView.title = "Location cannot be found"
+            alertView.message = "Please enable location services: settings > privacy > location services"
+        } else if (error.isEqualToString("network"))  {
+            alertView.title = "Network error"
+            alertView.message = "Internet connection required for application to function properly"
+        }
+        alertView.delegate = self
+        alertView.addButtonWithTitle("OK")
+        alertView.show()
+    }
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
