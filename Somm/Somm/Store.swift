@@ -26,13 +26,16 @@ class Store: NSObject {
         managedContext.executeFetchRequest(fetchRequest,
             error: &error) as [NSManagedObject]?
         
-
         
-        for managedObject: NSManagedObject in fetchedResults{
-            managedContext.deleteObject(managedObejct as NSManagedObject)
-            NSLog("Object deleted\(entityDescription)")
+        if let results = fetchedResults {
+            var manObj: NSManagedObject!
+            
+            for manObj: AnyObject in results{
+                managedContext.deleteObject(manObj as NSManagedObject)
+                NSLog("Object deleted")
+            }
+
         }
-    
         
         if !managedContext.save(&error) {
             println("Could not save \(error), \(error?.userInfo)")

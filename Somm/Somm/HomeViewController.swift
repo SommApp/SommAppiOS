@@ -57,7 +57,7 @@ class ViewController: UIViewController {
                 latitude = visit.valueForKey("latitude") as Double!
                 sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: latitude)
             }
-            
+            store.delVisits()
         } else {
             let visits = store.grabVisit()
             if(visits[0].isEqualToString("Failed")){
