@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     let locationManager = CLLocationManager()
     let store = Store()
+
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -28,38 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         var visitt = CLVisit()
         
-        
+
         store.saveVisit(visitt)
         
         return true
     }
     
-    
-    func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
-        
-        //Store visit in model
-        if(store.saveVisit(visit!)){
-            println("Save Success");
-        } else {
-            println("Save Failure")
-        }
-        
-        if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as NSDate)){
-            println("We have arrived somewhere")
-            
-        } else {
-            println("We have left somewhere")
-            
-        }
-        println("Visit: \(visit)")
-        
-        println("Arrival\(visit.arrivalDate)")
-        println("Departure\(visit.departureDate)")
-        println("Coords \(visit.coordinate)")
-        
-        
-        
-    }
+
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         var long = locations[locations.endIndex-1].coordinate.longitude

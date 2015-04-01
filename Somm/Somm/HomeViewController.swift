@@ -8,17 +8,21 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var txtLocation: UILabel!
-    @IBOutlet weak var txtUpdate: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var txtStatus: UILabel!
+    @IBOutlet weak var txtArrival: UILabel!
+    @IBOutlet weak var txtVisit: UILabel!
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
     var emailString = ""
     let store = Store()
+    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
@@ -139,6 +143,40 @@ class ViewController: UIViewController {
         alertView.addButtonWithTitle("OK")
         alertView.show()
     }
+    
+    func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
+        
+        self.txtVisit.text = "Visit happened"
+        
+        
+        //Store visit in model
+        if(store.saveVisit(visit!)){
+            println("Save Success");
+            self.txtStatus.text = "Save success"
+        } else {
+            self.txtStatus.text = "Save Failure"
+            self.txtStatus.textColor = UIColor.redColor()
+            println("Save Failure")
+        }
+        
+        if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as NSDate)){
+            println("We have arrived somewhere")
+            self.txtArrival.text = "Arrived"
+            
+        } else {
+            self.txtArrival.text = "Left"
+            println("We have left somewhere")
+        }
+        println("Visit: \(visit)")
+        
+        println("Arrival\(visit.arrivalDate)")
+        println("Departure\(visit.departureDate)")
+        println("Coords \(visit.coordinate)")
+        
+        
+    }
+
+    
 
     @IBAction func logoutTapped(sender: UIButton) {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
