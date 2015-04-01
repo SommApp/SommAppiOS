@@ -32,7 +32,7 @@ class ViewController: UIViewController {
             emailString += prefs.valueForKey("EMAIL") as NSString
             emailString += "!"
             self.emailLabel.text = emailString
-            //sendVisits()
+            sendVisits()
         }
         reachability.whenUnreachable = { reachability in
             self.displayFailure("network")
@@ -43,13 +43,11 @@ class ViewController: UIViewController {
     
     func sendVisits(){
         if let visits = store.grabVisit() as? [NSManagedObject]{
-            
             var timeStamp: NSDate
             var arrivalDate: NSDate
             var departureDate: NSDate
             var longitude: Double
             var latitude: Double
-            
             for visit in visits{
                 timeStamp = visit.valueForKey("timeStamp") as NSDate!
                 arrivalDate = visit.valueForKey("arrivalDate") as NSDate!
@@ -64,7 +62,6 @@ class ViewController: UIViewController {
             if(visits[0].isEqualToString("Failed")){
                 println("Failed to grab visits")
             }
-            
         }
         
     }
@@ -75,17 +72,14 @@ class ViewController: UIViewController {
     func sendGps(timeStamp: NSDate, arrivalDate: NSDate, departureDate: NSDate, longitude: Double, latitude:Double){
         var email = prefs.valueForKey("EMAIL") as NSString
         
-        
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "LONG"
         let timeStampConv = dateFormatter.stringFromDate(timeStamp)
         let arrivalDateConv = dateFormatter.stringFromDate(arrivalDate)
         let departureDateConv = dateFormatter.stringFromDate(departureDate)
-
-        
         var post:NSString = "gps=\(timeStamp)&email=\(email)"
         NSLog("PostData: %@",post);
-        var url:NSURL = NSURL(string:"http://smiil.es:1337/gps")!
+        var url:NSURL = NSURL(string:"http://localhost/post.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)

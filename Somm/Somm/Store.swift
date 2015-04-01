@@ -17,7 +17,6 @@ class Store: NSObject {
 
     
     func saveVisit(aVisit:CLVisit)-> Bool{
-//arrivalDate:NSDate, departureDate:NSDate, timeStamp:NSDate, latitude:Double, longitude:Double
         let appDelegate =
         UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
