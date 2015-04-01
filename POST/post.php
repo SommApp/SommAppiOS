@@ -10,7 +10,7 @@
 		$email = $_POST['email'];
 		$coords = $_POST['coords'];
 
-		$stringData = "Time: ". $time ."\nEmail: " . $email. "\n Coords". $coords;
+		$stringData = "\nTime: ". $time ."\nEmail: " . $email. "\nCoords". $coords."\n";
 		fwrite($fh, $stringData);
 
 		echo "YES";
