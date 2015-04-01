@@ -2,7 +2,7 @@
 //  SommTests.swift
 //  SommTests
 //
-//  Created by Connor Knabe on 2/11/15.
+//  Created by Connor Knabe on 4/1/15.
 //  Copyright (c) 2015 Somm. All rights reserved.
 //
 

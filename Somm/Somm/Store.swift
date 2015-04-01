@@ -14,6 +14,32 @@ class Store: NSObject {
     
     var visits = [NSManagedObject]()
 
+    func delVisits(){
+        
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName:"Visit")
+        var error: NSError?
+        
+        let fetchedResults =
+        managedContext.executeFetchRequest(fetchRequest,
+            error: &error) as [NSManagedObject]?
+        
+
+        
+        for managedObject: NSManagedObject in fetchedResults{
+            managedContext.deleteObject(managedObejct as NSManagedObject)
+            NSLog("Object deleted\(entityDescription)")
+        }
+    
+        
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
+        
+        
+    }
     
     func saveVisit(aVisit:CLVisit)-> Bool{
         let appDelegate =

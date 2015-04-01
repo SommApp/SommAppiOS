@@ -79,6 +79,7 @@ class ViewController: UIViewController {
         let arrivalDateConv = dateFormatter.stringFromDate(arrivalDate)
         let departureDateConv = dateFormatter.stringFromDate(departureDate)
         var post:NSString = "gps=\(timeStamp)&email=\(email)"
+        NSLog("Email\(email)");
         NSLog("PostData: %@",post);
         var url:NSURL = NSURL(string:"http://localhost/post.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!

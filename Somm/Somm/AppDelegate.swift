@@ -2,22 +2,21 @@
 //  AppDelegate.swift
 //  Somm
 //
-//  Created by Connor Knabe on 2/11/15.
+//  Created by Connor Knabe on 4/1/15.
 //  Copyright (c) 2015 Somm. All rights reserved.
 //
 
 import UIKit
-import CoreLocation
 import CoreData
-
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate {
-    
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+
     var window: UIWindow?
     let locationManager = CLLocationManager()
     let store = Store()
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         //Monitor visits and significant location changes
@@ -30,11 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         //var visitt: CLVisit!
         var visitt = CLVisit()
         
-      
+        
         store.saveVisit(visitt)
-
-
-
+        
+        
+        
         return true
     }
     
@@ -50,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         
         if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as NSDate)){
             println("We have arrived somewhere")
-        
+            
         } else {
             println("We have left somewhere")
             
@@ -70,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         var lat = locations[locations.endIndex-1].coordinate.latitude
         var latLong = "\(long),\n\(lat)"
         var interval = locations[locations.endIndex-1].timeIntervalSinceNow
-
+        
         //store gps in database
         
         //sendGps(latLong)
@@ -102,8 +101,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         alertView.addButtonWithTitle("OK")
         alertView.show()
     }
-    
-    
+
+
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -128,26 +127,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
-    
+
     // MARK: - Core Data stack
-    
+
     lazy var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "SOM.testttt" in the application's documents Application Support directory.
+        // The directory the application uses to store the Core Data store file. This code uses a directory named "SOM.Somm" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1] as NSURL
-        }()
-    
+    }()
+
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("Model", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("Somm", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
-        }()
-    
+    }()
+
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("Model.sqlite")
+        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("Somm.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
         if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
@@ -165,8 +164,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         }
         
         return coordinator
-        }()
-    
+    }()
+
     lazy var managedObjectContext: NSManagedObjectContext? = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
@@ -176,10 +175,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         var managedObjectContext = NSManagedObjectContext()
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
-        }()
-    
+    }()
+
     // MARK: - Core Data Saving support
-    
+
     func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
@@ -191,7 +190,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
             }
         }
     }
-
 
 }
 
