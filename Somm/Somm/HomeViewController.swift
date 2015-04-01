@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
-    var emailString = "Welcome "
+    var emailString = ""
     let store = Store()
     
     override func viewDidAppear(animated: Bool) {
@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
+            emailString = "Welcome "
             emailString += prefs.valueForKey("EMAIL") as NSString
             emailString += "!"
             self.emailLabel.text = emailString
@@ -39,8 +40,11 @@ class ViewController: UIViewController {
     }
     
     func sendVisits(){
-        var visits = store.grabVisit()
-        if (visits[0].isEqualToString("Failed")){
+        let visits = store.grabVisit()
+        
+        //if (visits==nil){
+            println("No new visits")
+         if (visits[0].isEqualToString("Failed")){
             println("Failed to grab visits")
         } else {
             var timeStamp: NSDate
@@ -48,7 +52,6 @@ class ViewController: UIViewController {
             var departureDate: NSDate
             var longitude: Double
             var latitude: Double
-
             
             for visit in visits{
                 timeStamp = visit.valueForKey("timeStamp") as NSDate!
