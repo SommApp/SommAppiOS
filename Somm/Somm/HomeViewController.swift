@@ -29,7 +29,7 @@ class ViewController: UIViewController {
             emailString += prefs.valueForKey("EMAIL") as NSString
             emailString += "!"
             self.emailLabel.text = emailString
-            sendVisits()
+            //sendVisits()
         }
         reachability.whenUnreachable = { reachability in
             self.displayFailure("network")

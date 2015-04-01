@@ -10,7 +10,7 @@
 		B30F58081AC9AB3D007636E4 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30F58071AC9AB3D007636E4 /* Store.swift */; };
 		B30F580A1AC9AC7A007636E4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30F58091AC9AC79007636E4 /* CoreData.framework */; };
 		B30F58141AC9AF47007636E4 /* Visit.m in Sources */ = {isa = PBXBuildFile; fileRef = B30F58131AC9AF47007636E4 /* Visit.m */; };
-		B30F58471AC9FD6A007636E4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B30F580E1AC9AE00007636E4 /* Model.xcdatamodeld */; };
+		B30F58471AC9FD6A007636E4 /* Somm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B30F580E1AC9AE00007636E4 /* Somm.xcdatamodeld */; };
 		B3251B1F1A9E33E6009D0B3C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3251B1E1A9E33E6009D0B3C /* CoreLocation.framework */; };
 		B39F723C1A9E240C006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
 		B39F723D1A9E2444006B1AFE /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F723B1A9E240C006B1AFE /* StringHelper.swift */; };
@@ -41,7 +41,7 @@
 /* Begin PBXFileReference section */
 		B30F58071AC9AB3D007636E4 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B30F58091AC9AC79007636E4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B30F580F1AC9AE00007636E4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		B30F580F1AC9AE00007636E4 /* Somm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Somm.xcdatamodel; sourceTree = "<group>"; };
 		B30F58111AC9AF46007636E4 /* Somm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Somm-Bridging-Header.h"; sourceTree = "<group>"; };
 		B30F58121AC9AF47007636E4 /* Visit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Visit.h; sourceTree = "<group>"; };
 		B30F58131AC9AF47007636E4 /* Visit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Visit.m; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				B30F58071AC9AB3D007636E4 /* Store.swift */,
-				B30F580E1AC9AE00007636E4 /* Model.xcdatamodeld */,
+				B30F580E1AC9AE00007636E4 /* Somm.xcdatamodeld */,
 				B30F58121AC9AF47007636E4 /* Visit.h */,
 				B30F58131AC9AF47007636E4 /* Visit.m */,
 				B30F58111AC9AF46007636E4 /* Somm-Bridging-Header.h */,
@@ -289,7 +289,7 @@
 				B3D3B9DF1A8C390F0047307E /* HomeViewController.swift in Sources */,
 				B3A247C11AADF3CB001C0891 /* Reachability.swift in Sources */,
 				B3FA92C51A9B88F000F47CD8 /* SignupViewController.swift in Sources */,
-				B30F58471AC9FD6A007636E4 /* Model.xcdatamodeld in Sources */,
+				B30F58471AC9FD6A007636E4 /* Somm.xcdatamodeld in Sources */,
 				B30F58141AC9AF47007636E4 /* Visit.m in Sources */,
 				B39F723C1A9E240C006B1AFE /* StringHelper.swift in Sources */,
 				B3D3B9DD1A8C390F0047307E /* AppDelegate.swift in Sources */,
@@ -507,13 +507,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B30F580E1AC9AE00007636E4 /* Model.xcdatamodeld */ = {
+		B30F580E1AC9AE00007636E4 /* Somm.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B30F580F1AC9AE00007636E4 /* Model.xcdatamodel */,
+				B30F580F1AC9AE00007636E4 /* Somm.xcdatamodel */,
 			);
-			currentVersion = B30F580F1AC9AE00007636E4 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = B30F580F1AC9AE00007636E4 /* Somm.xcdatamodel */;
+			path = Somm.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
