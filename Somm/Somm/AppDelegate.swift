@@ -26,14 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringVisits()
         
-        //var visitt: CLVisit!
         var visitt = CLVisit()
         
         
         store.saveVisit(visitt)
-        store.saveVisit(visitt)
-
-        
         
         return true
     }
