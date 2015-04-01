@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+
 
 
 class ViewController: UIViewController {
@@ -40,13 +42,8 @@ class ViewController: UIViewController {
     }
     
     func sendVisits(){
-        let visits = store.grabVisit()
-        
-        //if (visits==nil){
-            println("No new visits")
-         if (visits[0].isEqualToString("Failed")){
-            println("Failed to grab visits")
-        } else {
+        if let visits = store.grabVisit() as? [NSManagedObject]{
+            
             var timeStamp: NSDate
             var arrivalDate: NSDate
             var departureDate: NSDate
@@ -60,12 +57,15 @@ class ViewController: UIViewController {
                 longitude = visit.valueForKey("longitude") as Double!
                 latitude = visit.valueForKey("latitude") as Double!
                 sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: latitude)
-                
             }
             
+        } else {
+            let visits = store.grabVisit()
+            if(visits[0].isEqualToString("Failed")){
+                println("Failed to grab visits")
+            }
             
         }
-        
         
     }
     
