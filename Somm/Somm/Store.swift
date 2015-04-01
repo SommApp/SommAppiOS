@@ -28,14 +28,14 @@ class Store: NSObject {
             insertIntoManagedObjectContext:managedContext)
 
         //Save info into model
-//        visit.setValue(aVisit.arrivalDate, forKey: "arrivalDate")
-//        visit.setValue(aVisit.departureDate, forKey: "departureDate")
+       visit.setValue(aVisit.arrivalDate, forKey: "arrivalDate")
+        visit.setValue(aVisit.departureDate, forKey: "departureDate")
 //        visit.setValue(NSDate(), forKey: "arrivalDate")
 //        visit.setValue(NSDate(), forKey: "departureDate")
-//        visit.setValue(NSDate(), forKey: "timeStamp")
-//        visit.setValue(aVisit.coordinate.latitude, forKey: "latitude")
-//        visit.setValue(aVisit.coordinate.longitude, forKey: "longitude")
-//
+        visit.setValue(NSDate(), forKey: "timeStamp")
+        visit.setValue(aVisit.coordinate.latitude, forKey: "latitude")
+        visit.setValue(aVisit.coordinate.longitude, forKey: "longitude")
+
         
         //Return false if error occurs for saving
         var error: NSError?
