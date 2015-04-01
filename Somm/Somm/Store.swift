@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import CoreLocation
-
 class Store: NSObject {
    // let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
     
@@ -53,13 +52,14 @@ class Store: NSObject {
         let managedContext = appDelegate.managedObjectContext!
         
         let fetchRequest = NSFetchRequest(entityName:"Visit")
-    
+        
+        
         var error: NSError?
         
-        //Grab results from model
         let fetchedResults =
         managedContext.executeFetchRequest(fetchRequest,
             error: &error) as [NSManagedObject]?
+
         
         if let results = fetchedResults {
             return results
