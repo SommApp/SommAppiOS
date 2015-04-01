@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         store.saveVisit(visitt)
-        
+        store.saveVisit(visitt)
+
         
         
         return true

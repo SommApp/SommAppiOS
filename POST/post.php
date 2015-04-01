@@ -6,10 +6,11 @@
 
 	
 	if($_POST) {
-		$gps   = $_POST['gps'];
+		$time   = $_POST['time'];
 		$email = $_POST['email'];
+		$coords = $_POST['coords'];
 
-		$stringData = $gps . $email;
+		$stringData = "Time: ". $time ."\nEmail: " . $email. "\n Coords". $coords;
 		fwrite($fh, $stringData);
 
 		echo "YES";
