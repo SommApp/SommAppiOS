@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Foundation
 
 
 
@@ -22,6 +23,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var error_msg:NSString = ""
     var emailString = ""
     let store = Store()
+    var randomNum = 0
+    var colorArray: [UIColor] = []
+    
+    
     
     
     override func viewDidAppear(animated: Bool) {
@@ -43,6 +48,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         reachability.startNotifier()
         println("Start")
+        
+        colorArray.append(UIColor.redColor())
+        colorArray.append(UIColor.whiteColor())
+        colorArray.append(UIColor.blackColor())
+        colorArray.append(UIColor.blueColor())
+        colorArray.append(UIColor.greenColor())
+        colorArray.append(UIColor.yellowColor())
+        colorArray.append(UIColor.purpleColor())
+        
     }
     
     func sendVisits(){
@@ -144,10 +158,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         alertView.show()
     }
     
-    func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
+   /* func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
+        
         
         self.txtVisit.text = "Visit happened"
-        
+        randomNum = Int(arc4random() % 7)
+        self.txtVisit.textColor = colorArray[randomNum]
         
         //Store visit in model
         if(store.saveVisit(visit!)){
@@ -174,7 +190,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         println("Coords \(visit.coordinate)")
         
         
-    }
+    }*/
 
     
 

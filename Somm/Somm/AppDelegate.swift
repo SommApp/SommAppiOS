@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+
+        
         //Monitor visits and significant location changes
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -34,6 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         return true
     }
+    
+    func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
+        showNotification("Visit: \(visit)")
+    }
+    
+    func showNotification(body: String) {
+        let notification = UILocalNotification()
+        notification.alertAction = nil
+        notification.alertBody = body
+        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+    }
+
     
 
     
