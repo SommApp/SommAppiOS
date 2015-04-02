@@ -158,9 +158,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         alertView.show()
     }
     
-   /* func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
+    func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         
-        
+        showNotification("Visit: \(visit)")
+
         self.txtVisit.text = "Visit happened"
         randomNum = Int(arc4random() % 7)
         self.txtVisit.textColor = colorArray[randomNum]
@@ -190,7 +191,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         println("Coords \(visit.coordinate)")
         
         
-    }*/
+    }
+
+    func showNotification(body: String) {
+        let notification = UILocalNotification()
+        notification.alertAction = nil
+        notification.alertBody = body
+        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+    }
 
     
 
