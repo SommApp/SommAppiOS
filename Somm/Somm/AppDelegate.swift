@@ -33,10 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.startMonitoringSignificantLocationChanges()
         
         var visitt = CLVisit()
-        
-
         store.saveVisit(visitt)
-        
         return true
     }
     
@@ -58,13 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var lat = locations[locations.endIndex-1].coordinate.latitude
         var latLong = "\(long),\n\(lat)"
         var interval = locations[locations.endIndex-1].timeIntervalSinceNow
-        
-        //store gps in database
-        
+        showNotification("Significant location change: \(latLong)")
         //sendGps(latLong)
-        println(latLong)
-        
-        
     }
     
     
