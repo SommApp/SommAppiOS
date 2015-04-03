@@ -8,12 +8,11 @@
 
 import UIKit
 import CoreData
-import CoreLocation
 import Foundation
 
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController {
     @IBOutlet weak var txtLocation: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var txtStatus: UILabel!
@@ -27,6 +26,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var colorArray: [UIColor] = []
     
     
+
     
     
     override func viewDidAppear(animated: Bool) {
@@ -157,7 +157,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         alertView.addButtonWithTitle("OK")
         alertView.show()
     }
-    
+    /*
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         
         showNotification("Visit: \(visit)")
@@ -199,6 +199,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         notification.alertBody = body
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
+*/
 
     
 

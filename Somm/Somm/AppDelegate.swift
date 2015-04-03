@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringVisits()
+        locationManager.startMonitoringSignificantLocationChanges()
         
         var visitt = CLVisit()
         
@@ -38,13 +39,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         return true
     }
-    /*
+    
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         showNotification("Visit: \(visit)")
-    }*/
+    }
     
 
-    
+    func showNotification(body: String) {
+        let notification = UILocalNotification()
+        notification.alertAction = nil
+        notification.alertBody = body
+        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+    }
 
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
