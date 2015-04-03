@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     func sendVisits(){
-        if let visits = store.grabVisit() as? [NSManagedObject]{
+        if let visits = store.grabVisit() as? [NSManagedObject] {
             var timeStamp: NSDate
             var arrivalDate: NSDate
             var departureDate: NSDate
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
         }
     }
 
-    func sendGps(timeStamp: NSDate, arrivalDate: NSDate, departureDate: NSDate, longitude: Double, latitude:Double){
+    func sendGps(timeStamp: NSDate, arrivalDate: NSDate, departureDate: NSDate, longitude: Double, latitude:Double) {
         let email = prefs.valueForKey("EMAIL") as NSString
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "LONG"
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func processResponse(email:NSString, res: NSHTTPURLResponse,urlData: NSData){
+    func processResponse(email:NSString, res: NSHTTPURLResponse,urlData: NSData) {
         NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!

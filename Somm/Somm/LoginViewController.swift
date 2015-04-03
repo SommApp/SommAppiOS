@@ -102,8 +102,4 @@ class LoginViewController: UIViewController {
             self.view.endEditing(true);
             super.touchesBegan(touches, withEvent: event)
     }
-    
-
-    
-    
 }

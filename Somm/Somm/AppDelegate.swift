@@ -11,10 +11,8 @@ import CoreData
 import CoreLocation
 import Foundation
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
-
     var window: UIWindow?
     let locationManager = CLLocationManager()
     let store = Store()
@@ -22,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var error_msg:NSString = ""
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     let dateFormatter = NSDateFormatter()
-
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
@@ -34,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringVisits()
         locationManager.startMonitoringSignificantLocationChanges()
-        
         var visitt = CLVisit()
         store.saveVisit(visitt)
         return true
@@ -70,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         errorHelper.displayLocationError()
     }
     
-    func sendGps(latLong:NSString){
+    func sendGps(latLong:NSString) {
         let email = prefs.valueForKey("EMAIL") as NSString
         let timeStamp = NSDate()
         let timeStampConv = dateFormatter.stringFromDate(timeStamp)
