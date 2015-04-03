@@ -22,17 +22,11 @@ class ViewController: UIViewController {
     var error_msg:NSString = ""
     var emailString = ""
     let store = Store()
-    var randomNum = 0
-    var colorArray: [UIColor] = []
     let errorHelper = ErrorHelper()
-    
-
-    
+    let reachability = Reachability.reachabilityForInternetConnection()
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        let reachability = Reachability.reachabilityForInternetConnection()
-
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
@@ -48,19 +42,9 @@ class ViewController: UIViewController {
         }
         reachability.startNotifier()
         println("Start")
-        
-        colorArray.append(UIColor.redColor())
-        colorArray.append(UIColor.whiteColor())
-        colorArray.append(UIColor.blackColor())
-        colorArray.append(UIColor.blueColor())
-        colorArray.append(UIColor.greenColor())
-        colorArray.append(UIColor.yellowColor())
-        colorArray.append(UIColor.purpleColor())
-        
     }
     
     func sendVisits(){
-        
         if let visits = store.grabVisit() as? [NSManagedObject]{
             var timeStamp: NSDate
             var arrivalDate: NSDate
@@ -82,15 +66,10 @@ class ViewController: UIViewController {
                 println("Failed to grab visits")
             }
         }
-        
     }
-    
-    
-  
-    
+
     func sendGps(timeStamp: NSDate, arrivalDate: NSDate, departureDate: NSDate, longitude: Double, latitude:Double){
-        var email = prefs.valueForKey("EMAIL") as NSString
-        
+        let email = prefs.valueForKey("EMAIL") as NSString
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "LONG"
         let timeStampConv = dateFormatter.stringFromDate(timeStamp)
@@ -116,7 +95,6 @@ class ViewController: UIViewController {
             //processResponse(email, res: res, urlData: urlData!)
         } else {
             errorHelper.displayHttpError(error_msg)
-
         }
     }
     
@@ -144,66 +122,15 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    
-    /*
-    func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
-        
-        showNotification("Visit: \(visit)")
-
-        self.txtVisit.text = "Visit happened"
-        randomNum = Int(arc4random() % 7)
-        self.txtVisit.textColor = colorArray[randomNum]
-        
-        //Store visit in model
-        if(store.saveVisit(visit!)){
-            println("Save Success");
-            self.txtStatus.text = "Save success"
-        } else {
-            self.txtStatus.text = "Save Failure"
-            self.txtStatus.textColor = UIColor.redColor()
-            println("Save Failure")
-        }
-        
-        if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as NSDate)){
-            println("We have arrived somewhere")
-            self.txtArrival.text = "Arrived"
-            
-        } else {
-            self.txtArrival.text = "Left"
-            println("We have left somewhere")
-        }
-        println("Visit: \(visit)")
-        
-        println("Arrival\(visit.arrivalDate)")
-        println("Departure\(visit.departureDate)")
-        println("Coords \(visit.coordinate)")
-        
-        
-    }
-
-    func showNotification(body: String) {
-        let notification = UILocalNotification()
-        notification.alertAction = nil
-        notification.alertBody = body
-        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-    }
-*/
-
-    
-
     @IBAction func logoutTapped(sender: UIButton) {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
         self.performSegueWithIdentifier("goto_login", sender: self)
     }
 
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 

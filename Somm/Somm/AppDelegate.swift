@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Foundation
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -16,14 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     let locationManager = CLLocationManager()
     let store = Store()
+    let errorHelper = ErrorHelper()
+    var error_msg:NSString = ""
+    let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let dateFormatter = NSDateFormatter()
 
-    
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
         let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-
-        
         //Monitor visits and significant location changes
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -41,50 +44,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         showNotification("Visit: \(visit)")
     }
     
-
     func showNotification(body: String) {
         let notification = UILocalNotification()
         notification.alertAction = nil
         notification.alertBody = body
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
-
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         var long = locations[locations.endIndex-1].coordinate.longitude
         var lat = locations[locations.endIndex-1].coordinate.latitude
-        var latLong = "\(long),\n\(lat)"
-        var interval = locations[locations.endIndex-1].timeIntervalSinceNow
+        var latLong = "Significant loc\(long),\n\(lat)"
+        //var interval = locations[locations.endIndex-1].timeIntervalSinceNow
         showNotification("Significant location change: \(latLong)")
-        //sendGps(latLong)
+        sendGps(latLong)
+        println("LatLong \(latLong)")
     }
-    
-    
-    
+
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
-        displayFailure("location")
+        errorHelper.displayLocationError()
     }
     
-    
-    
-    
-    func displayFailure(error: NSString){
-        var alertView:UIAlertView = UIAlertView()
-        if (error.isEqualToString("location")){
-            alertView.title = "Location cannot be found"
-            alertView.message = "Please enable location services: settings > privacy > location services"
-        } else if (error.isEqualToString("network"))  {
-            alertView.title = "Network error"
-            alertView.message = "Internet connection required for application to function properly"
+    func sendGps(latLong:NSString){
+        let email = prefs.valueForKey("EMAIL") as NSString
+        let timeStamp = NSDate()
+        let timeStampConv = dateFormatter.stringFromDate(timeStamp)
+
+        var post:NSString = "time=\(timeStamp)&email=\(email)&coords=\(latLong)"
+        NSLog("Email\(email)");
+        NSLog("PostData: %@",post);
+        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/post.php")!
+        var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+        var postLength:NSString = String( postData.length )
+        var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        var reponseError: NSError?
+        var response: NSURLResponse?
+        var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
+        if ( urlData != nil ) {
+            let res = response as NSHTTPURLResponse!;
+            //processResponse(email, res: res, urlData: urlData!)
+        } else {
+            errorHelper.displayHttpError(error_msg)
         }
-        alertView.delegate = self
-        alertView.addButtonWithTitle("OK")
-        alertView.show()
     }
-
-
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -110,7 +119,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     // MARK: - Core Data stack
-
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "SOM.Somm" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -159,7 +167,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }()
 
     // MARK: - Core Data Saving support
-
     func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
