@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     let store = Store()
     var randomNum = 0
     var colorArray: [UIColor] = []
-    
+    let errorHelper = ErrorHelper()
     
 
     
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
             sendVisits()
         }
         reachability.whenUnreachable = { reachability in
-            self.displayFailure("network")
+            self.errorHelper.displayNetworkError()
         }
         reachability.startNotifier()
         println("Start")
@@ -115,7 +115,8 @@ class ViewController: UIViewController {
             let res = response as NSHTTPURLResponse!;
             //processResponse(email, res: res, urlData: urlData!)
         } else {
-            displayFailure(error_msg)
+            errorHelper.displayHttpError(error_msg)
+
         }
     }
     
@@ -136,27 +137,15 @@ class ViewController: UIViewController {
                 } else {
                     error_msg = "Unknown Error"
                 }
-                displayFailure(error_msg)
+                errorHelper.displayHttpError(error_msg)
             }
         } else {
-            displayFailure(error_msg)
+            errorHelper.displayHttpError(error_msg)
         }
     }
     
     
-    func displayFailure(error: NSString){
-        var alertView:UIAlertView = UIAlertView()
-        if (error.isEqualToString("location")){
-            alertView.title = "Location cannot be found"
-            alertView.message = "Please enable location services: settings > privacy > location services"
-        } else if (error.isEqualToString("network"))  {
-            alertView.title = "Network error"
-            alertView.message = "Internet connection required for application to function properly"
-        }
-        alertView.delegate = self
-        alertView.addButtonWithTitle("OK")
-        alertView.show()
-    }
+    
     /*
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         

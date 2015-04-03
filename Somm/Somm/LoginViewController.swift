@@ -12,9 +12,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     var stringHelper :StringHelper = StringHelper()
-
     var error_msg:NSString = ""
-
+    let errorHelper = ErrorHelper()
     
     @IBAction func signinTapped(sender: UIButton) {
         var email:NSString = txtEmail.text
@@ -53,7 +52,7 @@ class LoginViewController: UIViewController {
                 let res = response as NSHTTPURLResponse!;
                 processResponse(email, res: res, urlData: urlData!)
             } else {
-                displayFailure(error_msg)
+                errorHelper.displaySignInFail(error_msg)
             }
         }
         
@@ -81,23 +80,11 @@ class LoginViewController: UIViewController {
                 } else {
                     error_msg = "Unknown Error"
                 }
-                displayFailure(error_msg)
+                errorHelper.displaySignInFail(error_msg)
             }
         } else {
-            displayFailure(error_msg)
+            errorHelper.displaySignInFail(error_msg)
         }
-    }
-    func displayFailure(error_msg: NSString){
-        var alertView:UIAlertView = UIAlertView()
-        alertView.title = "Sign in Failed!"
-        if(error_msg.isEqualToString("")){
-            alertView.message = "Connection Failed"
-        } else {
-            alertView.message = error_msg
-        }
-        alertView.delegate = self
-        alertView.addButtonWithTitle("OK")
-        alertView.show()
     }
     
     override func viewDidLoad() {
