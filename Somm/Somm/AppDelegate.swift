@@ -42,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         showNotification("Visit: \(visit)")
+        var long = visit.coordinate.longitude
+        var lat = visit.coordinate.latitude
+        var latLong = "Vist loc\(long),\n\(lat)"
+        sendGps(latLong)
     }
     
     func showNotification(body: String) {
