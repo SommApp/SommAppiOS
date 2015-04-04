@@ -37,11 +37,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
-        showNotification("Visit: \(visit)")
         var long = visit.coordinate.longitude
         var lat = visit.coordinate.latitude
         var latLong = "Vist loc\(long),\n\(lat)"
-        sendGps(latLong)
+        
+        if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as NSDate)){
+            println("We have arrived somewhere")
+            showNotification("Visit Arrived: \(visit)")
+        } else {
+            println("We have left somewhere")
+            showNotification("Visit left: \(visit)")
+            store.saveVisit(visit)
+            sendGps("saving visit")
+        }
     }
     
     func showNotification(body: String) {
