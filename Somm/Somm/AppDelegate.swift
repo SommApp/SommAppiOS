@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringVisits()
-        locationManager.startMonitoringSignificantLocationChanges()
+//        locationManager.startMonitoringSignificantLocationChanges()
         var visitt = CLVisit()
         store.saveVisit(visitt)
         return true
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         notification.alertBody = body
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
-    
+    /*
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         var long = locations[locations.endIndex-1].coordinate.longitude
         var lat = locations[locations.endIndex-1].coordinate.latitude
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         showNotification("Significant location change: \(latLong)")
         sendGps(latLong)
         println("LatLong \(latLong)")
-    }
+    }*/
 
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
