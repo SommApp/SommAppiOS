@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var emailString = ""
     let store = Store()
     let errorHelper = ErrorHelper()
-    let reachability = Reachability.reachabilityForInternetConnection()
+    //let reachability = Reachability.reachabilityForInternetConnection()
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
@@ -37,10 +37,10 @@ class ViewController: UIViewController {
             self.emailLabel.text = emailString
             sendVisits()
         }
-        reachability.whenUnreachable = { reachability in
+        /*reachability.whenUnreachable = { reachability in
             self.errorHelper.displayNetworkError()
         }
-        reachability.startNotifier()
+        reachability.startNotifier()*/
         println("Start")
     }
     
