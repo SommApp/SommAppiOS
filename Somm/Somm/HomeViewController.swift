@@ -57,7 +57,7 @@ class ViewController: UIViewController {
                 departureDate = visit.valueForKey("departureDate") as NSDate!
                 longitude = visit.valueForKey("longitude") as Double!
                 latitude = visit.valueForKey("latitude") as Double!
-                sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: latitude)
+                sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: 99)
             }
             store.delVisits()
         } else {
