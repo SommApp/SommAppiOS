@@ -24,13 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        //Monitor visits and significant location changes
+        //Monitor visits
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringVisits()
-//        locationManager.startMonitoringSignificantLocationChanges()
         return true
     }
     
