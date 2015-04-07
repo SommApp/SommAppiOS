@@ -9,7 +9,8 @@
 import UIKit
 import CoreData
 import Foundation
-
+import CoreLocation
+import MapKit
 
 
 class ViewController: UIViewController {
@@ -121,6 +122,30 @@ class ViewController: UIViewController {
             errorHelper.displayHttpError(error_msg)
         }
     }
+    func openMapForPlace() {
+        
+//        var lat1 : NSString =
+//        var lng1 : NSString =
+        
+//        var latitute:CLLocationDegrees =  lat1.doubleValue
+//        var longitute:CLLocationDegrees =  lng1.doubleValue
+        
+        let regionDistance:CLLocationDistance = 10000
+        var coordinates = CLLocationCoordinate2DMake(latitute, longitute)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        var options = [
+            MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
+        ]
+        var placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        var mapItem = MKMapItem(placemark: placemark)
+//        mapItem.name = "\(self.venueName)"
+        mapItem.openInMapsWithLaunchOptions(options)
+        
+    }
+
+    
+    
     
     @IBAction func logoutTapped(sender: UIButton) {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
