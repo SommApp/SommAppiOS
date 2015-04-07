@@ -13,12 +13,13 @@ import CoreLocation
 import MapKit
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var txtLocation: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var txtStatus: UILabel!
     @IBOutlet weak var txtArrival: UILabel!
     @IBOutlet weak var txtVisit: UILabel!
+    @IBOutlet weak var tableInfo: UITableView!
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
     var emailString = ""
@@ -28,6 +29,11 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        
+        navigationItem.title = "test"
+        tableInfo.dataSource = self
+        tableInfo.delegate = self
+
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
@@ -122,29 +128,46 @@ class ViewController: UIViewController {
             errorHelper.displayHttpError(error_msg)
         }
     }
-    func openMapForPlace() {
-        
+
+//    func openMapForPlace() {
+//        
 //        var lat1 : NSString =
 //        var lng1 : NSString =
-        
+//        
 //        var latitute:CLLocationDegrees =  lat1.doubleValue
 //        var longitute:CLLocationDegrees =  lng1.doubleValue
-        
-        let regionDistance:CLLocationDistance = 10000
-        var coordinates = CLLocationCoordinate2DMake(latitute, longitute)
-        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
-        var options = [
-            MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
-            MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
-        ]
-        var placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        var mapItem = MKMapItem(placemark: placemark)
+//        
+//        let regionDistance:CLLocationDistance = 10000
+//        var coordinates = CLLocationCoordinate2DMake(latitute, longitute)
+//        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+//        var options = [
+//            MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
+//            MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
+//        ]
+//        var placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+//        var mapItem = MKMapItem(placemark: placemark)
 //        mapItem.name = "\(self.venueName)"
-        mapItem.openInMapsWithLaunchOptions(options)
-        
-    }
+//        mapItem.openInMapsWithLaunchOptions(options)
+//        
+//    }
 
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
+        let cell = UITableViewCell()
+        let label = UILabel(frame: CGRect(x:0, y:0, width:200, height:50))
+        label.text = "Hello Man"
+        cell.addSubview(label)
+        return cell
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
+    }
+
     
     
     @IBAction func logoutTapped(sender: UIButton) {
