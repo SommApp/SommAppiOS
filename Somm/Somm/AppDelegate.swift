@@ -40,12 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as NSDate)){
             println("We have arrived somewhere")
-            showNotification("Visit Arrived: \(visit)")
+            //showNotification("Visit Arrived: \(visit)")
             sendGps("saving arrival visit")
 
         } else {
             println("We have left somewhere")
-            showNotification("Visit left: \(visit)")
+            //showNotification("Visit left: \(visit)")
             store.saveVisit(visit)
             sendGps("saving departure visit")
         }
@@ -57,17 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         notification.alertBody = body
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
-    /*
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        var long = locations[locations.endIndex-1].coordinate.longitude
-        var lat = locations[locations.endIndex-1].coordinate.latitude
-        var latLong = "Significant loc\(long),\n\(lat)"
-        //var interval = locations[locations.endIndex-1].timeIntervalSinceNow
-        showNotification("Significant location change: \(latLong)")
-        sendGps(latLong)
-        println("LatLong \(latLong)")
-    }*/
-
+   
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
         errorHelper.displayLocationError()
