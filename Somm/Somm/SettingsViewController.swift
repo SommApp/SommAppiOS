@@ -17,14 +17,16 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
 
     let networkHelper = NetworkHelper()
     let stringHelper = StringHelper()
-    let milesText: [String] = ["1 mile", "3 miles", "5 miles", "10 miles", "15 miles"]
-    let mileNumVal: [Int] = [1, 3, 5, 10, 15]
-    var selectedMiles: Int = 1
+    let milesText:[String] = ["1 mile", "3 miles", "5 miles", "10 miles", "15 miles"]
+    let mileNumVal:[Int] = [1, 3, 5, 10, 15]
+    var selectedMiles:Int = 1
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-//    var milesFromPrefs: Int = prefs.valueForKey("MAXMILES") as Int
-    var milesFromPrefs = 15
+    var milesFromPrefs:Int = 0
+
+    //   var milesFromPrefs = 15
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        milesFromPrefs = self.prefs.valueForKey("MAXMILES") as Int
         txtName.text = self.prefs.valueForKey("NAME") as String
         
         for var i = 0; i < mileNumVal.count; i++ {
@@ -57,15 +59,16 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         if(txtPassword.text != txtConfirmPassword.text){
             var alertView:UIAlertView = UIAlertView()
-            alertView.title = "Sign Up Failed!"
+            alertView.title = "Change Password Failed!"
             alertView.message = "Passwords don't Match"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
         } else {
+            println("\(selectedMiles)")
             networkHelper.sendSettings(txtName.text, password: txtPassword.text, miles: selectedMiles)
+            self.prefs.setObject(selectedMiles, forKey: "MAXMILES")
         }
-        
         
         
     }

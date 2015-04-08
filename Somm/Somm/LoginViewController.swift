@@ -94,7 +94,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
                 prefs.setObject(email, forKey: "EMAIL")
                 prefs.setObject(name, forKey: "NAME")
-                //prefs.setObject(maxMiles, forKey: "MAXMILES")
+              /* this needs to be changed to take in json value*/  prefs.setObject(5, forKey: "MAXMILES")
                 prefs.setInteger(1, forKey: "ISLOGGEDIN")
                 prefs.synchronize()
                 self.dismissViewControllerAnimated(true, completion: nil)

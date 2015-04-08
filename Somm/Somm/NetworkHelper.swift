@@ -20,7 +20,7 @@ class NetworkHelper: NSObject {
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&name=\(name)&password=\(password)&miles=\(miles)"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
-        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/settings.php")!
+        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/settings.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
@@ -34,7 +34,7 @@ class NetworkHelper: NSObject {
         var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
         if ( urlData != nil ) {
             let res = response as NSHTTPURLResponse!;
-            //processResponse(email, res: res, urlData: urlData!)
+            processSettingsResponse(email, res: res, urlData: urlData!)
         } else {
             errorHelper.displayHttpError(error_msg)
         }
@@ -71,6 +71,32 @@ class NetworkHelper: NSObject {
             errorHelper.displayHttpError(error_msg)
         }
     }
+    
+    
+    func processSettingsResponse(email:NSString, res: NSHTTPURLResponse,urlData: NSData) {
+        NSLog("Response code: %ld", res.statusCode);
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+            var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
+            NSLog("Response ==> %@", responseData);
+            var error: NSError?
+            let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as NSDictionary
+            let success:NSInteger = jsonData.valueForKey("success") as NSInteger
+            NSLog("Success: %ld", success);
+            if(success == 1) {
+                NSLog("GPS SUCCESS");
+            } else {
+                if jsonData["error_message"] as? NSString != nil {
+                    error_msg = jsonData["error_message"] as NSString
+                } else {
+                    error_msg = "Unknown Error"
+                }
+                errorHelper.displayHttpError(error_msg)
+            }
+        } else {
+            errorHelper.displayHttpError(error_msg)
+        }
+    }
+
     
     
     func processResponse(email:NSString, res: NSHTTPURLResponse,urlData: NSData) {
