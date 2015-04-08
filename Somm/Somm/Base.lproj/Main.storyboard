@@ -37,6 +37,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="zaV-QB-ZUl" kind="presentation" id="5bh-S5-YrW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Somm recommends:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VlA-sc-eto">
                                 <rect key="frame" x="52" y="123" width="216" height="32"/>
@@ -94,6 +97,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="877" y="1090"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8Vj-Dk-vo3">
+            <objects>
+                <viewController id="zaV-QB-ZUl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zhs-ZO-wev"/>
+                        <viewControllerLayoutGuide type="bottom" id="NYc-bH-Ywn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DG5-EG-TgE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBU-hE-hdk">
+                                <rect key="frame" x="30" y="28" width="45" height="30"/>
+                                <state key="normal" title="cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="presentation" modalTransitionStyle="crossDissolve" id="eYQ-Ga-By3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sD9-pV-lav" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="898" y="1878"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="mV5-iG-tb9">
@@ -217,11 +249,11 @@
                         <viewControllerLayoutGuide type="bottom" id="pdc-O4-txs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vq6-AD-EzM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Somm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zq-0y-PTZ">
-                                <rect key="frame" x="72" y="28" width="176" height="73"/>
+                                <rect key="frame" x="212" y="28" width="176" height="73"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6Zq-0y-PTZ" secondAttribute="height" multiplier="99:41" id="eGa-OR-EfO"/>
                                 </constraints>
@@ -235,10 +267,10 @@
                                 </variation>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2K-4Z-uSd">
-                                <rect key="frame" x="0.0" y="366" width="320" height="202"/>
+                                <rect key="frame" x="0.0" y="366" width="600" height="234"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVv-hA-BEb">
-                                        <rect key="frame" x="64" y="8" width="192" height="30"/>
+                                        <rect key="frame" x="204" y="8" width="192" height="30"/>
                                         <state key="normal" title="have an account? login now">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -254,27 +286,27 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="first name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NdL-Fe-O0T">
-                                <rect key="frame" x="72" y="96" width="176" height="30"/>
+                                <rect key="frame" x="212" y="96" width="176" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rzD-yf-op3">
-                                <rect key="frame" x="72" y="147" width="176" height="30"/>
+                                <rect key="frame" x="212" y="147" width="176" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="go"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aej-Lf-Sge">
-                                <rect key="frame" x="72" y="192" width="176" height="30"/>
+                                <rect key="frame" x="212" y="192" width="176" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ewn-Ii-dlR">
-                                <rect key="frame" x="72" y="236" width="176" height="30"/>
+                                <rect key="frame" x="212" y="236" width="176" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBH-hk-vnb">
-                                <rect key="frame" x="126" y="280" width="68" height="30"/>
+                                <rect key="frame" x="266" y="280" width="68" height="30"/>
                                 <color key="backgroundColor" red="0.66117527170000001" green="0.057411145189999999" blue="0.6368127375" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="68" id="xpu-Dz-XSj"/>
@@ -349,4 +381,7 @@
             <point key="canvasLocation" x="478" y="1090"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="eYQ-Ga-By3"/>
+    </inferredMetricsTieBreakers>
 </document>
