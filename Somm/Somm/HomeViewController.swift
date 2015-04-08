@@ -29,13 +29,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let errorHelper = ErrorHelper()
     //let reachability = Reachability.reachabilityForInternetConnection()
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         
-        navigationItem.title = "test"
-        tableInfo.dataSource = self
-        tableInfo.delegate = self
-
+        
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
@@ -46,6 +44,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.emailLabel.text = emailString
             sendVisits()
         }
+
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        navigationItem.title = "test"
+        tableInfo.dataSource = self
+        tableInfo.delegate = self
         /*reachability.whenUnreachable = { reachability in
             self.errorHelper.displayNetworkError()
         }
@@ -160,7 +168,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
         let cell = UITableViewCell()
+
         cell.backgroundColor = UIColor(red: 0.3843, green: 0.0627, blue: 0.3725, alpha: 1.0)
+        cell.selectedBackgroundView.backgroundColor = UIColor(red: 0.6431, green: 0.1490, blue: 0.6902, alpha: 1.0)
         let label = UILabel(frame: CGRect(x:0, y:0, width:tableInfo.frame.width, height:50))
         label.text = self.items[indexPath.row]
         label.textColor = UIColor.whiteColor()
@@ -168,10 +178,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.addSubview(label)
         return cell
     }
-
+    
+   /*
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        let cell = self.tableInfo.cellForRowAtIndexPath(indexPath)
+        cell?.contentView.backgroundColor = UIColor.greenColor()
+        cell?.backgroundColor = UIColor.greenColor()
+        return true;
+        
+    }
+    
+    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.tableInfo.cellForRowAtIndexPath(indexPath)
+        cell?.contentView.backgroundColor = UIColor.clearColor()
+        cell?.backgroundColor = UIColor.clearColor()
+    }*/
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
     }
+    
     
     
     @IBAction func logoutTapped(sender: UIButton) {

@@ -18,6 +18,7 @@
 		B37F5C251ACC67C600A28483 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37F5C241ACC67C600A28483 /* Reachability.swift */; };
 		B37F5C271ACC67DC00A28483 /* TestStringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37F5C261ACC67DC00A28483 /* TestStringHelper.swift */; };
 		B37F5C281ACC681400A28483 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37F5C221ACC675C00A28483 /* StringHelper.swift */; };
+		B391497D1AD56DA600D050B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391497C1AD56DA600D050B2 /* SettingsViewController.swift */; };
 		B3C5B3531ACC671B0014221F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3C5B34F1ACC671B0014221F /* LaunchScreen.xib */; };
 		B3C5B3541ACC671B0014221F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3C5B3511ACC671B0014221F /* Main.storyboard */; };
 		B3C5B3581ACC67290014221F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C5B3551ACC67290014221F /* HomeViewController.swift */; };
@@ -51,6 +52,7 @@
 		B37F5C221ACC675C00A28483 /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		B37F5C241ACC67C600A28483 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B37F5C261ACC67DC00A28483 /* TestStringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestStringHelper.swift; path = Somm/TestStringHelper.swift; sourceTree = SOURCE_ROOT; };
+		B391497C1AD56DA600D050B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B3C5B3501ACC671B0014221F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B3C5B3521ACC671B0014221F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B3C5B3551ACC67290014221F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				B3C5B3551ACC67290014221F /* HomeViewController.swift */,
 				B3C5B3561ACC67290014221F /* LoginViewController.swift */,
 				B3C5B3571ACC67290014221F /* SignupViewController.swift */,
+				B391497C1AD56DA600D050B2 /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				B3C5B3591ACC67290014221F /* LoginViewController.swift in Sources */,
 				B3DF87661ACF08E900CD5660 /* ErrorHelper.swift in Sources */,
 				B3C5B35A1ACC67290014221F /* SignupViewController.swift in Sources */,
+				B391497D1AD56DA600D050B2 /* SettingsViewController.swift in Sources */,
 				B37F5C211ACC674600A28483 /* Store.swift in Sources */,
 				B33FDECE1ACC618D0086B4C2 /* AppDelegate.swift in Sources */,
 				B37F5C231ACC675C00A28483 /* StringHelper.swift in Sources */,
