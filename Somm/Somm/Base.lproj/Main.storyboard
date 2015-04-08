@@ -162,7 +162,6 @@
                                 </variation>
                                 <connections>
                                     <action selector="btnSave:" destination="zaV-QB-ZUl" eventType="touchUpInside" id="VNY-wU-vNA"/>
-                                    <segue destination="vXZ-lx-hvc" kind="presentation" identifier="settings_save" modalTransitionStyle="crossDissolve" id="eDL-AW-28n"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W5Y-5q-Gtz">
@@ -209,7 +208,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="presentation" modalTransitionStyle="crossDissolve" id="eYQ-Ga-By3"/>
+                                    <segue destination="vXZ-lx-hvc" kind="presentation" identifier="goto_home" modalTransitionStyle="crossDissolve" id="eYQ-Ga-By3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waS-HZ-5fw">

@@ -83,7 +83,7 @@ class NetworkHelper: NSObject {
             let success:NSInteger = jsonData.valueForKey("success") as NSInteger
             NSLog("Success: %ld", success);
             if(success == 1) {
-                NSLog("GPS SUCCESS");
+                NSLog("SETTINGS SUCCESS");
             } else {
                 if jsonData["error_message"] as? NSString != nil {
                     error_msg = jsonData["error_message"] as NSString
