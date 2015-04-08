@@ -12,6 +12,7 @@ import UIKit
 class ReverseSegue:UIStoryboardSegue {
 
     
+    
     override func perform(){
         let sourceViewController:UINavigationController = self.sourceViewController as UINavigationController
         let destinationViewController:UINavigationController = self.destinationViewController as UINavigationController
@@ -23,14 +24,21 @@ class ReverseSegue:UIStoryboardSegue {
         sourceViewController.view.transform = CGAffineTransformMakeTranslation(0, 0)
         sourceViewController.view.alpha = 1.0
         
-        
+        /*
         UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { () -> Void in
-            sourceViewController.view.transform = CGAffineTransformMakeTranslation(0,0)
-            destinationViewController.view.alpha = 1.0
-        }) { (Bool finished) -> Void in
+            sourceViewController.view.transform = CGAffineTransformMakeTranslation(0,destinationViewController.view.frame.size.height)
+            sourceViewController.view.alpha = 1.0
+            }) { (_) -> Void in
             sourceViewController.view.removeFromSuperview()
-        }
+        }*/
+
         
+        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: {
+            sourceViewController.view.transform = CGAffineTransformMakeTranslation(0,destinationViewController.view.frame.size.height)
+            sourceViewController.view.alpha = 1.0
+            }, completion: {(_) -> Void in
+                sourceViewController.view.removeFromSuperview()
+        })
         
     
     

@@ -45,7 +45,7 @@
                                     <rect key="frame" x="30" y="535" width="60" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="zaV-QB-ZUl" kind="presentation" id="5bh-S5-YrW"/>
+                                    <segue destination="zaV-QB-ZUl" kind="presentation" modalTransitionStyle="flipHorizontal" id="5bh-S5-YrW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Somm recommends:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VlA-sc-eto">
@@ -112,7 +112,7 @@
                     <connections>
                         <outlet property="emailLabel" destination="CFE-a9-WPj" id="4Pz-60-nTQ"/>
                         <outlet property="tableInfo" destination="hrT-0V-bNy" id="BMj-Z6-gym"/>
-                        <segue destination="V7J-8N-Vdp" kind="presentation" identifier="goto_login" id="tiG-S2-hvs"/>
+                        <segue destination="V7J-8N-Vdp" kind="presentation" identifier="goto_login" animates="NO" id="tiG-S2-hvs"/>
                         <segue destination="hvo-71-FO3" kind="presentation" identifier="goto_map" modalTransitionStyle="flipHorizontal" id="Eh3-8G-sas"/>
                     </connections>
                 </viewController>
@@ -208,7 +208,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="goto_home" id="eYQ-Ga-By3"/>
+                                    <segue destination="vXZ-lx-hvc" kind="presentation" identifier="goto_home" modalTransitionStyle="flipHorizontal" id="eYQ-Ga-By3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waS-HZ-5fw">
