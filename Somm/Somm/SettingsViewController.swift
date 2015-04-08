@@ -55,6 +55,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         selectedMiles = mileNumVal[row]
     }
     
+    
+
+    
+    
     @IBAction func btnSave(sender: AnyObject) {
         
         if(txtPassword.text != txtConfirmPassword.text){

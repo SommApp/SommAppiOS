@@ -208,7 +208,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="presentation" identifier="goto_home" modalTransitionStyle="crossDissolve" id="eYQ-Ga-By3"/>
+                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="goto_home" id="eYQ-Ga-By3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waS-HZ-5fw">

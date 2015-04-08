@@ -144,6 +144,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let indexPath:NSIndexPath = self.tableInfo.indexPathForSelectedRow()!
             let mapViewController:MapViewController = segue.destinationViewController as MapViewController
             mapViewController.restaurantName = restaurants[indexPath.row]
+        } else if (segue.identifier=="goto_home"){
+            
+
+            /*
+            UIViewController *sourceViewController = self.sourceViewController;
+            UIViewController *destinationViewController = self.destinationViewController;
+            
+            
+            [sourceViewController presentViewController:destinationViewController animated:NO completion:nil];
+            [destinationViewController.view addSubview:sourceViewController.view];
+            [sourceViewController.view setTransform:CGAffineTransformMakeTranslation(0, 0)];
+            [sourceViewController.view setAlpha:1.0];
+            
+            [UIView animateWithDuration:0.75
+                delay:0.0
+                options:UIViewAnimationOptionTransitionFlipFromBottom
+                animations:^{
+                [sourceViewController.view setTransform:CGAffineTransformMakeTranslation(0,destinationViewController.view.frame.size.height)];
+                [sourceViewController.view setAlpha:1.0];
+                }
+                completion:^(BOOL finished){
+                [sourceViewController.view removeFromSuperview];
+                }];
+            
+        }*/
+            println("BLAAH")
         }
         
     }

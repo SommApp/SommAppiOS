@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B33544981AD58C9F0038BDE9 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */; };
 		B335449A1AD58F4B0038BDE9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33544991AD58F4B0038BDE9 /* MapViewController.swift */; };
+		B335449C1AD5BEA00038BDE9 /* ReverseSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B335449B1AD5BEA00038BDE9 /* ReverseSegue.swift */; };
 		B33FDECE1ACC618D0086B4C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FDECD1ACC618D0086B4C2 /* AppDelegate.swift */; };
 		B33FDED11ACC618D0086B4C2 /* Somm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B33FDECF1ACC618D0086B4C2 /* Somm.xcdatamodeld */; };
 		B33FDED81ACC618D0086B4C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33FDED71ACC618D0086B4C2 /* Images.xcassets */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B33544991AD58F4B0038BDE9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B335449B1AD5BEA00038BDE9 /* ReverseSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseSegue.swift; sourceTree = "<group>"; };
 		B33FDEC81ACC618D0086B4C2 /* Somm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Somm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33FDECC1ACC618D0086B4C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B33FDECD1ACC618D0086B4C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				B3C5B3571ACC67290014221F /* SignupViewController.swift */,
 				B391497C1AD56DA600D050B2 /* SettingsViewController.swift */,
 				B33544991AD58F4B0038BDE9 /* MapViewController.swift */,
+				B335449B1AD5BEA00038BDE9 /* ReverseSegue.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				B37F5C231ACC675C00A28483 /* StringHelper.swift in Sources */,
 				B33FDED11ACC618D0086B4C2 /* Somm.xcdatamodeld in Sources */,
 				B37F5C251ACC67C600A28483 /* Reachability.swift in Sources */,
+				B335449C1AD5BEA00038BDE9 /* ReverseSegue.swift in Sources */,
 				B3C5B3581ACC67290014221F /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
