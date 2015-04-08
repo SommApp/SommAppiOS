@@ -161,6 +161,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
         let cell = UITableViewCell()
         
+
+        
+        cell.backgroundColor = UIColor(red: 0.3843, green: 0.0627, blue: 0.3725, alpha: 1.0)
         let label = UILabel(frame: CGRect(x:0, y:0, width:tableInfo.frame.width, height:50))
         label.text = self.items[indexPath.row]
         label.textAlignment = .Center
@@ -171,7 +174,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
     }
-
     
     
     @IBAction func logoutTapped(sender: UIButton) {
