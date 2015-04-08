@@ -20,6 +20,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var txtArrival: UILabel!
     @IBOutlet weak var txtVisit: UILabel!
     @IBOutlet weak var tableInfo: UITableView!
+    var items: [String] = ["We", "Heart", "Swift"]
+
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
     var emailString = ""
@@ -153,13 +155,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return self.items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
         let cell = UITableViewCell()
-        let label = UILabel(frame: CGRect(x:0, y:0, width:200, height:50))
-        label.text = "Hello Man"
+        
+        let label = UILabel(frame: CGRect(x:0, y:0, width:tableInfo.frame.width, height:50))
+        label.text = self.items[indexPath.row]
+        label.textAlignment = .Center
         cell.addSubview(label)
         return cell
     }

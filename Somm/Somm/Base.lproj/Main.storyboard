@@ -91,6 +91,10 @@
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="30" y="126" width="548" height="353"/>
                                 </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="myl-v9-SZv"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="Tmk-6Z-hNf"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.38790246210000001" green="0.035130901970000003" blue="0.3755042093" alpha="1" colorSpace="calibratedRGB"/>
