@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var txtArrival: UILabel!
     @IBOutlet weak var txtVisit: UILabel!
     @IBOutlet weak var tableInfo: UITableView!
-    var items: [String] = ["We", "Heart", "Swift"]
+    var items: [String] = ["Chipotle", "Taco Bell", "Noodles & Company", "Subway", "Casa Blanca", "Petra", "Starbucks"]
 
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
@@ -160,12 +160,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
         let cell = UITableViewCell()
-        
-
-        
         cell.backgroundColor = UIColor(red: 0.3843, green: 0.0627, blue: 0.3725, alpha: 1.0)
         let label = UILabel(frame: CGRect(x:0, y:0, width:tableInfo.frame.width, height:50))
         label.text = self.items[indexPath.row]
+        label.textColor = UIColor.whiteColor()
         label.textAlignment = .Center
         cell.addSubview(label)
         return cell
