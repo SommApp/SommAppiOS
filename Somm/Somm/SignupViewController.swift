@@ -8,17 +8,39 @@
 
 import UIKit
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtFirstName: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtPassword2: UITextField!
+    @IBOutlet weak var btnSignUp: UIButton!
     
     let stringHelper :StringHelper = StringHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txtFirstName.delegate = self
+        txtEmail.delegate = self
+        txtPassword.delegate = self
+        txtPassword2.delegate = self
+
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if (textField == txtFirstName) {
+            txtEmail.becomeFirstResponder()
+        } else if (textField == txtEmail) {
+            txtPassword.becomeFirstResponder()
+        } else if (textField == txtPassword) {
+            txtPassword2.becomeFirstResponder()
+        } else {
+            signupTapped(btnSignUp)
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
     
     @IBAction func signupTapped(sender: UIButton) {
         var name:NSString = txtFirstName.text as NSString

@@ -8,13 +8,32 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var btnSignIn: UIButton!
     
     var stringHelper :StringHelper = StringHelper()
     var error_msg:NSString = ""
     let errorHelper = ErrorHelper()
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        txtEmail.delegate = self
+        txtPassword.delegate = self
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if(textField == txtEmail){
+            txtPassword.becomeFirstResponder()
+        } else {
+            signinTapped(btnSignIn)
+            textField.resignFirstResponder()
+        }
+        return true
+    }
     
     @IBAction func signinTapped(sender: UIButton) {
         var email:NSString = txtEmail.text
@@ -90,11 +109,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -23,10 +23,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
- 
         txtName.text = self.prefs.valueForKey("NAME") as String
-
-        
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
