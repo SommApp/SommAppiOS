@@ -49,6 +49,57 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableInfo.delegate = self
         
         
+        var obj:[String:AnyObject] = [
+            "restaurant":[
+                "name":   "Chipotle",
+                "latitude":   0,
+                "longitude":    0,
+                "address": ""
+            ]
+        ]
+        
+        
+        
+        
+        
+        var shoppingList: [String] = ["Eggs", "Milk"]
+
+        shoppingList += ["Baking Powder"]
+
+        var dict: [[String:AnyObject]] = []
+        
+        dict += [["name":"Chipotle", "latitude":0, "longitude":0,"address":""]]
+        dict += [["name":"Tacobell", "latitude":0, "longitude":0,"address":""]]
+
+        
+
+        for item in dict {
+            println(item["name"]!)
+        }
+        
+        
+        
+        
+        let json = JSON(obj)
+        
+        
+        let name = json["restaurant"]["name"].asString
+        
+        
+        
+        
+        println("\(name!)")
+    
+        
+        
+        for (name, v) in json["restaurant"] {
+            
+            println("\(name)")
+            
+            // k is NSString, v is another JSON object
+        }
+        
+        
         
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn != 1) {
@@ -56,6 +107,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             sendVisits()
         }
+        
+        
 
         /*reachability.whenUnreachable = { reachability in
             self.errorHelper.displayNetworkError()

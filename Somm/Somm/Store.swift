@@ -13,7 +13,8 @@ class Store: NSObject {
    // let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
     
     var visits = [NSManagedObject]()
-
+    
+    
     func delVisits(){
         
         let appDelegate =
