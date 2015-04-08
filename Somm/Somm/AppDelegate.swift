@@ -21,9 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     let dateFormatter = NSDateFormatter()
     
+    
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        
+        
         //Monitor visits
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone

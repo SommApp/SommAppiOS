@@ -10,38 +10,44 @@ import Foundation
 import UIKit
 
 class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    let FitDescription : [String] = ["0.50 flat", "0.25 flat", "aligned", "0.25 steep", "0.50 steep"]
-    let FitValue : [Float] = [ -0.50, -0.25, 0,  0.25, 0.50]
-    var selectedPower : Float!
+    let milesText : [String] = ["1 mile", "3 miles", "5 miles", "10 miles", "15 miles"]
+    let mileNumVal : [Int] = [1, 3, 5,  10, 15]
+    var selectedMiles : Int!
 
+    @IBOutlet weak var txtConfirmPassword: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
     
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        
         return 1
-        
     }
 
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        return FitDescription.count
-        
+        return milesText.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        
-        return FitDescription[row]
+        return milesText[row]
         
     }
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
-        
-        selectedPower = FitValue[row]
+        selectedMiles = mileNumVal[row]
     }
+    
+    @IBAction func btnSave(sender: AnyObject) {
+        println("\(selectedMiles)")
+        
+    }
+    
+    
     
 
 }

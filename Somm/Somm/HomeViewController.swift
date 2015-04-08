@@ -32,28 +32,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
+        if (isLoggedIn == 1) {
+            emailString = "Welcome "
+            emailString += prefs.valueForKey("NAME") as NSString
+            emailString += "!"
+            self.emailLabel.text = emailString
+        }
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        tableInfo.dataSource = self
+        tableInfo.delegate = self
+        
         
         
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
-            emailString = "Welcome "
-            emailString += prefs.valueForKey("EMAIL") as NSString
-            emailString += "!"
-            self.emailLabel.text = emailString
             sendVisits()
         }
 
-        
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        
-        navigationItem.title = "test"
-        tableInfo.dataSource = self
-        tableInfo.delegate = self
         /*reachability.whenUnreachable = { reachability in
             self.errorHelper.displayNetworkError()
         }
