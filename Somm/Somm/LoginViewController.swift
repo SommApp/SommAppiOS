@@ -11,6 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    
     var stringHelper :StringHelper = StringHelper()
     var error_msg:NSString = ""
     let errorHelper = ErrorHelper()

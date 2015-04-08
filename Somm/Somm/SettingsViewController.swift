@@ -10,18 +10,22 @@ import Foundation
 import UIKit
 
 class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    let milesText : [String] = ["1 mile", "3 miles", "5 miles", "10 miles", "15 miles"]
-    let mileNumVal : [Int] = [1, 3, 5,  10, 15]
-    var selectedMiles : Int!
-
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
+
+    let milesText : [String] = ["1 mile", "3 miles", "5 miles", "10 miles", "15 miles"]
+    let mileNumVal : [Int] = [1, 3, 5,  10, 15]
+    var selectedMiles : Int!
+    let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+ 
+        txtName.text = self.prefs.valueForKey("NAME") as String
+
         
     }
     
@@ -43,11 +47,16 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     @IBAction func btnSave(sender: AnyObject) {
+      
         println("\(selectedMiles)")
         
     }
     
-    
+    override func touchesBegan(touches: NSSet,
+        withEvent event: UIEvent){
+            self.view.endEditing(true);
+            super.touchesBegan(touches, withEvent: event)
+    }
     
 
 }

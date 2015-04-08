@@ -13,7 +13,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtPassword2: UITextField!
-    var stringHelper :StringHelper = StringHelper()
+    
+    let stringHelper :StringHelper = StringHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()

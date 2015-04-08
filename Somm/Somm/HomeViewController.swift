@@ -20,8 +20,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var txtArrival: UILabel!
     @IBOutlet weak var txtVisit: UILabel!
     @IBOutlet weak var tableInfo: UITableView!
+    
     var items: [String] = ["Chipotle", "Taco Bell", "Noodles & Company", "Subway", "Casa Blanca", "Petra", "Starbucks"]
-
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
     var emailString = ""
