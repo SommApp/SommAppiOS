@@ -30,9 +30,6 @@
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="30" y="46" width="340" height="31"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="30" y="46" width="260" height="31"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vk-UJ-9ng">
                                 <rect key="frame" x="30" y="503" width="60" height="30"/>
@@ -46,9 +43,6 @@
                                 </state>
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="30" y="535" width="60" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="30" y="503" width="60" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="zaV-QB-ZUl" kind="presentation" id="5bh-S5-YrW"/>
@@ -65,9 +59,6 @@
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="52" y="79" width="296" height="32"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="52" y="79" width="216" height="32"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJW-bU-u4K">
                                 <rect key="frame" x="238" y="503" width="60" height="30"/>
@@ -82,9 +73,6 @@
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="318" y="535" width="60" height="30"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="238" y="503" width="60" height="30"/>
-                                </variation>
                                 <connections>
                                     <action selector="logoutTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="z4V-uq-f44"/>
                                 </connections>
@@ -95,9 +83,6 @@
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="30" y="126" width="348" height="353"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="30" y="126" width="268" height="321"/>
                                 </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="myl-v9-SZv"/>
@@ -128,6 +113,7 @@
                         <outlet property="emailLabel" destination="CFE-a9-WPj" id="4Pz-60-nTQ"/>
                         <outlet property="tableInfo" destination="hrT-0V-bNy" id="BMj-Z6-gym"/>
                         <segue destination="V7J-8N-Vdp" kind="presentation" identifier="goto_login" id="tiG-S2-hvs"/>
+                        <segue destination="hvo-71-FO3" kind="presentation" identifier="goto_map" modalTransitionStyle="flipHorizontal" id="Eh3-8G-sas"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -246,8 +232,7 @@
                                         <include reference="tdz-s4-fIc"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="100" y="28" width="120" height="40"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="tdz-s4-fIc"/>
                                         <include reference="w5Z-8f-3nw"/>
@@ -274,8 +259,7 @@
                                         <exclude reference="BDJ-T6-bi5"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="28" y="273" width="264" height="21"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="BDJ-T6-bi5"/>
                                     </mask>
@@ -466,7 +450,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sD9-pV-lav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="898.5" y="2113.5"/>
+            <point key="canvasLocation" x="253.5" y="1936.5"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="w7W-78-31S">
+            <objects>
+                <viewController id="hvo-71-FO3" customClass="MapViewController" customModule="Somm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kst-fT-D12"/>
+                        <viewControllerLayoutGuide type="bottom" id="FSh-tz-Kdu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w4b-Cw-nzh">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zwu-Xs-Quh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1498.5" y="1841.25"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="mV5-iG-tb9">
@@ -601,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkd-ns-dav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1447.5" y="1090"/>
+            <point key="canvasLocation" x="2128.5" y="1089.75"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="UWA-3l-822">
@@ -723,7 +724,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0U-ir-DU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2197.5" y="1115.25"/>
+            <point key="canvasLocation" x="2797.5" y="1125.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gqa-NI-MTf">

@@ -20,15 +20,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var txtArrival: UILabel!
     @IBOutlet weak var txtVisit: UILabel!
     @IBOutlet weak var tableInfo: UITableView!
+    let store = Store()
+    let errorHelper = ErrorHelper()
+    let networkHelper = NetworkHelper()
     
-    var items: [String] = ["Chipotle", "Taco Bell", "Noodles & Company", "Subway", "Casa Blanca", "Petra", "Starbucks"]
+    
+    var restaurants: [String] = ["Chipotle", "Taco Bell", "Noodles & Company", "Subway", "Casa Blanca", "Petra", "Starbucks"]
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
     var emailString = ""
-    let store = Store()
-    let errorHelper = ErrorHelper()
     //let reachability = Reachability.reachabilityForInternetConnection()
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
@@ -76,7 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 departureDate = visit.valueForKey("departureDate") as NSDate!
                 longitude = visit.valueForKey("longitude") as Double!
                 latitude = visit.valueForKey("latitude") as Double!
-                sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: 99)
+                networkHelper.sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: 99)
             }
             store.delVisits()
         } else {
@@ -87,59 +88,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 
-    func sendGps(timeStamp: NSDate, arrivalDate: NSDate, departureDate: NSDate, longitude: Double, latitude:Double) {
-        let email = prefs.valueForKey("EMAIL") as NSString
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "LONG"
-        let timeStampConv = dateFormatter.stringFromDate(timeStamp)
-        let arrivalDateConv = dateFormatter.stringFromDate(arrivalDate)
-        let departureDateConv = dateFormatter.stringFromDate(departureDate)
-        var post:NSString = "time=\(timeStamp)&email=\(email)&coords=\(latitude),\(longitude)"
-        NSLog("Email\(email)");
-        NSLog("PostData: %@",post);
-        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/post.php")!
-        var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
-        var postLength:NSString = String( postData.length )
-        var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.HTTPBody = postData
-        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        var reponseError: NSError?
-        var response: NSURLResponse?
-        var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
-        if ( urlData != nil ) {
-            let res = response as NSHTTPURLResponse!;
-            //processResponse(email, res: res, urlData: urlData!)
-        } else {
-            errorHelper.displayHttpError(error_msg)
-        }
-    }
     
-    func processResponse(email:NSString, res: NSHTTPURLResponse,urlData: NSData) {
-        NSLog("Response code: %ld", res.statusCode);
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-            var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
-            NSLog("Response ==> %@", responseData);
-            var error: NSError?
-            let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as NSDictionary
-            let success:NSInteger = jsonData.valueForKey("success") as NSInteger
-            NSLog("Success: %ld", success);
-            if(success == 1) {
-                NSLog("GPS SUCCESS");
-            } else {
-                if jsonData["error_message"] as? NSString != nil {
-                    error_msg = jsonData["error_message"] as NSString
-                } else {
-                    error_msg = "Unknown Error"
-                }
-                errorHelper.displayHttpError(error_msg)
-            }
-        } else {
-            errorHelper.displayHttpError(error_msg)
-        }
-    }
 
 //    func openMapForPlace() {
 //        
@@ -165,41 +114,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return self.restaurants.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
         let cell = UITableViewCell()
-
         cell.backgroundColor = UIColor(red: 0.3843, green: 0.0627, blue: 0.3725, alpha: 1.0)
         cell.selectedBackgroundView.backgroundColor = UIColor(red: 0.6431, green: 0.1490, blue: 0.6902, alpha: 1.0)
         let label = UILabel(frame: CGRect(x:0, y:0, width:tableInfo.frame.width, height:50))
-        label.text = self.items[indexPath.row]
+        label.text = self.restaurants[indexPath.row]
         label.textColor = UIColor.whiteColor()
         label.textAlignment = .Center
         cell.addSubview(label)
         return cell
     }
     
-   /*
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        let cell = self.tableInfo.cellForRowAtIndexPath(indexPath)
-        cell?.contentView.backgroundColor = UIColor.greenColor()
-        cell?.backgroundColor = UIColor.greenColor()
-        return true;
-        
-    }
-    
-    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = self.tableInfo.cellForRowAtIndexPath(indexPath)
-        cell?.contentView.backgroundColor = UIColor.clearColor()
-        cell?.backgroundColor = UIColor.clearColor()
-    }*/
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println("Restaurant name \(self.restaurants[indexPath.row])")
+        self.performSegueWithIdentifier("goto_map", sender: self)
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier=="goto_map"){
+            let indexPath:NSIndexPath = self.tableInfo.indexPathForSelectedRow()!
+            let mapViewController:MapViewController = segue.destinationViewController as MapViewController
+            mapViewController.restaurantName = restaurants[indexPath.row]
+        }
+        
+    }
     
     
     @IBAction func logoutTapped(sender: UIButton) {
