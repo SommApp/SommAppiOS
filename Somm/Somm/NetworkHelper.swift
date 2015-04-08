@@ -14,6 +14,34 @@ class NetworkHelper: NSObject {
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg = ""
     
+    
+    func sendSettings(name:String, password:String, miles:Int) {
+        let email = prefs.valueForKey("EMAIL") as NSString
+        var post:NSString = "timestamp=\(NSDate())&email=\(email)&name=\(name)&password=\(password)&miles=\(miles)"
+        NSLog("Email\(email)");
+        NSLog("PostData: %@",post);
+        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/settings.php")!
+        var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+        var postLength:NSString = String( postData.length )
+        var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        var reponseError: NSError?
+        var response: NSURLResponse?
+        var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
+        if ( urlData != nil ) {
+            let res = response as NSHTTPURLResponse!;
+            //processResponse(email, res: res, urlData: urlData!)
+        } else {
+            errorHelper.displayHttpError(error_msg)
+        }
+    }
+
+    
+    
     func sendGps(timeStamp: NSDate, arrivalDate: NSDate, departureDate: NSDate, longitude: Double, latitude:Double) {
         let email = prefs.valueForKey("EMAIL") as NSString
         let dateFormatter = NSDateFormatter()

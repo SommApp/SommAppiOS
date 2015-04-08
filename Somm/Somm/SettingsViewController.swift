@@ -15,15 +15,25 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
 
-    let milesText : [String] = ["1 mile", "3 miles", "5 miles", "10 miles", "15 miles"]
-    let mileNumVal : [Int] = [1, 3, 5,  10, 15]
-    var selectedMiles : Int!
+    let networkHelper = NetworkHelper()
+    let stringHelper = StringHelper()
+    let milesText: [String] = ["1 mile", "3 miles", "5 miles", "10 miles", "15 miles"]
+    let mileNumVal: [Int] = [1, 3, 5, 10, 15]
+    var selectedMiles: Int = 1
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    
-    
+//    var milesFromPrefs: Int = prefs.valueForKey("MAXMILES") as Int
+    var milesFromPrefs = 15
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         txtName.text = self.prefs.valueForKey("NAME") as String
+        
+        for var i = 0; i < mileNumVal.count; i++ {
+            if (milesFromPrefs==mileNumVal[i]){
+                pickerView.selectRow(i, inComponent: 0, animated: true)
+            }
+            
+        }
+
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -44,8 +54,19 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     @IBAction func btnSave(sender: AnyObject) {
-      
-        println("\(selectedMiles)")
+        
+        if(txtPassword.text != txtConfirmPassword.text){
+            var alertView:UIAlertView = UIAlertView()
+            alertView.title = "Sign Up Failed!"
+            alertView.message = "Passwords don't Match"
+            alertView.delegate = self
+            alertView.addButtonWithTitle("OK")
+            alertView.show()
+        } else {
+            networkHelper.sendSettings(txtName.text, password: txtPassword.text, miles: selectedMiles)
+        }
+        
+        
         
     }
     
