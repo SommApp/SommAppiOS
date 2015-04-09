@@ -8,14 +8,12 @@
 
 import Foundation
 
-
 class NetworkHelper: NSObject {
     let errorHelper = ErrorHelper()
     let store = Store()
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg = ""
-    
-    
+  
     func sendSettings(name:String, password:String, miles:Int) {
         let email = prefs.valueForKey("EMAIL") as NSString
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&name=\(name)&password=\(password)&miles=\(miles)"

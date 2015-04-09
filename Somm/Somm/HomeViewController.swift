@@ -13,7 +13,7 @@ import CoreLocation
 import MapKit
 
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var txtLocation: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var txtStatus: UILabel!
@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let errorHelper = ErrorHelper()
     let networkHelper = NetworkHelper()
     var dict: [[String:AnyObject]] = []
+    let locationManager = CLLocationManager()
 
     
     var restaurants: [[String:String]] = []
@@ -37,6 +38,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+
+        locationManager.delegate = self
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn == 1) {
             emailString = "Welcome "
@@ -51,6 +59,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             popRestaurantsDict()
         }
         
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        println(locations.last)
     }
     
     override func viewDidAppear(animated: Bool) {

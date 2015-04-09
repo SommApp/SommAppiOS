@@ -27,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         
-        
-        
         //Monitor visits
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -37,6 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.startMonitoringVisits()
         return true
     }
+  
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        println(locations)
+        println("LKJA")
+    }
+    
+    
     
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         var long = visit.coordinate.longitude
