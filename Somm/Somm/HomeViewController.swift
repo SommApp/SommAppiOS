@@ -43,6 +43,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             emailString += prefs.valueForKey("NAME") as NSString
             emailString += "!"
             self.emailLabel.text = emailString
+            
+            networkHelper.sendRecommendationRequest("blah")
+            popRestaurantsDict()
+
+            
         }
         
     }
@@ -58,8 +63,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
             sendVisits()
-            networkHelper.sendRecommendationRequest("blah")
-            popRestaurantsDict()
 
         }
         
@@ -149,6 +152,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.selectedBackgroundView.backgroundColor = UIColor(red: 0.6431, green: 0.1490, blue: 0.6902, alpha: 1.0)
         let label = UILabel(frame: CGRect(x:0, y:0, width:tableInfo.frame.width, height:50))
         label.text = self.restaurants[indexPath.row]["name"]
+        println("LKSDJFLKSJDLKFJSDLKFJLKSDJFLSDJLF")
+        println(self.restaurants[indexPath.row]["name"])
         label.textColor = UIColor.whiteColor()
         label.textAlignment = .Center
         cell.addSubview(label)

@@ -79,6 +79,7 @@ class NetworkHelper: NSObject {
             if(success! == 1) {
                 NSLog("RECOMMENDATION SUCCESS");
                 for var i = 1; i < json.length; i++ {
+                    println(json[i])
                     store.saveRecommendation(json[i])
                 }                    
             } else {

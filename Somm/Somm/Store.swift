@@ -13,8 +13,8 @@ class Store: NSObject {
     
     func saveRecommendation(reccomendation:JSON)-> Bool{
         let name = reccomendation["name"].asString
-        let latitude = reccomendation["latitude"].asDouble
-        let longitude = reccomendation["longitude"].asDouble
+        let latitude = reccomendation["latitude"].asString
+        let longitude = reccomendation["longitude"].asString
         let address = reccomendation["address"].asString
         
         let appDelegate =
