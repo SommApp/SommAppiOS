@@ -10,40 +10,12 @@ import UIKit
 import CoreData
 import CoreLocation
 class Store: NSObject {
-   // let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
     
-    var visits = [NSManagedObject]()
-    
-    
-    func delVisits(){
-        
-        let appDelegate =
-        UIApplication.sharedApplication().delegate as AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName:"Visit")
-        var error: NSError?
-        
-        let fetchedResults =
-        managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as [NSManagedObject]?
-        
-        
-        if let results = fetchedResults {
-            var manObj: NSManagedObject!
-            
-            for manObj: AnyObject in results{
-                managedContext.deleteObject(manObj as NSManagedObject)
-                NSLog("Object deleted")
-            }
-
-        }
-        
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        }
-    }
-    
-    func saveRecommendation(reccomendation:NSDictionary)-> Bool{
+    func saveRecommendation(reccomendation:JSON)-> Bool{
+        let name = reccomendation["name"].asString
+        let latitude = reccomendation["latitude"].asInt
+        let longitude = reccomendation["longitude"].asInt
+        let address = reccomendation["address"].asString
         
         let appDelegate =
         UIApplication.sharedApplication().delegate as AppDelegate
@@ -57,11 +29,10 @@ class Store: NSObject {
             insertIntoManagedObjectContext:managedContext)
         
         //Save info into model
-        restaurant.setValue(reccomendation, forKey: "name")
-        restaurant.setValue(reccomendation, forKey: "longitude")
-        restaurant.setValue(reccomendation, forKey: "latitude")
-        restaurant.setValue(reccomendation, forKey: "address")
-        
+        restaurant.setValue(name!, forKey: "name")
+        restaurant.setValue(longitude!, forKey: "latitude")
+        restaurant.setValue(latitude!, forKey: "longitude")
+        restaurant.setValue(address!, forKey: "address")
         
         //Return false if error occurs for saving
         var error: NSError?
@@ -71,8 +42,48 @@ class Store: NSObject {
         }  else {
             return true;
         }
-        
     }
+    func grabReccomendation() -> NSArray{
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName:"Restaurant")
+        var error: NSError?
+        
+        let fetchedResults =
+        managedContext.executeFetchRequest(fetchRequest,
+            error: &error) as [NSManagedObject]?
+        
+        if let results = fetchedResults {
+            return results
+        } else {
+            println("Could not fetch \(error), \(error!.userInfo)")
+            var arr = ["Failed","\(error)"]
+            return arr
+        }
+    }
+
+    func delReccomendations(){
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName:"Restaurant")
+        var error: NSError?
+        let fetchedResults =
+        managedContext.executeFetchRequest(fetchRequest,
+            error: &error) as [NSManagedObject]?
+        if let results = fetchedResults {
+            var manObj: NSManagedObject!
+            for manObj: AnyObject in results{
+                managedContext.deleteObject(manObj as NSManagedObject)
+                NSLog("Object deleted")
+            }
+        }
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
+    }
+
     
     func saveVisit(aVisit:CLVisit)-> Bool{
         let appDelegate =
@@ -85,14 +96,13 @@ class Store: NSObject {
         
         let visit = NSManagedObject(entity: entity!,
             insertIntoManagedObjectContext:managedContext)
-
+        
         //Save info into model
         visit.setValue(aVisit.arrivalDate, forKey: "arrivalDate")
         visit.setValue(aVisit.departureDate, forKey: "departureDate")
         visit.setValue(NSDate(), forKey: "timeStamp")
         visit.setValue(aVisit.coordinate.latitude, forKey: "latitude")
         visit.setValue(aVisit.coordinate.longitude, forKey: "longitude")
-
         
         //Return false if error occurs for saving
         var error: NSError?
@@ -102,24 +112,20 @@ class Store: NSObject {
         }  else {
             return true;
         }
-
+        
     }
     
     func grabVisit() -> NSArray{
         let appDelegate =
         UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
-        
         let fetchRequest = NSFetchRequest(entityName:"Visit")
-        
-        
         var error: NSError?
         
         let fetchedResults =
         managedContext.executeFetchRequest(fetchRequest,
             error: &error) as [NSManagedObject]?
 
-        
         if let results = fetchedResults {
             return results
         } else {
@@ -127,10 +133,30 @@ class Store: NSObject {
             var arr = ["Failed","\(error)"]
             return arr
         }
-        
     }
 
-    
+    func delVisits(){
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName:"Visit")
+        var error: NSError?
+        let fetchedResults =
+        managedContext.executeFetchRequest(fetchRequest,
+            error: &error) as [NSManagedObject]?
+        if let results = fetchedResults {
+            var manObj: NSManagedObject!
+            for manObj: AnyObject in results{
+                managedContext.deleteObject(manObj as NSManagedObject)
+                NSLog("Object deleted")
+            }
+            
+        }
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
+    }
+
     
         
     

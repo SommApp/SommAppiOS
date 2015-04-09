@@ -11,6 +11,7 @@ import Foundation
 
 class NetworkHelper: NSObject {
     let errorHelper = ErrorHelper()
+    let store = Store()
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg = ""
     
@@ -75,11 +76,11 @@ class NetworkHelper: NSObject {
             let jsonData:[[String:AnyObject]] = []
             let json = JSON.parse(responseData)
             let success = json[0]["success"].asInt
-
             if(success! == 1) {
                 NSLog("RECOMMENDATION SUCCESS");
-                println("\(json)")
-                
+                for var i = 1; i < json.length; i++ {
+                    store.saveRecommendation(json[i])
+                }                    
             } else {
                 errorHelper.displayHttpError("Error Fetching recommendations")
             }
