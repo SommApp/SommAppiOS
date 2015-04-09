@@ -23,9 +23,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let store = Store()
     let errorHelper = ErrorHelper()
     let networkHelper = NetworkHelper()
+    var dict: [[String:AnyObject]] = []
+
     
-    
-    var restaurants:[String] = ["Chipotle", "Taco Bell", "Noodles & Company", "Subway", "Casa Blanca", "Petra", "Starbucks"]
+    var restaurants: [[String:String]] = []
+
+    //var restaurants:[String] = ["Chipotle", "Taco Bell", "Noodles & Company", "Subway", "Casa Blanca", "Petra", "Starbucks"]
     
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
@@ -48,49 +51,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidAppear(true)
         tableInfo.dataSource = self
         tableInfo.delegate = self
-        
-        var obj:[String:AnyObject] = [
-            "restaurant":[
-                "name":   "Chipotle",
-                "latitude":   0,
-                "longitude":    0,
-                "address": ""
-            ]
-        ]
-        
-        var dict: [[String:AnyObject]] = []
-        
-        dict += [["name":"Chipotle", "latitude":0, "longitude":0,"address":""]]
-        dict += [["name":"Tacobell", "latitude":0, "longitude":0,"address":""]]
-
-        
-        println((dict[0]["name"]))
-        println((dict[0]["name"]))
-        println((dict[0]["name"]))
-        println((dict[0]["name"]))
-        println((dict[0]["name"]))
-
-        
-        
-        for item in dict {
-            println(item["name"]!)
-        }
-        
-        let json = JSON(dict)
-        let name = json[0]["name"].asString
-        
-        println("\(name!)")
-
-        networkHelper.sendRecommendationRequest("blah")
-
-        
-        
+    
         
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
             sendVisits()
+            networkHelper.sendRecommendationRequest("blah")
+            popRestaurantsDict()
+
         }
         
         
@@ -126,7 +96,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 
-    
+    func popRestaurantsDict(){
+        if let restaurants = store.grabReccomendation() as? [NSManagedObject] {
+            for restaurant in restaurants{
+                let name = restaurant.valueForKey("name") as String!
+                let latitude = restaurant.valueForKey("latitude") as String!
+                let longitude = restaurant.valueForKey("longitude") as String!
+                let address = restaurant.valueForKey("address") as String!
+                self.restaurants += [["name":name, "latitude":latitude,"longitude":longitude,"address":address]]
+            }
+            //store.delVisits()
+        } else {
+            let restaurants = store.grabReccomendation()
+            if(restaurants[0].isEqualToString("Failed")){
+                println("Failed to grab restaurants")
+            }
+        }
+
+        
+    }
 
 //    func openMapForPlace() {
 //        
@@ -160,7 +148,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.backgroundColor = UIColor(red: 0.3843, green: 0.0627, blue: 0.3725, alpha: 1.0)
         cell.selectedBackgroundView.backgroundColor = UIColor(red: 0.6431, green: 0.1490, blue: 0.6902, alpha: 1.0)
         let label = UILabel(frame: CGRect(x:0, y:0, width:tableInfo.frame.width, height:50))
-        label.text = self.restaurants[indexPath.row]
+        label.text = self.restaurants[indexPath.row]["name"]
         label.textColor = UIColor.whiteColor()
         label.textAlignment = .Center
         cell.addSubview(label)
@@ -174,42 +162,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("Restaurant name \(self.restaurants[indexPath.row])")
         self.performSegueWithIdentifier("goto_map", sender: self)
-    }
-    
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier=="goto_map"){
-            let indexPath:NSIndexPath = self.tableInfo.indexPathForSelectedRow()!
-            let mapViewController:MapViewController = segue.destinationViewController as MapViewController
-            mapViewController.restaurantName = restaurants[indexPath.row]
-        } else if (segue.identifier=="goto_home"){
-            
-
-            /*
-            UIViewController *sourceViewController = self.sourceViewController;
-            UIViewController *destinationViewController = self.destinationViewController;
-            
-            
-            [sourceViewController presentViewController:destinationViewController animated:NO completion:nil];
-            [destinationViewController.view addSubview:sourceViewController.view];
-            [sourceViewController.view setTransform:CGAffineTransformMakeTranslation(0, 0)];
-            [sourceViewController.view setAlpha:1.0];
-            
-            [UIView animateWithDuration:0.75
-                delay:0.0
-                options:UIViewAnimationOptionTransitionFlipFromBottom
-                animations:^{
-                [sourceViewController.view setTransform:CGAffineTransformMakeTranslation(0,destinationViewController.view.frame.size.height)];
-                [sourceViewController.view setAlpha:1.0];
-                }
-                completion:^(BOOL finished){
-                [sourceViewController.view removeFromSuperview];
-                }];
-            
-        }*/
-            println("BLAAH")
-        }
-        
     }
     
     
