@@ -70,7 +70,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
             if ( urlData != nil ) {
                 let res = response as NSHTTPURLResponse!;
-                processResponse(email, res: res, urlData: urlData!)
+                processLoginResponse(email, res: res, urlData: urlData!)
             } else {
                 errorHelper.displaySignInFail(error_msg)
             }
@@ -78,7 +78,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func processResponse(email:NSString, res: NSHTTPURLResponse,urlData: NSData){
+    func processLoginResponse(email:NSString, res: NSHTTPURLResponse,urlData: NSData){
         NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
@@ -87,14 +87,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as NSDictionary
             let success:NSInteger = jsonData.valueForKey("success") as NSInteger
             let name:String = jsonData.valueForKey("firstname") as String
-           // let maxMiles:NSInteger = jsonData.valueForKey("maxMiles") as NSInteger
+            // let maxMiles:NSInteger = jsonData.valueForKey("maxMiles") as NSInteger
             NSLog("Success: %ld", success);
             if(success == 1) {
                 NSLog("Login SUCCESS");
                 var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
                 prefs.setObject(email, forKey: "EMAIL")
                 prefs.setObject(name, forKey: "NAME")
-              /* this needs to be changed to take in json value*/  prefs.setObject(5, forKey: "MAXMILES")
+                /* this needs to be changed to take in json value*/  prefs.setObject(5, forKey: "MAXMILES")
                 prefs.setInteger(1, forKey: "ISLOGGEDIN")
                 prefs.synchronize()
                 self.dismissViewControllerAnimated(true, completion: nil)

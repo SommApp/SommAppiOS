@@ -41,7 +41,36 @@ class Store: NSObject {
         if !managedContext.save(&error) {
             println("Could not save \(error), \(error?.userInfo)")
         }
+    }
+    
+    func saveRecommendation(reccomendation:NSDictionary)-> Bool{
         
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let entity =  NSEntityDescription.entityForName("Restaurant",
+            inManagedObjectContext:
+            managedContext)
+        
+        let restaurant = NSManagedObject(entity: entity!,
+            insertIntoManagedObjectContext:managedContext)
+        
+        //Save info into model
+        restaurant.setValue(reccomendation, forKey: "name")
+        restaurant.setValue(reccomendation, forKey: "longitude")
+        restaurant.setValue(reccomendation, forKey: "latitude")
+        restaurant.setValue(reccomendation, forKey: "address")
+        
+        
+        //Return false if error occurs for saving
+        var error: NSError?
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+            return false;
+        }  else {
+            return true;
+        }
         
     }
     
@@ -58,10 +87,8 @@ class Store: NSObject {
             insertIntoManagedObjectContext:managedContext)
 
         //Save info into model
-//        visit.setValue(aVisit.arrivalDate, forKey: "arrivalDate")
-//        visit.setValue(aVisit.departureDate, forKey: "departureDate")
-        visit.setValue(NSDate(), forKey: "arrivalDate")
-        visit.setValue(NSDate(), forKey: "departureDate")
+        visit.setValue(aVisit.arrivalDate, forKey: "arrivalDate")
+        visit.setValue(aVisit.departureDate, forKey: "departureDate")
         visit.setValue(NSDate(), forKey: "timeStamp")
         visit.setValue(aVisit.coordinate.latitude, forKey: "latitude")
         visit.setValue(aVisit.coordinate.longitude, forKey: "longitude")

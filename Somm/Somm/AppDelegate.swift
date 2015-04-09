@@ -21,14 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     let dateFormatter = NSDateFormatter()
     
-    let visit = CLVisit()
     
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         
-        store.saveVisit(visit)
         
         
         //Monitor visits
