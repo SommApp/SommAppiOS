@@ -44,10 +44,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             emailString += "!"
             self.emailLabel.text = emailString
             
-            networkHelper.sendRecommendationRequest("blah")
-            popRestaurantsDict()
-
+            //have sendRecommendationRequest check if there are new reccomendations if so delete and repopulate restaurantDict
+            //also give user ability to manually click button to update reccomendations
             
+            /*Need to send cordinates here*/networkHelper.sendRecommendationRequest("blah")
+            popRestaurantsDict()
         }
         
     }
@@ -152,8 +153,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.selectedBackgroundView.backgroundColor = UIColor(red: 0.6431, green: 0.1490, blue: 0.6902, alpha: 1.0)
         let label = UILabel(frame: CGRect(x:0, y:0, width:tableInfo.frame.width, height:50))
         label.text = self.restaurants[indexPath.row]["name"]
-        println("LKSDJFLKSJDLKFJSDLKFJLKSDJFLSDJLF")
-        println(self.restaurants[indexPath.row]["name"])
         label.textColor = UIColor.whiteColor()
         label.textAlignment = .Center
         cell.addSubview(label)
