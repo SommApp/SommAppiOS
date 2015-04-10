@@ -62,8 +62,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        println(locations.last)
+        
+        //get coords from locations array
+        println(locations)
+        locationManager.stopUpdatingLocation()
     }
+    
+
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
