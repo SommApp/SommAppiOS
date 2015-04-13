@@ -508,6 +508,9 @@
                                         <exclude reference="gCY-KF-K3p"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="btnDirections:" destination="hvo-71-FO3" eventType="touchDragInside" id="aHw-65-IXq"/>
+                                </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="C3N-Ds-Nn1">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -865,6 +868,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eYQ-Ga-By3"/>
+        <segue reference="icJ-k3-U5Z"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -28,8 +28,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     
     var restaurants: [[String:String]] = []
-
-    //var restaurants:[String] = ["Chipotle", "Taco Bell", "Noodles & Company", "Subway", "Casa Blanca", "Petra", "Starbucks"]
     
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
@@ -137,27 +135,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
 
-//    func openMapForPlace() {
-//        
-//        var lat1 : NSString =
-//        var lng1 : NSString =
-//        
-//        var latitute:CLLocationDegrees =  lat1.doubleValue
-//        var longitute:CLLocationDegrees =  lng1.doubleValue
-//        
-//        let regionDistance:CLLocationDistance = 10000
-//        var coordinates = CLLocationCoordinate2DMake(latitute, longitute)
-//        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
-//        var options = [
-//            MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
-//            MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
-//        ]
-//        var placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-//        var mapItem = MKMapItem(placemark: placemark)
-//        mapItem.name = "\(self.venueName)"
-//        mapItem.openInMapsWithLaunchOptions(options)
-//        
-//    }
+
 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -194,7 +172,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             destViewController.restaurantName = self.restaurants[indexPath.row]["name"]!
             destViewController.restaurantAddress = self.restaurants[indexPath.row]["address"]!
             destViewController.latitude = self.restaurants[indexPath.row]["latitude"]!
-            destViewController.longitude = self.restaurants[indexPath.row]["longtiude"]!
+            destViewController.longitude = self.restaurants[indexPath.row]["longitude"]!
         }
     }
     
