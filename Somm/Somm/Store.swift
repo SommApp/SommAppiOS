@@ -30,8 +30,8 @@ class Store: NSObject {
         
         //Save info into model
         restaurant.setValue(name!, forKey: "name")
-        restaurant.setValue(longitude!, forKey: "latitude")
-        restaurant.setValue(latitude!, forKey: "longitude")
+        restaurant.setValue(latitude!, forKey: "latitude")
+        restaurant.setValue(longitude!, forKey: "longitude")
         restaurant.setValue(address!, forKey: "address")
         
         //Return false if error occurs for saving
