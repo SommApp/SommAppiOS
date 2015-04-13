@@ -12,11 +12,13 @@ import MapKit
 class MapViewController:UIViewController {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
-    
+    @IBOutlet weak var mapView: MKMapView!
+
+
     var restaurantName = ""
     var restaurantAddress = ""
-    var latitude = ""
-    var longitude = ""
+    var latitude:NSString = ""
+    var longitude:NSString = ""
 
     
     override func viewWillAppear(animated: Bool) {
@@ -27,6 +29,33 @@ class MapViewController:UIViewController {
     override func viewDidAppear(animated: Bool) {
         println("\(restaurantName)")
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let lat = self.latitude.doubleValue
+        let long = self.longitude.doubleValue
+        
+        let location = CLLocationCoordinate2D(
+            latitude: lat,
+            longitude: long
+        )
+        
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegion(center: location, span: span)
+        
+        mapView.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.setCoordinate(location)
+        annotation.title = restaurantName
+        annotation.subtitle = restaurantAddress
+        
+        mapView.addAnnotation(annotation)
+
+        
+    }
+    
+    
     
     
     @IBAction func btnDirections(sender: AnyObject) {
@@ -49,6 +78,8 @@ class MapViewController:UIViewController {
         mapItem.openInMapsWithLaunchOptions(options)
         
     }
+    
+    
     
 
 
