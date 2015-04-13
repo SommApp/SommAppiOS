@@ -21,7 +21,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     func grabLocation(){
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -60,15 +60,11 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         grabLocation()
         let email = prefs.valueForKey("EMAIL") as NSString
         var coords = ""
-        
-        
         if locationManager.location != nil {
             coords = ("\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
         } else {
             coords = ""
         }
-
-        
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&coords=\(coords)"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
