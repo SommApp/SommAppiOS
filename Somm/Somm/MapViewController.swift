@@ -13,54 +13,35 @@ class MapViewController:UIViewController {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-
-
     var restaurantName = ""
     var restaurantAddress = ""
     var latitude:NSString = ""
     var longitude:NSString = ""
-
     
     override func viewWillAppear(animated: Bool) {
         lblName.text = restaurantName
         lblAddress.text = restaurantAddress
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let lat = self.latitude.doubleValue
-        let long = self.longitude.doubleValue
-        
         let location = CLLocationCoordinate2D(
-            latitude: lat,
-            longitude: long
+            latitude: self.latitude.doubleValue,
+            longitude: self.longitude.doubleValue
         )
-        
         let span = MKCoordinateSpanMake(0.001, 0.001)
         let region = MKCoordinateRegion(center: location, span: span)
-        
         mapView.setRegion(region, animated: true)
-        
         let annotation = MKPointAnnotation()
         annotation.setCoordinate(location)
         annotation.title = restaurantName
         annotation.subtitle = restaurantAddress
-        
         mapView.addAnnotation(annotation)
-
-        
     }
     
-    
-    
-    
     @IBAction func btnDirections(sender: AnyObject) {
-        var lat1: NSString = latitude
-        var lng1: NSString = longitude
-        
-        var latitute:CLLocationDegrees =  lat1.doubleValue
-        var longitute:CLLocationDegrees =  lng1.doubleValue
+        let latitute:CLLocationDegrees =  self.latitude.doubleValue
+        let longitute:CLLocationDegrees =  self.longitude.doubleValue
         
         let regionDistance:CLLocationDistance = 10000
         var coordinates = CLLocationCoordinate2DMake(latitute, longitute)
@@ -73,10 +54,7 @@ class MapViewController:UIViewController {
         var mapItem = MKMapItem(placemark: placemark)
         mapItem.name = "\(restaurantName)"
         mapItem.openInMapsWithLaunchOptions(options)
-        
     }
-    
-    
     
 
 

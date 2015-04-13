@@ -41,22 +41,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             emailString += prefs.valueForKey("NAME") as NSString
             emailString += "!"
             self.emailLabel.text = emailString
-            
-            //have sendRecommendationRequest check if there are new reccomendations if so delete and repopulate restaurantDict
-            //also give user ability to manually click button to update reccomendations
-            
             networkHelper.sendRecommendationRequest(false)
             popRestaurantsDict()
         }
         
     }
-    
-  
-    
-    @IBAction func btnRecommendation(sender: AnyObject) {
-        networkHelper.sendRecommendationRequest(true)        
-    }
-
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
@@ -128,9 +117,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         
     }
-
-
-
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.restaurants.count
@@ -156,9 +142,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.performSegueWithIdentifier("goto_map", sender: self)
     }
     
-  
-
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier=="goto_map"){
             let indexPath: NSIndexPath = self.tableInfo.indexPathForSelectedRow()!
@@ -168,6 +151,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             destViewController.latitude = self.restaurants[indexPath.row]["latitude"]!
             destViewController.longitude = self.restaurants[indexPath.row]["longitude"]!
         }
+    }
+    
+    @IBAction func btnRecommendation(sender: AnyObject) {
+        networkHelper.sendRecommendationRequest(true)
+        popRestaurantsDict()
     }
     
     @IBAction func logoutTapped(sender: UIButton) {
