@@ -10,21 +10,22 @@ import Foundation
 import MapKit
 
 class MapViewController:UIViewController {
-    var restaurantName = ""
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     
+    var restaurantName = ""
+    var restaurantAddress = ""
+    var latitude = ""
+    var longitude = ""
+
     
     override func viewWillAppear(animated: Bool) {
         lblName.text = restaurantName
-        
+        lblAddress.text = restaurantAddress
     }
     
     override func viewDidAppear(animated: Bool) {
         println("\(restaurantName)")
-        
-        
-        
         
     }
 }
