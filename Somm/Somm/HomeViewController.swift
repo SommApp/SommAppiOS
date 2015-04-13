@@ -185,6 +185,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.performSegueWithIdentifier("goto_map", sender: self)
     }
     
+  
+
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        /*if ([segue.identifier isEqualToString:@"showRecipeDetail"]) {
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            RecipeDetailViewController *destViewController = segue.destinationViewController;
+            destViewController.recipeName = [recipes objectAtIndex:indexPath.row];
+        }*/
+
+        if (segue.identifier=="goto_map"){
+            let indexPath: NSIndexPath = self.tableInfo.indexPathForSelectedRow()!
+            let destViewController: MapViewController = segue.destinationViewController as MapViewController
+            destViewController.restaurantName = self.restaurants[indexPath.row]["name"]!
+            
+        }
+        
+        
+    }
     
     @IBAction func logoutTapped(sender: UIButton) {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
