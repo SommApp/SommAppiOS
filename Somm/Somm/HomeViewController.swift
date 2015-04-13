@@ -164,10 +164,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             destViewController.restaurantAddress = self.restaurants[indexPath.row]["address"]!
             destViewController.latitude = self.restaurants[indexPath.row]["latitude"]!
             destViewController.longitude = self.restaurants[indexPath.row]["longitude"]!
-            
-            println("KLSJDFKLJSDLKFJLSDJFLKJSDLKFJLKSJDF\n\n\n")
-            
-            println(self.restaurants[indexPath.row]["latitude"]!)
         }
     }
     

@@ -32,9 +32,6 @@ class MapViewController:UIViewController {
         let lat = self.latitude.doubleValue
         let long = self.longitude.doubleValue
         
-        println("\(lat)\(long)")
-
-        
         let location = CLLocationCoordinate2D(
             latitude: lat,
             longitude: long

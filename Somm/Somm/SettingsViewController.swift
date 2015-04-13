@@ -69,7 +69,6 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             alertView.addButtonWithTitle("OK")
             alertView.show()
         } else {
-            println("\(selectedMiles)")
             networkHelper.sendSettings(txtName.text, password: txtPassword.text, miles: selectedMiles)
             self.prefs.setObject(selectedMiles, forKey: "MAXMILES")
             self.performSegueWithIdentifier("goto_home", sender: self)

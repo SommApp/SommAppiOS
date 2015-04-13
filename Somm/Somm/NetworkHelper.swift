@@ -69,8 +69,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         }
 
         
-        
-        
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&coords=\(coords)"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
@@ -106,7 +104,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             if(success! == 1) {
                 NSLog("RECOMMENDATION SUCCESS");
                 for var i = 1; i < json.length; i++ {
-                    println(json[i])
                     store.saveRecommendation(json[i])
                 }                    
             } else {

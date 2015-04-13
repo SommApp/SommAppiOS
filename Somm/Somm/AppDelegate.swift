@@ -36,12 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return true
     }
   
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        println(locations)
-        println("LKJA")
-    }
-    
-    
+   
     
     func locationManager(manager: CLLocationManager!, didVisit visit: CLVisit!) {
         var long = visit.coordinate.longitude
