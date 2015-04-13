@@ -56,7 +56,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     }
 
     
-    func sendRecommendationRequest() {
+    func sendRecommendationRequest(fromBtn:Bool) {
         grabLocation()
         let email = prefs.valueForKey("EMAIL") as NSString
         var coords = ""
@@ -86,13 +86,13 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
         if ( urlData != nil ) {
             let res = response as NSHTTPURLResponse!;
-            processRecommendationResponse(res, urlData: urlData!)
+            processRecommendationResponse(res, urlData: urlData!, recommendationFromBtn: fromBtn)
         } else {
             errorHelper.displayHttpError(error_msg)
         }
     }
     
-    func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData) {
+    func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData, recommendationFromBtn:Bool) {
         NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
@@ -100,12 +100,17 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             var error: NSError?
             let jsonData:[[String:AnyObject]] = []
             let json = JSON.parse(responseData)
-            let success = json[0]["success"].asInt
-            if(success! == 1) {
+            let success = json[0]["success"].asString
+            if(success! == "1") {
                 NSLog("RECOMMENDATION SUCCESS");
+                store.delReccomendations()
                 for var i = 1; i < json.length; i++ {
                     store.saveRecommendation(json[i])
                 }                    
+            } else if (success! == "nonew"){
+                if(recommendationFromBtn){
+                    errorHelper.displayNoRecommendationsError()
+                }
             } else {
                 errorHelper.displayHttpError("Error Fetching recommendations")
             }

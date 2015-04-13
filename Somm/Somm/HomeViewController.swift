@@ -45,7 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //have sendRecommendationRequest check if there are new reccomendations if so delete and repopulate restaurantDict
             //also give user ability to manually click button to update reccomendations
             
-            /*Need to send cordinates here*/networkHelper.sendRecommendationRequest()
+            networkHelper.sendRecommendationRequest(false)
             popRestaurantsDict()
         }
         
@@ -53,6 +53,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
   
     
+    @IBAction func btnRecommendation(sender: AnyObject) {
+        networkHelper.sendRecommendationRequest(true)        
+    }
 
     
     override func viewDidAppear(animated: Bool) {

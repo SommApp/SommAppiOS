@@ -29,6 +29,14 @@ class ErrorHelper: NSObject {
         alertView.show()
     }
     
+    func displayNoRecommendationsError(){
+        alertView.title = "Recommendations"
+        alertView.message = "No new recommendations found"
+        alertView.delegate = self
+        alertView.addButtonWithTitle("OK")
+        alertView.show()
+    }
+    
     func displayHttpError(error_msg:NSString){
         alertView.title = "Sign in Failed!"
         if(error_msg.isEqualToString("")){
