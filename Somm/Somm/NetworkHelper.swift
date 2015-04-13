@@ -7,12 +7,28 @@
 //
 
 import Foundation
+import CoreLocation
 
-class NetworkHelper: NSObject {
+class NetworkHelper: NSObject, CLLocationManagerDelegate {
     let errorHelper = ErrorHelper()
     let store = Store()
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg = ""
+    let locationManager = CLLocationManager()
+    
+    
+    
+    func grabLocation(){
+        locationManager.delegate = self
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        locationManager.stopUpdatingLocation()
+    }
   
     func sendSettings(name:String, password:String, miles:Int) {
         let email = prefs.valueForKey("EMAIL") as NSString
@@ -40,8 +56,21 @@ class NetworkHelper: NSObject {
     }
 
     
-    func sendRecommendationRequest(coords:String) {
+    func sendRecommendationRequest() {
+        grabLocation()
         let email = prefs.valueForKey("EMAIL") as NSString
+        var coords = ""
+        
+        
+        if locationManager.location != nil {
+            coords = ("\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
+        } else {
+            coords = ""
+        }
+
+        
+        
+        
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&coords=\(coords)"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);

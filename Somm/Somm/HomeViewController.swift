@@ -13,7 +13,7 @@ import CoreLocation
 import MapKit
 
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var txtLocation: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var txtStatus: UILabel!
@@ -24,9 +24,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let errorHelper = ErrorHelper()
     let networkHelper = NetworkHelper()
     var dict: [[String:AnyObject]] = []
-    let locationManager = CLLocationManager()
-
-    
     var restaurants: [[String:String]] = []
     
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -37,11 +34,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
 
-        locationManager.delegate = self
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
         
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn == 1) {
@@ -53,18 +45,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //have sendRecommendationRequest check if there are new reccomendations if so delete and repopulate restaurantDict
             //also give user ability to manually click button to update reccomendations
             
-            /*Need to send cordinates here*/networkHelper.sendRecommendationRequest("blah")
+            /*Need to send cordinates here*/networkHelper.sendRecommendationRequest()
             popRestaurantsDict()
         }
         
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        
-        //get coords from locations array
-        println(locations)
-        locationManager.stopUpdatingLocation()
-    }
+  
     
 
     
@@ -72,7 +59,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidAppear(true)
         tableInfo.dataSource = self
         tableInfo.delegate = self
-    
+        
         
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn != 1) {
@@ -82,7 +69,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         }
         
-        
+
+        if(!CLLocationManager.locationServicesEnabled()){
+            errorHelper.displayLocationError()
+        }
+
 
         /*reachability.whenUnreachable = { reachability in
             self.errorHelper.displayNetworkError()
