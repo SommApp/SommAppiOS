@@ -181,7 +181,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("Restaurant name \(self.restaurants[indexPath.row])")
         self.performSegueWithIdentifier("goto_map", sender: self)
     }
     
@@ -193,8 +192,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let indexPath: NSIndexPath = self.tableInfo.indexPathForSelectedRow()!
             let destViewController: MapViewController = segue.destinationViewController as MapViewController
             destViewController.restaurantName = self.restaurants[indexPath.row]["name"]!
-
-            
+            destViewController.restaurantAddress = self.restaurants[indexPath.row]["address"]!
+            destViewController.latitude = self.restaurants[indexPath.row]["latitude"]!
+            destViewController.longitude = self.restaurants[indexPath.row]["longtiude"]!
         }
     }
     
