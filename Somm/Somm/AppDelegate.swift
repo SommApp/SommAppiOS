@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringVisits()
+        locationManager.startMonitoringSignificantLocationChanges()
         return true
     }
   
@@ -54,6 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             store.saveVisit(visit)
             sendGps("saving departure visit")
         }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        
+        showNotification("Significant Location Update\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
+        
     }
     
     func showNotification(body: String) {
