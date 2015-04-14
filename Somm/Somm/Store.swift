@@ -83,7 +83,6 @@ class Store: NSObject {
             println("Could not save \(error), \(error?.userInfo)")
         }
     }
-
     
     func saveVisit(aVisit:CLVisit)-> Bool{
         let appDelegate =
@@ -112,7 +111,6 @@ class Store: NSObject {
         }  else {
             return true;
         }
-        
     }
     
     func grabVisit() -> NSArray{
@@ -121,11 +119,9 @@ class Store: NSObject {
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName:"Visit")
         var error: NSError?
-        
         let fetchedResults =
         managedContext.executeFetchRequest(fetchRequest,
             error: &error) as [NSManagedObject]?
-
         if let results = fetchedResults {
             return results
         } else {
@@ -150,15 +146,10 @@ class Store: NSObject {
                 managedContext.deleteObject(manObj as NSManagedObject)
                 NSLog("Object deleted")
             }
-            
         }
         if !managedContext.save(&error) {
             println("Could not save \(error), \(error?.userInfo)")
         }
     }
-
-    
-        
-    
 
 }

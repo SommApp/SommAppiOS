@@ -23,19 +23,15 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var milesFromPrefs:Int = 0
 
-    //   var milesFromPrefs = 15
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         milesFromPrefs = self.prefs.valueForKey("MAXMILES") as Int
         txtName.text = self.prefs.valueForKey("NAME") as String
-        
         for var i = 0; i < mileNumVal.count; i++ {
             if (milesFromPrefs==mileNumVal[i]){
                 pickerView.selectRow(i, inComponent: 0, animated: true)
             }
-            
         }
-
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

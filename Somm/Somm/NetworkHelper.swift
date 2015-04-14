@@ -54,7 +54,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             errorHelper.displayHttpError(error_msg)
         }
     }
-
     
     func sendRecommendationRequest(fromBtn:Bool) {
         grabLocation()

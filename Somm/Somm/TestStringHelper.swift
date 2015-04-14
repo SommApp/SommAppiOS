@@ -33,7 +33,6 @@ class TestStringHelper: XCTestCase {
         XCTAssert(result==true)
     }
     
-    
     func testContainsEmail_Returns_true_given_email(){
         var result = testObj.containsEmail("steve@abc.com")
         XCTAssert(result==true)
