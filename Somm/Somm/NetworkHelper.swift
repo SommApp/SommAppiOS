@@ -55,7 +55,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func sendRecommendationRequest(fromBtn:Bool) {
+    func updateRecommendationRequest(fromBtn:Bool) -> Bool {
         grabLocation()
         let email = prefs.valueForKey("EMAIL") as NSString
         var coords = ""
@@ -81,13 +81,18 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
         if ( urlData != nil ) {
             let res = response as NSHTTPURLResponse!;
-            processRecommendationResponse(res, urlData: urlData!, recommendationFromBtn: fromBtn)
+            if(processRecommendationResponse(res, urlData: urlData!, recommendationFromBtn: fromBtn)){
+                return true
+            } else {
+                return false
+            }
         } else {
             errorHelper.displayHttpError(error_msg)
+            return false
         }
     }
     
-    func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData, recommendationFromBtn:Bool) {
+    func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData, recommendationFromBtn:Bool) -> Bool {
         NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
@@ -101,17 +106,22 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
                 store.delReccomendations()
                 for var i = 1; i < json.length; i++ {
                     store.saveRecommendation(json[i])
-                }                    
+                }
+                return true
             } else if (success! == "nonew"){
                 if(recommendationFromBtn){
                     errorHelper.displayNoRecommendationsError()
+                    return false
                 }
             } else {
                 errorHelper.displayHttpError("Error Fetching recommendations")
+                return false
             }
         } else {
             errorHelper.displayHttpError(error_msg)
+            return false
         }
+        return false
     }
     
     func processSettingsResponse(res: NSHTTPURLResponse,urlData: NSData) {
