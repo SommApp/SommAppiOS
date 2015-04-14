@@ -76,7 +76,6 @@ class Store: NSObject {
             var manObj: NSManagedObject!
             for manObj: AnyObject in results{
                 managedContext.deleteObject(manObj as NSManagedObject)
-                NSLog("Object deleted")
             }
         }
         if !managedContext.save(&error) {
@@ -144,7 +143,6 @@ class Store: NSObject {
             var manObj: NSManagedObject!
             for manObj: AnyObject in results{
                 managedContext.deleteObject(manObj as NSManagedObject)
-                NSLog("Object deleted")
             }
         }
         if !managedContext.save(&error) {

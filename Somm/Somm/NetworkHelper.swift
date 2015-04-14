@@ -96,7 +96,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
-            NSLog("Response ==> %@", responseData);
             var error: NSError?
             let jsonData:[[String:AnyObject]] = []
             let json = JSON.parse(responseData)
@@ -128,7 +127,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
-            NSLog("Response ==> %@", responseData);
             var error: NSError?
             let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as NSDictionary
             let success:NSInteger = jsonData.valueForKey("success") as NSInteger
