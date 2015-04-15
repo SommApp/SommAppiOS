@@ -15,10 +15,10 @@
 		B305568E1ADC56AE006FBEEB /* somm29.png in Resources */ = {isa = PBXBuildFile; fileRef = B305568B1ADC56AE006FBEEB /* somm29.png */; };
 		B305568F1ADC56AE006FBEEB /* somm360.png in Resources */ = {isa = PBXBuildFile; fileRef = B305568C1ADC56AE006FBEEB /* somm360.png */; };
 		B30556911ADC5BDE006FBEEB /* TestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30556901ADC5BDE006FBEEB /* TestStore.swift */; };
+		B30556931ADEC540006FBEEB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30556921ADEC540006FBEEB /* JSON.swift */; };
 		B33544981AD58C9F0038BDE9 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */; };
 		B335449A1AD58F4B0038BDE9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33544991AD58F4B0038BDE9 /* MapViewController.swift */; };
 		B335449C1AD5BEA00038BDE9 /* ReverseSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B335449B1AD5BEA00038BDE9 /* ReverseSegue.swift */; };
-		B335449E1AD5CBF40038BDE9 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B335449D1AD5CBF40038BDE9 /* JSON.swift */; };
 		B33FDECE1ACC618D0086B4C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FDECD1ACC618D0086B4C2 /* AppDelegate.swift */; };
 		B33FDED11ACC618D0086B4C2 /* Somm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B33FDECF1ACC618D0086B4C2 /* Somm.xcdatamodeld */; };
 		B33FDED81ACC618D0086B4C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33FDED71ACC618D0086B4C2 /* Images.xcassets */; };
@@ -58,10 +58,10 @@
 		B305568B1ADC56AE006FBEEB /* somm29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = somm29.png; path = ../../../../../Downloads/somm29.png; sourceTree = "<group>"; };
 		B305568C1ADC56AE006FBEEB /* somm360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = somm360.png; path = ../../../../../Downloads/somm360.png; sourceTree = "<group>"; };
 		B30556901ADC5BDE006FBEEB /* TestStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStore.swift; sourceTree = "<group>"; };
+		B30556921ADEC540006FBEEB /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B33544991AD58F4B0038BDE9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B335449B1AD5BEA00038BDE9 /* ReverseSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseSegue.swift; sourceTree = "<group>"; };
-		B335449D1AD5CBF40038BDE9 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = "../../../../../Downloads/swift-json-master/json/JSON.swift"; sourceTree = "<group>"; };
 		B33FDEC81ACC618D0086B4C2 /* Somm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Somm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33FDECC1ACC618D0086B4C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B33FDECD1ACC618D0086B4C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		B33FDF011ACC620D0086B4C2 /* Helper Files */ = {
 			isa = PBXGroup;
 			children = (
-				B335449D1AD5CBF40038BDE9 /* JSON.swift */,
+				B30556921ADEC540006FBEEB /* JSON.swift */,
 				B37F5C241ACC67C600A28483 /* Reachability.swift */,
 				B37F5C221ACC675C00A28483 /* StringHelper.swift */,
 				B3DF87651ACF08E900CD5660 /* ErrorHelper.swift */,
@@ -325,9 +325,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3C5B3591ACC67290014221F /* LoginViewController.swift in Sources */,
+				B30556931ADEC540006FBEEB /* JSON.swift in Sources */,
 				B3DF87661ACF08E900CD5660 /* ErrorHelper.swift in Sources */,
 				B3C5B35A1ACC67290014221F /* SignupViewController.swift in Sources */,
-				B335449E1AD5CBF40038BDE9 /* JSON.swift in Sources */,
 				B391497D1AD56DA600D050B2 /* SettingsViewController.swift in Sources */,
 				B33544981AD58C9F0038BDE9 /* NetworkHelper.swift in Sources */,
 				B37F5C211ACC674600A28483 /* Store.swift in Sources */,
