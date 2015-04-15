@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var error_msg:NSString = ""
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     let dateFormatter = NSDateFormatter()
-    
+
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
