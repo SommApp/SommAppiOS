@@ -55,7 +55,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func updateRecommendationRequest(fromBtn:Bool) -> Bool {
+    func updateRecommendationRequest(#fromBtn:Bool) -> Bool {
         grabLocation()
         let email = prefs.valueForKey("EMAIL") as NSString
         var coords = ""

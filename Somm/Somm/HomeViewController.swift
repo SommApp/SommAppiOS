@@ -41,7 +41,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             emailString += prefs.valueForKey("NAME") as NSString
             emailString += "!"
             self.emailLabel.text = emailString
-            if(networkHelper.updateRecommendationRequest(false)){
+            if(networkHelper.updateRecommendationRequest(fromBtn: false)){
                 popRestaurantsDict()
             }
             
@@ -156,7 +156,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func btnRecommendation(sender: AnyObject) {
-        if(networkHelper.updateRecommendationRequest(true)){
+        if(networkHelper.updateRecommendationRequest(fromBtn: true)){
             popRestaurantsDict()
         }
         
