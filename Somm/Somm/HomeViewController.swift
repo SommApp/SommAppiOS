@@ -101,6 +101,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func popRestaurantsDict(){
+        self.restaurants.removeAll(keepCapacity: false)
         if let restaurants = store.grabReccomendation() as? [NSManagedObject] {
             for restaurant in restaurants{
                 let name = restaurant.valueForKey("name") as String!
@@ -109,7 +110,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let address = restaurant.valueForKey("address") as String!
                 self.restaurants += [["name":name, "latitude":latitude,"longitude":longitude,"address":address]]
             }
-            //store.delVisits()
         } else {
             let restaurants = store.grabReccomendation()
             if(restaurants[0].isEqualToString("Failed")){
@@ -156,9 +156,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func btnRecommendation(sender: AnyObject) {
-        if(networkHelper.updateRecommendationRequest(fromBtn: true)){
+        /*if(networkHelper.updateRecommendationRequest(fromBtn: true)){
             popRestaurantsDict()
-        }
+        }*/
+        
+        //mocking no recommendations for demo
+        errorHelper.displayNoRecommendationsError()
         
     }
     
