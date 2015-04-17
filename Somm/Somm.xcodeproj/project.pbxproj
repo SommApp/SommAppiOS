@@ -19,6 +19,9 @@
 		B33544981AD58C9F0038BDE9 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */; };
 		B335449A1AD58F4B0038BDE9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33544991AD58F4B0038BDE9 /* MapViewController.swift */; };
 		B335449C1AD5BEA00038BDE9 /* ReverseSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B335449B1AD5BEA00038BDE9 /* ReverseSegue.swift */; };
+		B33B87A01AE098A80065D6E3 /* SommIcon87.png in Resources */ = {isa = PBXBuildFile; fileRef = B33B879E1AE098A80065D6E3 /* SommIcon87.png */; };
+		B33B87A11AE098A80065D6E3 /* SommIcon120.png in Resources */ = {isa = PBXBuildFile; fileRef = B33B879F1AE098A80065D6E3 /* SommIcon120.png */; };
+		B33B87A31AE099980065D6E3 /* SommIcon180.png in Resources */ = {isa = PBXBuildFile; fileRef = B33B87A21AE099980065D6E3 /* SommIcon180.png */; };
 		B33FDECE1ACC618D0086B4C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FDECD1ACC618D0086B4C2 /* AppDelegate.swift */; };
 		B33FDED11ACC618D0086B4C2 /* Somm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B33FDECF1ACC618D0086B4C2 /* Somm.xcdatamodeld */; };
 		B33FDED81ACC618D0086B4C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33FDED71ACC618D0086B4C2 /* Images.xcassets */; };
@@ -62,6 +65,9 @@
 		B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B33544991AD58F4B0038BDE9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B335449B1AD5BEA00038BDE9 /* ReverseSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseSegue.swift; sourceTree = "<group>"; };
+		B33B879E1AE098A80065D6E3 /* SommIcon87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SommIcon87.png; sourceTree = "<group>"; };
+		B33B879F1AE098A80065D6E3 /* SommIcon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SommIcon120.png; sourceTree = "<group>"; };
+		B33B87A21AE099980065D6E3 /* SommIcon180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SommIcon180.png; sourceTree = "<group>"; };
 		B33FDEC81ACC618D0086B4C2 /* Somm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Somm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33FDECC1ACC618D0086B4C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B33FDECD1ACC618D0086B4C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 		B30556811ADC55B3006FBEEB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B33B879D1AE098500065D6E3 /* icon */,
 				B305568C1ADC56AE006FBEEB /* somm360.png */,
 				B30556821ADC55D6006FBEEB /* somm180.png */,
 				B30556831ADC55D6006FBEEB /* somm120.png */,
@@ -117,6 +124,16 @@
 				B305568B1ADC56AE006FBEEB /* somm29.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		B33B879D1AE098500065D6E3 /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				B33B879E1AE098A80065D6E3 /* SommIcon87.png */,
+				B33B87A21AE099980065D6E3 /* SommIcon180.png */,
+				B33B879F1AE098A80065D6E3 /* SommIcon120.png */,
+			);
+			name = icon;
 			sourceTree = "<group>";
 		};
 		B33FDEBF1ACC618D0086B4C2 = {
@@ -299,10 +316,13 @@
 			files = (
 				B305568D1ADC56AE006FBEEB /* somm87.png in Resources */,
 				B3C5B3541ACC671B0014221F /* Main.storyboard in Resources */,
+				B33B87A11AE098A80065D6E3 /* SommIcon120.png in Resources */,
 				B3C5B3531ACC671B0014221F /* LaunchScreen.xib in Resources */,
 				B305568F1ADC56AE006FBEEB /* somm360.png in Resources */,
 				B30556891ADC55D6006FBEEB /* somm58.png in Resources */,
 				B33FDED81ACC618D0086B4C2 /* Images.xcassets in Resources */,
+				B33B87A31AE099980065D6E3 /* SommIcon180.png in Resources */,
+				B33B87A01AE098A80065D6E3 /* SommIcon87.png in Resources */,
 				B305568E1ADC56AE006FBEEB /* somm29.png in Resources */,
 				B30556861ADC55D6006FBEEB /* somm180.png in Resources */,
 				B30556871ADC55D6006FBEEB /* somm120.png in Resources */,
