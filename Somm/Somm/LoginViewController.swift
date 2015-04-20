@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LocalAuthentication
+
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -29,7 +29,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         txtEmail.delegate = self
         txtPassword.delegate = self
-        //self.authenticateUser()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -117,79 +116,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             errorHelper.displaySignInFail(error_msg)
         }
     }
-    
-    func authenticateUser() {
-        // Get the local authentication context.
-        let context = LAContext()
-        
-        // Declare a NSError variable.
-        var error: NSError?
-        
-        // Set the reason string that will appear on the authentication alert.
-        var reasonString = "Authentication is needed to access your notes."
-        
-        // Check if the device can evaluate the policy.
-        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
-            [context .evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success: Bool, evalPolicyError: NSError?) -> Void in
-                
-                if success {
-                    
-                }
-                else{
-                    // If authentication failed then show a message to the console with a short description.
-                    // In case that the error is a user fallback, then show the password alert view.
-                    println(evalPolicyError?.localizedDescription)
-                    
-                    switch evalPolicyError!.code {
-                        
-                    case LAError.SystemCancel.rawValue:
-                        println("Authentication was cancelled by the system")
-                        
-                    case LAError.UserCancel.rawValue:
-                        println("Authentication was cancelled by the user")
-                        
-                    case LAError.UserFallback.rawValue:
-                        println("User selected to enter custom password")
-                        
-                    default:
-                        println("Authentication failed")
-                        self.displayAuthenticationFailed()
-                    }
-                }
-                
-            })]
-        }
-        else{
-            // If the security policy cannot be evaluated then show a short message depending on the error.
-            switch error!.code{
-                
-            case LAError.TouchIDNotEnrolled.rawValue:
-                println("TouchID is not enrolled")
-                
-            case LAError.PasscodeNotSet.rawValue:
-                println("A passcode has not been set")
-                
-            default:
-                // The LAError.TouchIDNotAvailable case.
-                println("TouchID not available")
-            }
-            
-            // Optionally the error description can be displayed on the console.
-            println(error?.localizedDescription)
-            
-            // Show the custom alert view to allow users to enter the password.
-            //self.showPasswordAlert()
-        }
-    }
-    
-    func displayAuthenticationFailed(){
-        alertView.title = "Authentication failed"
-        alertView.message = "Please try again"
-        alertView.delegate = self
-        alertView.addButtonWithTitle("OK")
-        alertView.show()
-    }
-
     
    
     override func didReceiveMemoryWarning() {
