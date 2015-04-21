@@ -18,7 +18,7 @@ class Store: NSObject {
         let address = reccomendation["address"].asString
         
         let appDelegate =
-        UIApplication.sharedApplication().delegate as AppDelegate
+        UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
         let entity =  NSEntityDescription.entityForName("Restaurant",
@@ -45,14 +45,14 @@ class Store: NSObject {
     }
     func grabReccomendation() -> NSArray{
         let appDelegate =
-        UIApplication.sharedApplication().delegate as AppDelegate
+        UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName:"Restaurant")
         var error: NSError?
         
         let fetchedResults =
         managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as [NSManagedObject]?
+            error: &error) as! [NSManagedObject]?
         
         if let results = fetchedResults {
             return results
@@ -65,17 +65,18 @@ class Store: NSObject {
 
     func delReccomendations(){
         let appDelegate =
-        UIApplication.sharedApplication().delegate as AppDelegate
+        UIApplication.sharedApplication().delegate as!
+        AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName:"Restaurant")
         var error: NSError?
         let fetchedResults =
         managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as [NSManagedObject]?
+            error: &error) as! [NSManagedObject]?
         if let results = fetchedResults {
             var manObj: NSManagedObject!
             for manObj: AnyObject in results{
-                managedContext.deleteObject(manObj as NSManagedObject)
+                managedContext.deleteObject(manObj as! NSManagedObject)
             }
         }
         if !managedContext.save(&error) {
@@ -85,7 +86,7 @@ class Store: NSObject {
     
     func saveVisit(aVisit:CLVisit)-> Bool{
         let appDelegate =
-        UIApplication.sharedApplication().delegate as AppDelegate
+        UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
         let entity =  NSEntityDescription.entityForName("Visit",
@@ -114,13 +115,13 @@ class Store: NSObject {
     
     func grabVisit() -> NSArray{
         let appDelegate =
-        UIApplication.sharedApplication().delegate as AppDelegate
+        UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName:"Visit")
         var error: NSError?
         let fetchedResults =
         managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as [NSManagedObject]?
+            error: &error) as! [NSManagedObject]?
         if let results = fetchedResults {
             return results
         } else {
@@ -132,17 +133,17 @@ class Store: NSObject {
 
     func delVisits(){
         let appDelegate =
-        UIApplication.sharedApplication().delegate as AppDelegate
+        UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName:"Visit")
         var error: NSError?
         let fetchedResults =
         managedContext.executeFetchRequest(fetchRequest,
-            error: &error) as [NSManagedObject]?
+            error: &error) as! [NSManagedObject]?
         if let results = fetchedResults {
             var manObj: NSManagedObject!
             for manObj: AnyObject in results{
-                managedContext.deleteObject(manObj as NSManagedObject)
+                managedContext.deleteObject(manObj as! NSManagedObject)
             }
         }
         if !managedContext.save(&error) {

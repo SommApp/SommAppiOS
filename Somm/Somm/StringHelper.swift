@@ -10,13 +10,19 @@ import UIKit
 
 class StringHelper: NSObject {
    
-    func containsEmail(email:NSString) -> Bool{
+    
+    func containsEmail(testStr : String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        if let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx) {
-            return emailTest.evaluateWithObject(email)
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+    
+        if emailTest.evaluateWithObject(testStr) {
+            return true
         }
         return false
     }
+
+    
     
     func isEmailPassBlank(#email: NSString, password: NSString) -> Bool {
         if (email.isEqualToString("") || password.isEqualToString("")){

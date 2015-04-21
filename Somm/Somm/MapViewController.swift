@@ -33,7 +33,7 @@ class MapViewController:UIViewController {
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
         let annotation = MKPointAnnotation()
-        annotation.setCoordinate(location)
+        annotation.coordinate = location
         annotation.title = restaurantName
         annotation.subtitle = restaurantAddress
         mapView.addAnnotation(annotation)

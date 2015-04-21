@@ -1,3 +1,4 @@
+
 //
 //  ViewController.swift
 //  Somm
@@ -38,7 +39,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn == 1) {
             emailString = "Welcome "
-            emailString += prefs.valueForKey("NAME") as NSString
+            emailString += prefs.valueForKey("NAME") as! String
             emailString += "!"
             self.emailLabel.text = emailString
             if(networkHelper.updateRecommendationRequest(fromBtn: false)){
@@ -84,11 +85,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             var longitude: Double
             var latitude: Double
             for visit in visits{
-                timeStamp = visit.valueForKey("timeStamp") as NSDate!
-                arrivalDate = visit.valueForKey("arrivalDate") as NSDate!
-                departureDate = visit.valueForKey("departureDate") as NSDate!
-                longitude = visit.valueForKey("longitude") as Double!
-                latitude = visit.valueForKey("latitude") as Double!
+                timeStamp = visit.valueForKey("timeStamp") as! NSDate!
+                arrivalDate = visit.valueForKey("arrivalDate") as! NSDate!
+                departureDate = visit.valueForKey("departureDate") as! NSDate!
+                longitude = visit.valueForKey("longitude") as! Double!
+                latitude = visit.valueForKey("latitude") as! Double!
                 networkHelper.sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: 99)
             }
             store.delVisits()
@@ -104,10 +105,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.restaurants.removeAll(keepCapacity: false)
         if let restaurants = store.grabReccomendation() as? [NSManagedObject] {
             for restaurant in restaurants{
-                let name = restaurant.valueForKey("name") as String!
-                let latitude = restaurant.valueForKey("latitude") as String!
-                let longitude = restaurant.valueForKey("longitude") as String!
-                let address = restaurant.valueForKey("address") as String!
+                let name = restaurant.valueForKey("name")as! String!
+                let latitude = restaurant.valueForKey("latitude") as! String!
+                let longitude = restaurant.valueForKey("longitude")as! String!
+                let address = restaurant.valueForKey("address") as! String!
                 self.restaurants += [["name":name, "latitude":latitude,"longitude":longitude,"address":address]]
             }
         } else {
@@ -147,7 +148,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier=="goto_map"){
             let indexPath: NSIndexPath = self.tableInfo.indexPathForSelectedRow()!
-            let destViewController: MapViewController = segue.destinationViewController as MapViewController
+            let destViewController: MapViewController = segue.destinationViewController as! MapViewController
             destViewController.restaurantName = self.restaurants[indexPath.row]["name"]!
             destViewController.restaurantAddress = self.restaurants[indexPath.row]["address"]!
             destViewController.latitude = self.restaurants[indexPath.row]["latitude"]!

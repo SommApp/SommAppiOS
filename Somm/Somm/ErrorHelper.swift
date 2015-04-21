@@ -42,7 +42,7 @@ class ErrorHelper: NSObject {
         if(error_msg.isEqualToString("")){
             alertView.message = "Connection Failed"
         } else {
-            alertView.message = error_msg
+            alertView.message = error_msg as String
         }
         alertView.delegate = self
         alertView.addButtonWithTitle("OK")
@@ -54,7 +54,7 @@ class ErrorHelper: NSObject {
         if(error_msg.isEqualToString("")){
             alertView.message = "Connection Failed"
         } else {
-            alertView.message = error_msg
+            alertView.message = error_msg as String
         }
         alertView.delegate = self
         alertView.addButtonWithTitle("OK")

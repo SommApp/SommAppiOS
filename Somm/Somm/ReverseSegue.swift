@@ -14,8 +14,8 @@ class ReverseSegue:UIStoryboardSegue {
     
     
     override func perform(){
-        let sourceViewController:UINavigationController = self.sourceViewController as UINavigationController
-        let destinationViewController:UINavigationController = self.destinationViewController as UINavigationController
+        let sourceViewController:UINavigationController = self.sourceViewController as! UINavigationController
+        let destinationViewController:UINavigationController = self.destinationViewController as! UINavigationController
 
         sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
         

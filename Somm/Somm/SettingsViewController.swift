@@ -25,8 +25,8 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        milesFromPrefs = self.prefs.valueForKey("MAXMILES") as Int
-        txtName.text = self.prefs.valueForKey("NAME") as String
+        milesFromPrefs = self.prefs.valueForKey("MAXMILES") as! Int
+        txtName.text = self.prefs.valueForKey("NAME") as! String
         for var i = 0; i < mileNumVal.count; i++ {
             if (milesFromPrefs==mileNumVal[i]){
                 pickerView.selectRow(i, inComponent: 0, animated: true)
@@ -47,13 +47,9 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
     }
     
-    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedMiles = mileNumVal[row]
     }
-    
-    
-
-    
     
     @IBAction func btnSave(sender: AnyObject) {
         
@@ -73,11 +69,13 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
     }
     
-    override func touchesBegan(touches: NSSet,
-        withEvent event: UIEvent){
-            self.view.endEditing(true);
-            super.touchesBegan(touches, withEvent: event)
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        super.touchesBegan(touches, withEvent: event)
+        self.view.endEditing(true);
+
     }
+    
     
 
 }

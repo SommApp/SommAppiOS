@@ -31,24 +31,24 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     }
   
     func sendSettings(name:String, password:String, miles:Int) {
-        let email = prefs.valueForKey("EMAIL") as NSString
+        let email = prefs.valueForKey("EMAIL") as! NSString
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&name=\(name)&password=\(password)&miles=\(miles)"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
-        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/settings.php")!
+        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/mockSettings.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         request.HTTPBody = postData
-        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         var reponseError: NSError?
         var response: NSURLResponse?
         var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
         if ( urlData != nil ) {
-            let res = response as NSHTTPURLResponse!;
+            let res = response as! NSHTTPURLResponse!;
             processSettingsResponse(res, urlData: urlData!)
         } else {
             errorHelper.displayHttpError(error_msg)
@@ -57,7 +57,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     
     func updateRecommendationRequest(#fromBtn:Bool) -> Bool {
         grabLocation()
-        let email = prefs.valueForKey("EMAIL") as NSString
+        let email = prefs.valueForKey("EMAIL") as! NSString
         var coords = ""
         if locationManager.location != nil {
             coords = ("\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
@@ -73,14 +73,14 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         request.HTTPBody = postData
-        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         var reponseError: NSError?
         var response: NSURLResponse?
         var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
         if ( urlData != nil ) {
-            let res = response as NSHTTPURLResponse!;
+            let res = response as! NSHTTPURLResponse!;
             if(processRecommendationResponse(res, urlData: urlData!, recommendationFromBtn: fromBtn)){
                 return true
             } else {
@@ -98,7 +98,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
             var error: NSError?
             let jsonData:[[String:AnyObject]] = []
-            let json = JSON.parse(responseData)
+            let json = JSON.parse(responseData as String)
             let success = json[0]["success"].asString
             if(success! == "1") {
                 NSLog("RECOMMENDATION SUCCESS");
@@ -128,14 +128,14 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
             var error: NSError?
-            let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as NSDictionary
-            let success:NSInteger = jsonData.valueForKey("success") as NSInteger
+            let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
+            let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
             NSLog("Success: %ld", success);
             if(success == 1) {
                 NSLog("SETTINGS SUCCESS");
             } else {
                 if jsonData["error_message"] as? NSString != nil {
-                    error_msg = jsonData["error_message"] as NSString
+                    error_msg = jsonData["error_message"] as! NSString as String
                 } else {
                     error_msg = "Unknown Error"
                 }
@@ -147,7 +147,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     }
     
     func sendGps(timeStamp: NSDate, arrivalDate: NSDate, departureDate: NSDate, longitude: Double, latitude:Double) {
-        let email = prefs.valueForKey("EMAIL") as NSString
+        let email = prefs.valueForKey("EMAIL") as! NSString
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "LONG"
         let timeStampConv = dateFormatter.stringFromDate(timeStamp)
@@ -162,14 +162,14 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         request.HTTPBody = postData
-        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         var reponseError: NSError?
         var response: NSURLResponse?
         var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
         if ( urlData != nil ) {
-            let res = response as NSHTTPURLResponse!;
+            let res = response as! NSHTTPURLResponse!;
             //processGpsResponse(res, urlData: urlData!)
         } else {
             errorHelper.displayHttpError(error_msg)

@@ -62,7 +62,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
-        } else if (!stringHelper.containsEmail(email)){
+        } else if (!stringHelper.containsEmail(email as String)){
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "You did not enter a correct email address!"
@@ -78,21 +78,21 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
             request.HTTPBody = postData
-            request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+            request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             var reponseError: NSError?
             var response: NSURLResponse?
             var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
             if ( urlData != nil ) {
-                let res = response as NSHTTPURLResponse!;
+                let res = response as! NSHTTPURLResponse!;
                 NSLog("Response code: %ld", res.statusCode);
                 if (res.statusCode >= 200 && res.statusCode < 300) {
                     var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
                     NSLog("Response ==> %@", responseData);
                     var error: NSError?
-                    let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as NSDictionary
-                    let success:NSInteger = jsonData.valueForKey("success") as NSInteger
+                    let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
+                    let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
                     NSLog("Success: %ld", success);
                     if(success == 1) {
                         NSLog("Sign Up SUCCESS");
@@ -101,13 +101,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                         var error_msg:NSString
                         
                         if jsonData["error_message"] as? NSString != nil {
-                            error_msg = jsonData["error_message"] as NSString
+                            error_msg = jsonData["error_message"]as! NSString
                         } else {
                             error_msg = "Unknown Error"
                         }
                         var alertView:UIAlertView = UIAlertView()
                         alertView.title = "Sign Up Failed!"
-                        alertView.message = error_msg
+                        alertView.message = error_msg as String
                         alertView.delegate = self
                         alertView.addButtonWithTitle("OK")
                         alertView.show()
@@ -140,14 +140,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
-        textField.resignFirstResponder()
-        return true
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        super.touchesBegan(touches, withEvent: event)
+        self.view.endEditing(true);
     }
     
-    override func touchesBegan(touches: NSSet,
-        withEvent event: UIEvent){
-            self.view.endEditing(true);
-            super.touchesBegan(touches, withEvent: event)
-    }
 }
