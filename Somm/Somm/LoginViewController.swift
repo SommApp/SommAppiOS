@@ -103,7 +103,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 /* this needs to be changed to take in json value*/  prefs.setObject(5, forKey: "MAXMILES")
                 prefs.setInteger(1, forKey: "ISLOGGEDIN")
                 prefs.synchronize()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.performSegueWithIdentifier("goto_home_from_login", sender: self)
             } else {
                 if jsonData["error_message"] as? NSString != nil {
                     error_msg = jsonData["error_message"] as! NSString
