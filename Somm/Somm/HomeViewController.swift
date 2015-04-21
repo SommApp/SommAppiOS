@@ -42,9 +42,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             emailString += prefs.valueForKey("NAME") as! String
             emailString += "!"
             self.emailLabel.text = emailString
-            if(networkHelper.updateRecommendationRequest(fromBtn: false)){
-                popRestaurantsDict()
-            }
+            networkHelper.updateRecommendationRequest(fromBtn: false)
+            popRestaurantsDict()
+            
             
         }
         
