@@ -63,6 +63,8 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         } else {
             networkHelper.sendSettings(txtName.text, password: txtPassword.text, miles: selectedMiles)
             self.prefs.setObject(selectedMiles, forKey: "MAXMILES")
+            //needs to verify server recieved this info
+            prefs.setObject(txtName.text, forKey: "NAME")
             self.performSegueWithIdentifier("goto_home", sender: self)
         }
         
