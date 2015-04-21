@@ -67,7 +67,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&coords=\(coords)"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
-        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/recommendationRequest.php")!
+        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/mockRequest.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
