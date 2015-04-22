@@ -92,10 +92,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             var error: NSError?
             let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
             let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
-            let name:String = jsonData.valueForKey("firstname") as! String
             // let maxMiles:NSInteger = jsonData.valueForKey("maxMiles") as NSInteger
             NSLog("Success: %ld", success);
             if(success == 1) {
+                let name:String = jsonData.valueForKey("firstname") as! String
                 NSLog("Login SUCCESS");
                 var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
                 prefs.setObject(email, forKey: "EMAIL")
