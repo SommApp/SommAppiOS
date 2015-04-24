@@ -35,7 +35,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&name=\(name)&password=\(password)&miles=\(miles)"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
-        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/mockSettings.php")!
+        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/settings.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
@@ -67,7 +67,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&coords=\(coords)"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
-        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/mockRequest.php")!
+        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/recommendationRequest.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
