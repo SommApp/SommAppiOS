@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B30556861ADC55D6006FBEEB /* somm180.png in Resources */ = {isa = PBXBuildFile; fileRef = B30556821ADC55D6006FBEEB /* somm180.png */; };
-		B30556871ADC55D6006FBEEB /* somm120.png in Resources */ = {isa = PBXBuildFile; fileRef = B30556831ADC55D6006FBEEB /* somm120.png */; };
-		B30556881ADC55D6006FBEEB /* somm80.png in Resources */ = {isa = PBXBuildFile; fileRef = B30556841ADC55D6006FBEEB /* somm80.png */; };
-		B30556891ADC55D6006FBEEB /* somm58.png in Resources */ = {isa = PBXBuildFile; fileRef = B30556851ADC55D6006FBEEB /* somm58.png */; };
-		B305568D1ADC56AE006FBEEB /* somm87.png in Resources */ = {isa = PBXBuildFile; fileRef = B305568A1ADC56AE006FBEEB /* somm87.png */; };
-		B305568E1ADC56AE006FBEEB /* somm29.png in Resources */ = {isa = PBXBuildFile; fileRef = B305568B1ADC56AE006FBEEB /* somm29.png */; };
-		B305568F1ADC56AE006FBEEB /* somm360.png in Resources */ = {isa = PBXBuildFile; fileRef = B305568C1ADC56AE006FBEEB /* somm360.png */; };
 		B30556911ADC5BDE006FBEEB /* TestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30556901ADC5BDE006FBEEB /* TestStore.swift */; };
 		B30556931ADEC540006FBEEB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30556921ADEC540006FBEEB /* JSON.swift */; };
 		B33544981AD58C9F0038BDE9 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */; };
@@ -51,13 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B30556821ADC55D6006FBEEB /* somm180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = somm180.png; path = ../../../../../Downloads/somm180.png; sourceTree = "<group>"; };
-		B30556831ADC55D6006FBEEB /* somm120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = somm120.png; path = ../../../../../Downloads/somm120.png; sourceTree = "<group>"; };
-		B30556841ADC55D6006FBEEB /* somm80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = somm80.png; path = ../../../../../Downloads/somm80.png; sourceTree = "<group>"; };
-		B30556851ADC55D6006FBEEB /* somm58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = somm58.png; path = ../../../../../Downloads/somm58.png; sourceTree = "<group>"; };
-		B305568A1ADC56AE006FBEEB /* somm87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = somm87.png; path = ../../../../../Downloads/somm87.png; sourceTree = "<group>"; };
-		B305568B1ADC56AE006FBEEB /* somm29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = somm29.png; path = ../../../../../Downloads/somm29.png; sourceTree = "<group>"; };
-		B305568C1ADC56AE006FBEEB /* somm360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = somm360.png; path = ../../../../../Downloads/somm360.png; sourceTree = "<group>"; };
 		B30556901ADC5BDE006FBEEB /* TestStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStore.swift; sourceTree = "<group>"; };
 		B30556921ADEC540006FBEEB /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -111,13 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				B33B879D1AE098500065D6E3 /* icon */,
-				B305568C1ADC56AE006FBEEB /* somm360.png */,
-				B30556821ADC55D6006FBEEB /* somm180.png */,
-				B30556831ADC55D6006FBEEB /* somm120.png */,
-				B305568A1ADC56AE006FBEEB /* somm87.png */,
-				B30556841ADC55D6006FBEEB /* somm80.png */,
-				B30556851ADC55D6006FBEEB /* somm58.png */,
-				B305568B1ADC56AE006FBEEB /* somm29.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -308,19 +287,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B305568D1ADC56AE006FBEEB /* somm87.png in Resources */,
 				B3C5B3541ACC671B0014221F /* Main.storyboard in Resources */,
 				B33B87A11AE098A80065D6E3 /* SommIcon120.png in Resources */,
 				B3C5B3531ACC671B0014221F /* LaunchScreen.xib in Resources */,
-				B305568F1ADC56AE006FBEEB /* somm360.png in Resources */,
-				B30556891ADC55D6006FBEEB /* somm58.png in Resources */,
 				B33FDED81ACC618D0086B4C2 /* Images.xcassets in Resources */,
 				B33B87A31AE099980065D6E3 /* SommIcon180.png in Resources */,
 				B33B87A01AE098A80065D6E3 /* SommIcon87.png in Resources */,
-				B305568E1ADC56AE006FBEEB /* somm29.png in Resources */,
-				B30556861ADC55D6006FBEEB /* somm180.png in Resources */,
-				B30556871ADC55D6006FBEEB /* somm120.png in Resources */,
-				B30556881ADC55D6006FBEEB /* somm80.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
