@@ -67,7 +67,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&coords=\(coords)"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
-        var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/SommApp-middleware/middleware/recommendationRequest.php")!
+        var url:NSURL = NSURL(string:"http://52.11.190.66/middleware/recommendationRequest.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
@@ -100,7 +100,9 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             let jsonData:[[String:AnyObject]] = []
             let json = JSON.parse(responseData as String)
             let success = json[0]["success"].asString
-            if(success! == "1") {
+            let successInt = json[0]["success"].asInt
+            
+            if(successInt! == 1) {
                 NSLog("RECOMMENDATION SUCCESS");
                 store.delReccomendations()
                 for var i = 1; i < json.length; i++ {
