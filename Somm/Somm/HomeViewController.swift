@@ -30,12 +30,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
     var emailString = ""
-    //let reachability = Reachability.reachabilityForInternetConnection()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-
-        
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn == 1) {
             emailString = "Welcome "
@@ -44,8 +41,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.emailLabel.text = emailString
             networkHelper.updateRecommendationRequest(fromBtn: false)
             popRestaurantsDict()
-            
-            
         }
         
     }
@@ -61,19 +56,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
             sendVisits()
-
         }
         
-
         if(!CLLocationManager.locationServicesEnabled()){
             errorHelper.displayLocationError()
         }
-
-
-        /*reachability.whenUnreachable = { reachability in
-            self.errorHelper.displayNetworkError()
-        }
-        reachability.startNotifier()*/
         println("Start")
     }
     
@@ -90,7 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 departureDate = visit.valueForKey("departureDate") as! NSDate!
                 longitude = visit.valueForKey("longitude") as! Double!
                 latitude = visit.valueForKey("latitude") as! Double!
-                networkHelper.sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: 99)
+                networkHelper.sendGps(timeStamp, arrivalDate: arrivalDate, departureDate: departureDate, longitude: longitude, latitude: latitude)
             }
             store.delVisits()
         } else {
