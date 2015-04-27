@@ -61,24 +61,17 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             alertView.addButtonWithTitle("OK")
             alertView.show()
         } else {
-            
             if(networkHelper.sendSettings(txtName.text, password: txtPassword.text, miles: selectedMiles)){
                 self.prefs.setObject(selectedMiles, forKey: "MAXMILES")
                 prefs.setObject(txtName.text, forKey: "NAME")
                 self.performSegueWithIdentifier("goto_home", sender: self)
             }
-        
-            
         }
-        
-        
     }
-    
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         super.touchesBegan(touches, withEvent: event)
         self.view.endEditing(true);
-
     }
     
     

@@ -29,18 +29,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
-    var emailString = ""
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn == 1) {
-            emailString = "Welcome "
-            emailString += prefs.valueForKey("NAME") as! String
-            emailString += "!"
-            self.emailLabel.text = emailString
-            networkHelper.updateRecommendationRequest(fromBtn: false)
-            popRestaurantsDict()
+            var nameString = "Welcome "
+            nameString += prefs.valueForKey("NAME") as! String
+            nameString += "!"
+            self.emailLabel.text = nameString
         }
     }
     
@@ -49,12 +46,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableInfo.dataSource = self
         tableInfo.delegate = self
         
-        
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
             sendVisits()
+            
+            networkHelper.getRec({(result: Bool, error: NSError?) -> Void in
+                NSLog("CALLBACK")
+            })
+
+            if(networkHelper.updateRecommendationRequest(fromBtn: false)){
+                popRestaurantsDict()
+                self.tableInfo.reloadData()
+                NSLog("DONE")
+            }
         }
         
         if(!CLLocationManager.locationServicesEnabled()){
@@ -62,6 +68,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         println("Start")
     }
+    
     
     func sendVisits(){
         if let visits = store.grabVisit() as? [NSManagedObject] {

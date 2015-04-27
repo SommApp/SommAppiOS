@@ -56,9 +56,101 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             }
         } else {
             errorHelper.displayHttpError(error_msg)
+            return false
         }
     }
     
+    func getRecommendations(completion: (result: NSArray, error: NSError)->()) {
+
+        
+        //var url : NSURL = NSURL(string: "http://52.11.190.66/middleware/recommendationRequest.php?timestamp=0&email=con@con.com&gps=38.948655,-92.327862")!
+        //var request: NSURLRequest = NSURLRequest(URL: url)
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+
+        //38.948655,-92.327862
+        var post:NSString = "timestamp=\(NSDate())&email=con@con.com&gps=38.948655,-92.327862"
+        var url:NSURL = NSURL(string:"http://52.11.190.66/middleware/recommendationRequest.php")!
+        var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+        var postLength:NSString = String( postData.length )
+        var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+
+        let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: "http://52.11.190.66/middleware/recommendationRequest.php")!) { data, response, error in
+        
+        
+        }
+        task.resume()
+
+        /*
+        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+            
+            // notice that I can omit the types of data, response and error
+            
+            // your code
+            self.processRecommendationResponse(response, urlData: data, recommendationFromBtn: false)
+
+            
+        });*/
+
+        
+        
+    }
+    
+    
+    func getRec(completion: (result: Bool, error: NSError)->()) {
+        
+        
+        var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        var session = NSURLSession(configuration: configuration)
+
+    
+        var post:NSString = "timestamp=\(NSDate())&email=con@con.com&gps=38.948655,-92.327862"
+        var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+        let url:NSURL = NSURL(string:"http://52.11.190.66/middleware/recommendationRequest.php")!
+        //var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+        //var postLength:NSString = String( postData.length )
+
+        let request = NSMutableURLRequest(URL: url)
+        
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        var postLength:NSString = String( postData.length )
+        request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
+
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        var reponseError: NSError?
+        var response: NSURLResponse?
+        var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
+
+        
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if httpResponse.statusCode != 200 {
+                    println("response was not 200: \(response)")
+                    completion(result: true, error: reponseError!)
+                }
+            }
+            if (error != nil) {
+                println("error submitting request: \(error)")
+                completion(result: true, error: reponseError!)
+            }
+            
+            // handle the data of the successful response here
+            var result = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil) as? NSDictionary
+            println(result)
+        }
+        task.resume()
+        
+        
+    }
+
     func updateRecommendationRequest(#fromBtn:Bool) -> Bool {
         grabLocation()
         let email = prefs.valueForKey("EMAIL") as! NSString
@@ -68,6 +160,8 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         } else {
             coords = ""
         }
+        
+        //38.948655,-92.327862 
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&gps=38.948655,-92.327862"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
