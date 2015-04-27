@@ -20,6 +20,7 @@
 		B33FDEE71ACC618D0086B4C2 /* SommTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FDEE61ACC618D0086B4C2 /* SommTests.swift */; };
 		B34951EF1AD4623300513C31 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34951EE1AD4623300513C31 /* MapKit.framework */; };
 		B3563ADE1AEE9BC00062B999 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3563ADD1AEE9BC00062B999 /* TutorialViewController.swift */; };
+		B3563AE21AEEBFC90062B999 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3563AE11AEEBFC90062B999 /* AboutViewController.swift */; };
 		B375A2571ACC642000B99011 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B375A2561ACC642000B99011 /* CoreLocation.framework */; };
 		B37F5C211ACC674600A28483 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37F5C201ACC674600A28483 /* Store.swift */; };
 		B37F5C231ACC675C00A28483 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37F5C221ACC675C00A28483 /* StringHelper.swift */; };
@@ -62,6 +63,7 @@
 		B33FDEE61ACC618D0086B4C2 /* SommTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SommTests.swift; sourceTree = "<group>"; };
 		B34951EE1AD4623300513C31 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B3563ADD1AEE9BC00062B999 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		B3563AE11AEEBFC90062B999 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		B375A2561ACC642000B99011 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B37F5C201ACC674600A28483 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B37F5C221ACC675C00A28483 /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				B391497C1AD56DA600D050B2 /* SettingsViewController.swift */,
 				B33544991AD58F4B0038BDE9 /* MapViewController.swift */,
 				B3563ADD1AEE9BC00062B999 /* TutorialViewController.swift */,
+				B3563AE11AEEBFC90062B999 /* AboutViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				B37F5C211ACC674600A28483 /* Store.swift in Sources */,
 				B33FDECE1ACC618D0086B4C2 /* AppDelegate.swift in Sources */,
 				B335449A1AD58F4B0038BDE9 /* MapViewController.swift in Sources */,
+				B3563AE21AEEBFC90062B999 /* AboutViewController.swift in Sources */,
 				B37F5C231ACC675C00A28483 /* StringHelper.swift in Sources */,
 				B33FDED11ACC618D0086B4C2 /* Somm.xcdatamodeld in Sources */,
 				B3C5B3581ACC67290014221F /* HomeViewController.swift in Sources */,

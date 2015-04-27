@@ -71,7 +71,7 @@ class ErrorHelper: NSObject {
 
     func displayNewRecommendationsError(){
         alertView.title = "Recommendations"
-        alertView.message = "No recommendations found please visit more restaurants"
+        alertView.message = "No recommendations for this location please visit more restaurants"
         alertView.delegate = self
         alertView.addButtonWithTitle("OK")
         alertView.show()

@@ -191,8 +191,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableInfo.reloadData()
                     self.spinner.stopAnimating()
-                    self.errorHelper.displayCurrentRecommendation()
-
+                    if (success){
+                        self.errorHelper.displayCurrentRecommendation()
+                    }
                 })
                 self.settingsDistanceChange = false
                 self.fromMapView = false

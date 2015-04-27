@@ -59,7 +59,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     }
     
     
-    func getRecommendations(completion: (finished: Bool)->()) {
+    func getRecommendations(completion: (success: Bool)->()) {
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         var session = NSURLSession(configuration: configuration)
         grabLocation()
@@ -71,6 +71,8 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             coords = ""
             errorHelper.displayNetworkError()
         }
+        
+        println("COORDS\(coords)")
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&gps=\(coords)"
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         let url:NSURL = NSURL(string:"http://52.11.190.66/middleware/recommendationRequest.php")!
@@ -89,13 +91,16 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             if let httpResponse = response as? NSHTTPURLResponse {
                 if ( data != nil ) {
                     let res = response as! NSHTTPURLResponse!;
-                    self.processRecommendationResponse(res, urlData: data)
-                        completion(finished: true)
+                    if(self.processRecommendationResponse(res, urlData: data)){
+                        completion(success: true)
+                    } else {
+                        completion(success: false)
+                    }
                 } else {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.errorHelper.displayRecommendationsFailError()
                     })
-                    completion(finished: false)
+                    completion(success: false)
                 }
             }
                             
@@ -103,7 +108,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         task.resume()
     }
     
-    func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData) {
+    func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData) -> Bool {
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
             var error: NSError?
@@ -113,24 +118,29 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             let successInt = json[0]["success"].asInt
             if(successInt! == 1) {
                 if(json.length==1){
+                    println(json)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.errorHelper.displayNewRecommendationsError()
                     })
+                    return false
                 } else {
                     store.delReccomendations()
                     for var i = 1; i < json.length; i++ {
                         store.saveRecommendation(json[i])
                     }
+                    return true
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.errorHelper.displayRecommendationsFailError()
                 })
+                return false
             }
         } else {
             dispatch_async(dispatch_get_main_queue(), {
                 self.errorHelper.displayHttpError(self.error_msg)
             })
+            return false
         }
     }
     
