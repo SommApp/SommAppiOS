@@ -74,7 +74,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             coords = ""
             errorHelper.displayLocationError()
         }
-        println("Coords are \(coords)")
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&gps=\(coords)"
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         let url:NSURL = NSURL(string:"http://52.11.190.66/middleware/recommendationRequest.php")!
@@ -118,7 +117,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             let json = JSON.parse(responseData as String)
             let success = json[0]["success"].asString
             let successInt = json[0]["success"].asInt
-            println(json)
             if(successInt! == 1) {
                 if(json.length==1){
                     errorHelper.displayNewRecommendationsError()

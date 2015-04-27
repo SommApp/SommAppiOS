@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 import CoreLocation
 class Store: NSObject {
-    
+    let errorHelper:ErrorHelper = ErrorHelper()
+
     func saveRecommendation(reccomendation:JSON)-> Bool{
         let name = reccomendation["name"].asString
         let latitude = reccomendation["latitude"].asString
@@ -37,7 +38,6 @@ class Store: NSObject {
         //Return false if error occurs for saving
         var error: NSError?
         if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
             return false;
         }  else {
             return true;
@@ -57,7 +57,6 @@ class Store: NSObject {
         if let results = fetchedResults {
             return results
         } else {
-            println("Could not fetch \(error), \(error!.userInfo)")
             var arr = ["Failed","\(error)"]
             return arr
         }
@@ -80,7 +79,7 @@ class Store: NSObject {
             }
         }
         if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
+            errorHelper.displayRestaurantSaveError()
         }
     }
     
@@ -106,7 +105,6 @@ class Store: NSObject {
         //Return false if error occurs for saving
         var error: NSError?
         if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
             return false;
         }  else {
             return true;
@@ -125,7 +123,6 @@ class Store: NSObject {
         if let results = fetchedResults {
             return results
         } else {
-            println("Could not fetch \(error), \(error!.userInfo)")
             var arr = ["Failed","\(error)"]
             return arr
         }
@@ -147,7 +144,7 @@ class Store: NSObject {
             }
         }
         if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
+            errorHelper.displayRestaurantSaveError()
         }
     }
 

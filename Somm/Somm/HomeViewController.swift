@@ -101,7 +101,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if(!CLLocationManager.locationServicesEnabled()){
             errorHelper.displayLocationError()
         }
-        println("Start")
     }
     
     
@@ -124,7 +123,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             let visits = store.grabVisit()
             if(visits[0].isEqualToString("Failed")){
-                println("Failed to grab visits")
+                errorHelper.displayRestaurantSaveError()
             }
         }
     }
@@ -142,7 +141,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             let restaurants = store.grabReccomendation()
             if(restaurants[0].isEqualToString("Failed")){
-                println("Failed to grab restaurants")
+                errorHelper.displayRestaurantSaveError()
             }
         }
 

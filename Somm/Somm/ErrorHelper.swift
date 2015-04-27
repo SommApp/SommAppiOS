@@ -77,5 +77,14 @@ class ErrorHelper: NSObject {
         alertView.show()
     }
 
+    func displayRestaurantSaveError(){
+        alertView.title = "Recommendations"
+        alertView.message = "There was a problem saving restaurants please restart the app."
+        alertView.delegate = self
+        alertView.addButtonWithTitle("OK")
+        alertView.show()
+    }
+    
+    
 
 }

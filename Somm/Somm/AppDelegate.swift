@@ -32,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringVisits()
-        //locationManager.startMonitoringSignificantLocationChanges()
         return true
     }
   
@@ -43,24 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var lat = visit.coordinate.latitude
         var latLong = "Vist loc\(long),\n\(lat)"
         
-        if(visit.departureDate.isEqualToDate(NSDate.distantFuture() as! NSDate)){
-            println("We have arrived somewhere")
-            //showNotification("Visit Arrived: \(visit)")
-            sendGps("saving arrival visit")
-
-        } else {
-            println("We have left somewhere")
-            //showNotification("Visit left: \(visit)")
+        if(!visit.departureDate.isEqualToDate(NSDate.distantFuture() as! NSDate)){
             store.saveVisit(visit)
             sendGps("saving departure visit")
+
         }
     }
-    
-    /*func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        
-        showNotification("Significant Location Update\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
-        
-    }*/
     
     func showNotification(body: String) {
         let notification = UILocalNotification()
