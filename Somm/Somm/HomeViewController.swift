@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var txtArrival: UILabel!
     @IBOutlet weak var txtVisit: UILabel!
     @IBOutlet weak var tableInfo: UITableView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     let store = Store()
     let errorHelper = ErrorHelper()
     let networkHelper = NetworkHelper()
@@ -42,7 +43,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             nameString += prefs.valueForKey("NAME") as! String
             nameString += "!"
             self.emailLabel.text = nameString
-            
             if(settingsDistanceChange && fromSettingsView){
                 networkHelper.getRec({(result: Bool) -> Void in
                     NSLog("CALLBACK")
@@ -50,12 +50,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
                     })
+                    self.settingsDistanceChange = false
+                    self.fromSettingsView = false
                 })
             } else if (!settingsDistanceChange && fromSettingsView) {
                 popRestaurantsDict()
                 self.tableInfo.reloadData()
-
-                
+                settingsDistanceChange = false
+                fromSettingsView = false
             }
            
         }

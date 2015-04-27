@@ -66,16 +66,15 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 self.prefs.setObject(selectedMiles, forKey: "MAXMILES")
                 prefs.setObject(txtName.text, forKey: "NAME")
                 self.performSegueWithIdentifier("goto_home", sender: self)
-                if (milesFromPrefs as Int != selectedMiles as Int){
-                    settingsDistanceChange = true
-                    
-                }
             }
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier=="goto_home"){
+            if (milesFromPrefs as Int != selectedMiles as Int){
+                settingsDistanceChange = true
+            }
             let destViewController: ViewController = segue.destinationViewController as! ViewController
             destViewController.fromSettingsView = true
             destViewController.settingsDistanceChange = settingsDistanceChange
