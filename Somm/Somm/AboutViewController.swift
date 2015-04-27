@@ -20,7 +20,7 @@ class AboutViewController:UIViewController {
     }
     
     @IBAction func btnJackie(sender: AnyObject) {
-        let url = NSURL(string: "https://github.com/connor-knabe")!
+        let url = NSURL(string: "https://github.com/Jackietrahan")!
         UIApplication.sharedApplication().openURL(url)
     }
     @IBAction func btnPaul(sender: AnyObject) {
