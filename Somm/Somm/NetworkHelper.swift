@@ -33,8 +33,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     func sendSettings(name:String, password:String, miles:Int)->Bool {
         let email = prefs.valueForKey("EMAIL") as! NSString
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&name=\(name)&password=\(password)&miles=\(miles)"
-        NSLog("Email\(email)");
-        NSLog("PostData: %@",post);
         var url:NSURL = NSURL(string:"http://52.11.190.66/middleware/settings.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )
@@ -113,19 +111,15 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     }
     
     func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData, recommendationFromBtn:Bool) -> Bool {
-        NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
             var error: NSError?
-            //NSLog(responseData as String)
             let jsonData:[[String:AnyObject]] = []
             let json = JSON.parse(responseData as String)
             let success = json[0]["success"].asString
             let successInt = json[0]["success"].asInt
             println(json)
             if(successInt! == 1) {
-                NSLog("RECOMMENDATION SUCCESS");
-                
                 if(json.length==1){
                     errorHelper.displayNewRecommendationsError()
                     
@@ -154,15 +148,12 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     }
     
     func processSettingsResponse(res: NSHTTPURLResponse,urlData: NSData)->Bool {
-        NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
             var error: NSError?
             let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
             let success:String = jsonData.valueForKey("success") as! String
-
             if(success == "1") {
-                NSLog("SETTINGS SUCCESS");
                 return true
             } else {
                 if jsonData["error_message"] as? NSString != nil {
@@ -187,8 +178,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         let arrivalDateConv = dateFormatter.stringFromDate(arrivalDate)
         let departureDateConv = dateFormatter.stringFromDate(departureDate)
         var post:NSString = "time=\(timeStamp)&email=\(email)&coords=\(latitude),\(longitude)"
-        NSLog("Email\(email)");
-        NSLog("PostData: %@",post);
         var url:NSURL = NSURL(string:"http://52.11.190.66/middleware/gps.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )

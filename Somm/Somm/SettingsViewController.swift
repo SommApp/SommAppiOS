@@ -74,7 +74,6 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             alertView.show()
         } else {
             if(networkHelper.sendSettings(txtName.text, password: txtPassword.text, miles: selectedMiles)){
-                NSLog("Setting max miles %ld", selectedMiles)
                 self.prefs.setObject(selectedMiles, forKey: "MAXMILES")
                 prefs.setObject(txtName.text, forKey: "NAME")
                 self.performSegueWithIdentifier("goto_home", sender: self)

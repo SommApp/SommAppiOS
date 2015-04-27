@@ -71,7 +71,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             alertView.show()
         } else {
             var post:NSString = "name=\(name)&email=\(email)&password=\(password)&c_password=\(confirm_password)"
-            NSLog("PostData: %@",post);
             var url:NSURL = NSURL(string: "http://52.11.190.66/mobile/register.php")!
             var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             var postLength:NSString = String( postData.length )
@@ -86,16 +85,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
             if ( urlData != nil ) {
                 let res = response as! NSHTTPURLResponse!;
-                NSLog("Response code: %ld", res.statusCode);
                 if (res.statusCode >= 200 && res.statusCode < 300) {
                     var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
-                    NSLog("Response ==> %@", responseData);
                     var error: NSError?
                     let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
                     let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
-                    NSLog("Success: %ld", success);
                     if(success == 1) {
-                        NSLog("Sign Up SUCCESS");
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } else {
                         var error_msg:NSString

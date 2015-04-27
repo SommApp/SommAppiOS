@@ -50,7 +50,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if(settingsDistanceChange && fromSettingsView){
                 spinner.startAnimating()
                 networkHelper.getRecommendations(fromBtn: false, completion: {(success: Bool) -> Void in
-                    NSLog("CALLBACK")
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
@@ -87,7 +86,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if(!fromSettingsView && !fromMapView && !settingsDistanceChange && !cancelBtnSelected){
                 spinner.startAnimating()
                 networkHelper.getRecommendations(fromBtn: false, completion: {(success: Bool) -> Void in
-                    NSLog("CALLBACK")
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()

@@ -80,8 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let timeStampConv = dateFormatter.stringFromDate(timeStamp)
 
         var post:NSString = "time=\(timeStamp)&email=\(email)&coords=\(latLong)"
-        NSLog("Email\(email)");
-        NSLog("PostData: %@",post);
         var url:NSURL = NSURL(string:"http://babbage.cs.missouri.edu/~ckgdd/post.php")!
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         var postLength:NSString = String( postData.length )

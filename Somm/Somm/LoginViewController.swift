@@ -54,7 +54,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             alertView.show()
         } else {
             var post:NSString = "email=\(email)&password=\(password)"
-            NSLog("PostData: %@",post);
             var url:NSURL = NSURL(string:"http://52.11.190.66/mobile/login.php")!
             var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             var postLength:NSString = String( postData.length )
@@ -78,25 +77,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func processLoginResponse(email:NSString, res: NSHTTPURLResponse,urlData: NSData){
-        NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
-            NSLog("Response ==> %@", responseData);
             var error: NSError?
             let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
             let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
             let maxMiles:Double = jsonData.valueForKey("maxMiles") as! Double
-            NSLog("Success: %ld", success);
-            NSLog("MAX MILES %ld", maxMiles)
-            println(round(maxMiles))
-            
-            println(maxMiles)
-            
-            var roundedMiles = 10 * Int(round(maxMiles/10.0))
-            println(roundedMiles)
+            var roundedMiles = Int(ceil(maxMiles))
             if(success == 1) {
                 let name:String = jsonData.valueForKey("firstname") as! String
-                NSLog("Login SUCCESS");
                 var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
                 prefs.setObject(email, forKey: "EMAIL")
                 prefs.setObject(name, forKey: "NAME")
