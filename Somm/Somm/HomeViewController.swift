@@ -48,7 +48,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.emailLabel.text = nameString
             if(settingsDistanceChange && fromSettingsView){
                 spinner.startAnimating()
-                networkHelper.getRec({(result: Bool) -> Void in
+                networkHelper.getRecommendations({(result: Bool) -> Void in
                     NSLog("CALLBACK")
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
@@ -81,7 +81,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             if(!fromSettingsView && !fromMapView && !settingsDistanceChange && !cancelBtnSelected){
                 spinner.startAnimating()
-                networkHelper.getRec({(result: Bool) -> Void in
+                networkHelper.getRecommendations({(result: Bool) -> Void in
                     NSLog("CALLBACK")
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
