@@ -55,14 +55,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
            networkHelper.getRec({(result: Bool) -> Void in
                 NSLog("CALLBACK")
                 self.popRestaurantsDict()
-                self.tableInfo.reloadData()
+            
+            
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableInfo.reloadData()
+                })
+
+            
+            
+               // self.tableInfo.layoutSubviews()
             })
 
-           /* if(networkHelper.updateRecommendationRequest(fromBtn: false)){
-                popRestaurantsDict()
-                self.tableInfo.reloadData()
-                NSLog("DONE")
-            }*/
+//            if(networkHelper.updateRecommendationRequest(fromBtn: false)){
+//                popRestaurantsDict()
+//                self.tableInfo.reloadData()
+//                NSLog("DONE")
+//            }
         }
         
         if(!CLLocationManager.locationServicesEnabled()){
