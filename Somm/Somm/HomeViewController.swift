@@ -75,14 +75,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableInfo.delegate = self
 
 
-        let tutorial:Bool = prefs.boolForKey("TUTORIAL")
-        println("NEEDS TUTORIAL \(tutorial)")
+        let hadTutorial:Bool = prefs.boolForKey("TUTORIAL")
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
-        if (!tutorial) {
+        if (!hadTutorial) {
             self.performSegueWithIdentifier("goto_tutorial", sender: self)
         } else if(isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
-            
         } else {
             sendVisits()
             
@@ -211,6 +209,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func logoutTapped(sender: UIButton) {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
+        prefs.setBool(true, forKey: "TUTORIAL")
+        prefs.synchronize()
         self.performSegueWithIdentifier("goto_login", sender: self)
     }
 

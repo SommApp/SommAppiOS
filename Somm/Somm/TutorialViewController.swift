@@ -18,7 +18,7 @@ class TutorialViewController:UIViewController {
     @IBAction func btnStart(sender: AnyObject) {
         prefs.setBool(true, forKey: "TUTORIAL")
         prefs.synchronize()
-        self.performSegueWithIdentifier("goto_login", sender: self)
+        self.performSegueWithIdentifier("goto_login_from_tutorial", sender: self)
     }
     
 }
