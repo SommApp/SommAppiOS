@@ -43,7 +43,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             nameString += "!"
             self.emailLabel.text = nameString
             
-            if(settingsDistanceChange){
+            if(settingsDistanceChange && fromSettingsView){
                 networkHelper.getRec({(result: Bool) -> Void in
                     NSLog("CALLBACK")
                     self.popRestaurantsDict()
@@ -51,7 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         self.tableInfo.reloadData()
                     })
                 })
-            } else if (!settingsDistanceChange) {
+            } else if (!settingsDistanceChange && fromSettingsView) {
                 popRestaurantsDict()
                 self.tableInfo.reloadData()
 
