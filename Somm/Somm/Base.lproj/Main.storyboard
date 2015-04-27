@@ -241,7 +241,7 @@
                         <outlet property="tableInfo" destination="hrT-0V-bNy" id="BMj-Z6-gym"/>
                         <segue destination="V7J-8N-Vdp" kind="presentation" identifier="goto_login" animates="NO" id="tiG-S2-hvs"/>
                         <segue destination="hvo-71-FO3" kind="presentation" identifier="goto_map" modalTransitionStyle="crossDissolve" id="Eh3-8G-sas"/>
-                        <segue destination="rFq-HC-UOd" kind="showDetail" identifier="goto_tutorial" id="9jh-QC-xgE"/>
+                        <segue destination="rFq-HC-UOd" kind="presentation" identifier="goto_tutorial" modalTransitionStyle="crossDissolve" id="9jh-QC-xgE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
