@@ -253,7 +253,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             var error: NSError?
             let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
             let success:String = jsonData.valueForKey("success") as! String
-            NSLog("Success: %ld", success);
+            NSLog("Success: \(success)");
 
             if(success == "1") {
                 NSLog("SETTINGS SUCCESS");

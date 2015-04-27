@@ -30,7 +30,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var settingsDistanceChange = false
     var fromSettingsView = false
     var fromMapView = false
-
+    var cancelBtnSelected = false
+    
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
     
@@ -53,7 +54,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
                         self.spinner.stopAnimating()
-
                     })
                     self.settingsDistanceChange = false
                     self.fromSettingsView = false
@@ -79,7 +79,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             sendVisits()
             
-            if(!fromSettingsView && !fromMapView && !settingsDistanceChange){
+            if(!fromSettingsView && !fromMapView && !settingsDistanceChange && !cancelBtnSelected){
                 spinner.startAnimating()
                 networkHelper.getRec({(result: Bool) -> Void in
                     NSLog("CALLBACK")

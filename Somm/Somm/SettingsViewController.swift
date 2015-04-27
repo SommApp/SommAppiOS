@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
 
+    @IBOutlet weak var btnSave: UIButton!
     let networkHelper = NetworkHelper()
     let stringHelper = StringHelper()
     let milesText:[String] = ["1 mile", "3 miles", "5 miles", "10 miles", "15 miles"]
@@ -23,6 +24,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var milesFromPrefs:Int = 0
     var settingsDistanceChange = false
+    var cancelBtnSelected = false
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
@@ -33,6 +35,12 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 pickerView.selectRow(i, inComponent: 0, animated: true)
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        txtName.delegate = self
+        txtPassword.delegate = self
+        txtConfirmPassword.delegate = self
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -69,6 +77,9 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             }
         }
     }
+    @IBAction func btnCancel(sender: AnyObject) {
+        cancelBtnSelected = true
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier=="goto_home"){
@@ -78,8 +89,23 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             let destViewController: ViewController = segue.destinationViewController as! ViewController
             destViewController.fromSettingsView = true
             destViewController.settingsDistanceChange = settingsDistanceChange
+            destViewController.cancelBtnSelected = cancelBtnSelected
         }
     }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if(textField == txtName){
+            txtPassword.becomeFirstResponder()
+        } else if (textField == txtPassword) {
+            txtConfirmPassword.becomeFirstResponder()
+        } else {
+            btnSave(btnSave)
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         super.touchesBegan(touches, withEvent: event)
