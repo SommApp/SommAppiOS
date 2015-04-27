@@ -122,13 +122,20 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             let json = JSON.parse(responseData as String)
             let success = json[0]["success"].asString
             let successInt = json[0]["success"].asInt
-            
+            println(json)
             if(successInt! == 1) {
                 NSLog("RECOMMENDATION SUCCESS");
-                store.delReccomendations()
-                for var i = 1; i < json.length; i++ {
-                    store.saveRecommendation(json[i])
+                
+                if(json.length==1){
+                    errorHelper.displayNewRecommendationsError()
+                    
+                } else {
+                    store.delReccomendations()
+                    for var i = 1; i < json.length; i++ {
+                        store.saveRecommendation(json[i])
+                    }
                 }
+                
                 return true
             } else if (success! == "nonew"){
                 if(recommendationFromBtn){
