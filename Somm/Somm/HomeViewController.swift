@@ -196,6 +196,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     self.spinner.stopAnimating()
                     if (success){
                         self.errorHelper.displayCurrentRecommendation()
+                    } else {
+                        self.errorHelper.displayNetworkError()
                     }
                 })
                 self.settingsDistanceChange = false
