@@ -15,14 +15,20 @@ class AboutViewController:UIViewController {
 
     
     @IBAction func btnConnor(sender: AnyObject) {
-        let url = NSURL(string: "http://google.com")!
+        let url = NSURL(string: "https://github.com/connor-knabe")!
         UIApplication.sharedApplication().openURL(url)
     }
     
     @IBAction func btnJackie(sender: AnyObject) {
+        let url = NSURL(string: "https://github.com/connor-knabe")!
+        UIApplication.sharedApplication().openURL(url)
     }
     @IBAction func btnPaul(sender: AnyObject) {
+        let url = NSURL(string: "https://github.com/pmsthf")!
+        UIApplication.sharedApplication().openURL(url)
     }
     @IBAction func btnSeth(sender: AnyObject) {
+        let url = NSURL(string: "https://github.com/sjwiesman")!
+        UIApplication.sharedApplication().openURL(url)
     }
 }

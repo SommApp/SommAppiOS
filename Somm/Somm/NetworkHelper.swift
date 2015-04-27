@@ -15,7 +15,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg = ""
     let locationManager = CLLocationManager()
-    
+    var coords = ""
     
     func grabLocation(){
         locationManager.delegate = self
@@ -63,15 +63,19 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var session = NSURLSession(configuration: configuration)
         grabLocation()
         let email = prefs.valueForKey("EMAIL") as! NSString
-        var coords = ""
+        coords = ""
         if locationManager.location != nil {
             coords = ("\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
+            prefs.setBool(true, forKey: "LOATION")
         } else {
             coords = ""
-            errorHelper.displayNetworkError()
+            if(prefs.boolForKey("LOCATION")){
+                errorHelper.displayNetworkError()
+            }
+            completion(success: false)
+            return
         }
         
-        println("COORDS\(coords)")
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&gps=\(coords)"
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         let url:NSURL = NSURL(string:"http://52.11.190.66/middleware/recommendationRequest.php")!
@@ -117,8 +121,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             let successInt = json[0]["success"].asInt
             if(successInt! == 1) {
                 var haveData = prefs.boolForKey("HAVEDATA")    
-                if(json.length==1 && !haveData){
-                    println(json)
+                if(json.length==1 && !haveData && !coords.isEmpty){
                     dispatch_async(dispatch_get_main_queue(), {
                         self.errorHelper.displayNewRecommendationsError()
                     })
@@ -194,6 +197,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         }
     }
     
+       
     
     
     

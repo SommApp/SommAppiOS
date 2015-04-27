@@ -138,7 +138,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let address = restaurant.valueForKey("address") as! String!
                 self.restaurants += [["name":name, "latitude":latitude,"longitude":longitude,"address":address]]
             }
-            prefs.setBool(true, forKey: "HAVEDATA")
+            if (restaurants.count > 0){
+                prefs.setBool(true, forKey: "HAVEDATA")
+            }
         } else {
             let restaurants = store.grabReccomendation()
             if(restaurants[0].isEqualToString("Failed")){
