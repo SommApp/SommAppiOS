@@ -90,11 +90,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             destViewController.fromSettingsView = true
             
             if(cancelBtnSelected){
-                destViewController.settingsDistanceChange = settingsDistanceChange
-            } else {
-                destViewController.settingsDistanceChange = false
-            }
-            
+                settingsDistanceChange = false
+            } 
+            destViewController.settingsDistanceChange = settingsDistanceChange
+
             destViewController.cancelBtnSelected = cancelBtnSelected
         }
     }
