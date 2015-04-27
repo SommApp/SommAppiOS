@@ -199,7 +199,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
                         self.spinner.stopAnimating()
-                        println(self.prefs.boolForKey("RESTAURANTS"))
                         if (success && self.prefs.boolForKey("RESTAURANTS")){
                             self.errorHelper.displayCurrentRecommendation()
                         }
