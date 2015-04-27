@@ -59,7 +59,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     }
     
     
-    func getRecommendations(#fromBtn:Bool, completion: (success: Bool)->()) -> Bool {
+    func getRecommendations(completion: (finished: Bool)->()) {
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         var session = NSURLSession(configuration: configuration)
         grabLocation()
@@ -90,23 +90,19 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
 
                 if ( data != nil ) {
                     let res = response as! NSHTTPURLResponse!;
-                    if(self.processRecommendationResponse(res, urlData: data, recommendationFromBtn: fromBtn)){
-                        completion(success: true)
-                    } else {
-                        completion(success: false)
-                    }
+                    self.processRecommendationResponse(res, urlData: data)
+                        completion(finished: true)
                 } else {
-                    self.errorHelper.displayHttpError("Failed to grab recommendations")
-                    completion(success: false)
+                    self.errorHelper.displayRecommendationsFailError()
+                    completion(finished: false)
                 }
             }
                             
         }
         task.resume()
-        return true
     }
     
-    func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData, recommendationFromBtn:Bool) -> Bool {
+    func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData) {
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
             var error: NSError?
@@ -124,22 +120,12 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
                         store.saveRecommendation(json[i])
                     }
                 }
-                
-                return true
-            } else if (success! == "nonew"){
-                if(recommendationFromBtn){
-                    errorHelper.displayNoRecommendationsError()
-                    return false
-                }
             } else {
-                errorHelper.displayHttpError("Error Fetching recommendations")
-                return false
+                errorHelper.displayRecommendationsFailError()
             }
         } else {
             errorHelper.displayHttpError(error_msg)
-            return false
         }
-        return false
     }
     
     func processSettingsResponse(res: NSHTTPURLResponse,urlData: NSData)->Bool {

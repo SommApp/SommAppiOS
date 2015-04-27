@@ -49,7 +49,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.emailLabel.text = nameString
             if(settingsDistanceChange && fromSettingsView){
                 spinner.startAnimating()
-                networkHelper.getRecommendations(fromBtn: false, completion: {(success: Bool) -> Void in
+                networkHelper.getRecommendations({(finished: Bool) -> Void in
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
@@ -85,7 +85,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             if(!fromSettingsView && !fromMapView && !settingsDistanceChange && !cancelBtnSelected){
                 spinner.startAnimating()
-                networkHelper.getRecommendations(fromBtn: false, completion: {(success: Bool) -> Void in
+                networkHelper.getRecommendations({(finished: Bool) -> Void in
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
@@ -186,7 +186,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func btnRecommendation(sender: AnyObject) {
    
         spinner.startAnimating()
-            networkHelper.getRecommendations(fromBtn: false, completion: {(success: Bool) -> Void in
+            networkHelper.getRecommendations({(success: Bool) -> Void in
                 self.popRestaurantsDict()
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableInfo.reloadData()
@@ -196,11 +196,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.fromMapView = false
             })
         errorHelper.displayCurrentRecommendation()
-        
-
-        //mocking no recommendations for demo
-        //errorHelper.displayNoRecommendationsError()
-        
+                
     }
     
     @IBAction func logoutTapped(sender: UIButton) {
@@ -208,6 +204,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
         prefs.setBool(true, forKey: "TUTORIAL")
         prefs.synchronize()
+        store.delReccomendations()
         self.performSegueWithIdentifier("goto_login", sender: self)
     }
 

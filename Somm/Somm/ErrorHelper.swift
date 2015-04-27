@@ -93,6 +93,13 @@ class ErrorHelper: NSObject {
         alertView.show()
     }
 
+    func displayRecommendationsFailError(){
+        alertView.title = "Recommendations"
+        alertView.message = "Failed to grab recommendations."
+        alertView.delegate = self
+        alertView.addButtonWithTitle("OK")
+        alertView.show()
+    }
     
     
 
