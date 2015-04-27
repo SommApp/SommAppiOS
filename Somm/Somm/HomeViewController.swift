@@ -192,8 +192,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             popRestaurantsDict()
         }*/
         
+        networkHelper.getRecommendations(fromBtn: true, completion: {(success: Bool) -> Void in
+            println(success)
+            
+            /*
+            self.popRestaurantsDict()
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableInfo.reloadData()
+                self.spinner.stopAnimating()
+            })
+            self.settingsDistanceChange = false
+            self.fromMapView = false*/
+            
+        })
+
         //mocking no recommendations for demo
-        errorHelper.displayNoRecommendationsError()
+        //errorHelper.displayNoRecommendationsError()
         
     }
     

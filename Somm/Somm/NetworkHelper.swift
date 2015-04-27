@@ -66,7 +66,17 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     func getRecommendations(#fromBtn:Bool, completion: (success: Bool)->()) -> Bool {
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         var session = NSURLSession(configuration: configuration)
-        var post:NSString = "timestamp=\(NSDate())&email=con@con.com&gps=38.948655,-92.327862"
+        //38.948655,-92.327862
+        grabLocation()
+        let email = prefs.valueForKey("EMAIL") as! NSString
+        var coords = ""
+        if locationManager.location != nil {
+            coords = ("\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
+        } else {
+            coords = ""
+        }
+        
+        var post:NSString = "timestamp=\(NSDate())&email=\(email)&gps=\(coords)"
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
         let url:NSURL = NSURL(string:"http://52.11.190.66/middleware/recommendationRequest.php")!
         let request = NSMutableURLRequest(URL: url)
@@ -103,7 +113,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         task.resume()
         return true
     }
-
+/*
     func updateRecommendationRequest(#fromBtn:Bool) -> Bool {
         grabLocation()
         let email = prefs.valueForKey("EMAIL") as! NSString
@@ -141,14 +151,14 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             errorHelper.displayHttpError(error_msg)
             return false
         }
-    }
+    }*/
     
     func processRecommendationResponse(res: NSHTTPURLResponse,urlData: NSData, recommendationFromBtn:Bool) -> Bool {
         NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
             var error: NSError?
-            NSLog(responseData as String)
+            //NSLog(responseData as String)
             let jsonData:[[String:AnyObject]] = []
             let json = JSON.parse(responseData as String)
             let success = json[0]["success"].asString
