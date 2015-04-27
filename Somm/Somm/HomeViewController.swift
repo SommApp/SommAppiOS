@@ -26,6 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let networkHelper = NetworkHelper()
     var dict: [[String:AnyObject]] = []
     var restaurants: [[String:String]] = []
+    var fromSettingsView = false
     
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
@@ -38,6 +39,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             nameString += prefs.valueForKey("NAME") as! String
             nameString += "!"
             self.emailLabel.text = nameString
+            
+            if(fromSettingsView) {
+                self.popRestaurantsDict()
+                self.tableInfo.reloadData()
+            }
+
         }
     }
     
@@ -52,19 +59,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             sendVisits()
             
-           networkHelper.getRec({(result: Bool) -> Void in
-                NSLog("CALLBACK")
-                self.popRestaurantsDict()
-            
-            
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.tableInfo.reloadData()
+            if(!fromSettingsView){
+                networkHelper.getRec({(result: Bool) -> Void in
+                    NSLog("CALLBACK")
+                    self.popRestaurantsDict()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableInfo.reloadData()
+                    })
+                    
                 })
-
-            
-            
-               // self.tableInfo.layoutSubviews()
-            })
+            }
 
 //            if(networkHelper.updateRecommendationRequest(fromBtn: false)){
 //                popRestaurantsDict()

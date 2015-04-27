@@ -69,6 +69,13 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier=="goto_home"){
+            let destViewController: ViewController = segue.destinationViewController as! ViewController
+            destViewController.fromSettingsView = true
+        }
+    }
+    
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         super.touchesBegan(touches, withEvent: event)
         self.view.endEditing(true);
