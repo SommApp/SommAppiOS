@@ -58,7 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     self.settingsDistanceChange = false
                     self.fromSettingsView = false
                 })
-            } else if (!settingsDistanceChange && fromSettingsView) {
+            } else if (!settingsDistanceChange && fromSettingsView || fromMapView) {
                 popRestaurantsDict()
                 self.tableInfo.reloadData()
                 settingsDistanceChange = false
