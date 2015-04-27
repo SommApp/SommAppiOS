@@ -111,7 +111,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             let success = json[0]["success"].asString
             let successInt = json[0]["success"].asInt
             if(successInt! == 1) {
-                if(json.length==1){                    
+                if(json.length==1){
                     dispatch_async(dispatch_get_main_queue(), {
                         self.errorHelper.displayNewRecommendationsError()
                     })
@@ -122,10 +122,15 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
                     }
                 }
             } else {
-                errorHelper.displayRecommendationsFailError()
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.errorHelper.displayRecommendationsFailError()
+                })
             }
         } else {
-            errorHelper.displayHttpError(error_msg)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.errorHelper.displayHttpError(self.error_msg)
+            })
         }
     }
     
