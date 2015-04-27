@@ -17,7 +17,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     
-    
     func grabLocation(){
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -117,7 +116,8 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             let success = json[0]["success"].asString
             let successInt = json[0]["success"].asInt
             if(successInt! == 1) {
-                if(json.length==1){
+                var haveData = prefs.boolForKey("HAVEDATA")    
+                if(json.length==1 && !haveData){
                     println(json)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.errorHelper.displayNewRecommendationsError()
