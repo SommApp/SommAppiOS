@@ -71,6 +71,8 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             coords = ""
             if(prefs.boolForKey("LOCATION")){
                 errorHelper.displayNetworkError()
+            } else {
+                errorHelper.displayLocationError()
             }
             completion(success: false)
             return
