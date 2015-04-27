@@ -63,7 +63,7 @@ class ErrorHelper: NSObject {
     
     func displayCurrentRecommendation(){
         alertView.title = "Recommendations"
-        alertView.message = "We have grabbed your current restaurant recommendations"
+        alertView.message = "Here are your current restaurant recommendations"
         alertView.delegate = self
         alertView.addButtonWithTitle("OK")
         alertView.show()
@@ -87,12 +87,13 @@ class ErrorHelper: NSObject {
     
     func displayTextLengthError(){
         alertView.title = "Text Box Input"
-        alertView.message = "You are limited to 25 characters"
+        alertView.message = "You are limited to 30 characters"
         alertView.delegate = self
         alertView.addButtonWithTitle("OK")
         alertView.show()
     }
 
+    
     
 
 }

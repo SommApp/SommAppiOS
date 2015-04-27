@@ -21,7 +21,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     func grabLocation(){
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -58,13 +58,10 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         }
     }
     
-
-    
     
     func getRecommendations(#fromBtn:Bool, completion: (success: Bool)->()) -> Bool {
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         var session = NSURLSession(configuration: configuration)
-        //38.948655,-92.327862
         grabLocation()
         let email = prefs.valueForKey("EMAIL") as! NSString
         var coords = ""

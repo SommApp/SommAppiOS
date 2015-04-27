@@ -108,7 +108,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        if (count(textField.text) >= 25 && range.length == 0){
+        if (count(textField.text) >= 30 && range.length == 0){
             errorHelper.displayTextLengthError()
             return false
         } else {
