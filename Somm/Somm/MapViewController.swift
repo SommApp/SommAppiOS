@@ -56,6 +56,13 @@ class MapViewController:UIViewController {
         mapItem.openInMapsWithLaunchOptions(options)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier=="goto_home_from_map"){
+            let destViewController: ViewController = segue.destinationViewController as! ViewController
+            destViewController.fromMapView = true
+        }
+    }
+
 
 
 

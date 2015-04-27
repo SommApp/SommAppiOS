@@ -601,7 +601,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="presentation" modalTransitionStyle="crossDissolve" id="icJ-k3-U5Z"/>
+                                    <segue destination="vXZ-lx-hvc" kind="presentation" identifier="goto_home_from_map" modalTransitionStyle="crossDissolve" id="icJ-k3-U5Z"/>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="C3N-Ds-Nn1">
@@ -1326,6 +1326,6 @@
         <image name="SommLogo (1)" width="875" height="895"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TWi-ZE-UEz"/>
+        <segue reference="eYQ-Ga-By3"/>
     </inferredMetricsTieBreakers>
 </document>

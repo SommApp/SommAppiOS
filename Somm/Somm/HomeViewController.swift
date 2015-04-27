@@ -26,7 +26,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let networkHelper = NetworkHelper()
     var dict: [[String:AnyObject]] = []
     var restaurants: [[String:String]] = []
-    var fromSettingsView = false
+    var settingsDistanceChange = false
+    var fromMapView = false
+
     
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
@@ -40,9 +42,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             nameString += "!"
             self.emailLabel.text = nameString
             
-            if(fromSettingsView) {
-                self.popRestaurantsDict()
+            if(!settingsDistanceChange) {
+                popRestaurantsDict()
                 self.tableInfo.reloadData()
+            } else if(settingsDistanceChange) {
+                networkHelper.getRec({(result: Bool) -> Void in
+                    NSLog("CALLBACK")
+                    self.popRestaurantsDict()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableInfo.reloadData()
+                    })
+                })
             }
 
         }
@@ -59,13 +69,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             sendVisits()
             
-            if(!fromSettingsView){
+            if(!settingsDistanceChange && !fromMapView){
                 networkHelper.getRec({(result: Bool) -> Void in
                     NSLog("CALLBACK")
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
                     })
+                    settingsDistanceChange = false
+                    fromMapView = false
                     
                 })
             }
