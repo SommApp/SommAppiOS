@@ -102,7 +102,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
     }
     
     
-    func getRec(completion: (result: Bool, error: NSError)->()) {
+    func getRec(completion: (result: Bool)->()) {
         
         
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -126,25 +126,47 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         var reponseError: NSError?
         var response: NSURLResponse?
-        var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
+        //var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
 
         
         let task = session.dataTaskWithRequest(request) { data, response, error in
             
             if let httpResponse = response as? NSHTTPURLResponse {
-                if httpResponse.statusCode != 200 {
-                    println("response was not 200: \(response)")
-                    completion(result: true, error: reponseError!)
+                //self.processRecommendationResponse(httpResponse, urlData: data!, recommendationFromBtn: false)
+                
+                NSLog("Response code: %ld", httpResponse.statusCode);
+                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                    var responseData:NSString  = NSString(data:data, encoding:NSUTF8StringEncoding)!
+                    var error: NSError?
+                    NSLog(responseData as String)
+                    let jsonData:[[String:AnyObject]] = []
+                    let json = JSON.parse(responseData as String)
+                    let success = json[0]["success"].asString
+                    let successInt = json[0]["success"].asInt
+                    
+                    if(successInt! == 1) {
+                        NSLog("RECOMMENDATION SUCCESS");
+                        self.store.delReccomendations()
+                        for var i = 1; i < json.length; i++ {
+                            self.store.saveRecommendation(json[i])
+                        }
+                    }
+                    
+                completion(result: true)
+                
                 }
             }
             if (error != nil) {
                 println("error submitting request: \(error)")
-                completion(result: true, error: reponseError!)
+                completion(result: false)
             }
             
+
+            
+
             // handle the data of the successful response here
-            var result = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil) as? NSDictionary
-            println(result)
+           // var result = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil) as? NSDictionary
+            //println(result)
         }
         task.resume()
         

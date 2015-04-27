@@ -52,15 +52,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             sendVisits()
             
-            networkHelper.getRec({(result: Bool, error: NSError?) -> Void in
+           networkHelper.getRec({(result: Bool) -> Void in
                 NSLog("CALLBACK")
+                self.popRestaurantsDict()
+                self.tableInfo.reloadData()
             })
 
-            if(networkHelper.updateRecommendationRequest(fromBtn: false)){
+           /* if(networkHelper.updateRecommendationRequest(fromBtn: false)){
                 popRestaurantsDict()
                 self.tableInfo.reloadData()
                 NSLog("DONE")
-            }
+            }*/
         }
         
         if(!CLLocationManager.locationServicesEnabled()){
