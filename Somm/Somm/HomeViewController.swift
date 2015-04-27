@@ -31,24 +31,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var fromSettingsView = false
     var fromMapView = false
 
-    
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
+        spinner.hidesWhenStopped = true
+
+        
         if (isLoggedIn == 1) {
             var nameString = "Welcome "
             nameString += prefs.valueForKey("NAME") as! String
             nameString += "!"
             self.emailLabel.text = nameString
             if(settingsDistanceChange && fromSettingsView){
+                spinner.startAnimating()
                 networkHelper.getRec({(result: Bool) -> Void in
                     NSLog("CALLBACK")
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
+                        self.spinner.stopAnimating()
+
                     })
                     self.settingsDistanceChange = false
                     self.fromSettingsView = false
@@ -75,11 +80,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             sendVisits()
             
             if(!fromSettingsView && !fromMapView && !settingsDistanceChange){
+                spinner.startAnimating()
                 networkHelper.getRec({(result: Bool) -> Void in
                     NSLog("CALLBACK")
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
+                        self.spinner.stopAnimating()
                     })
                     self.settingsDistanceChange = false
                     self.fromMapView = false
