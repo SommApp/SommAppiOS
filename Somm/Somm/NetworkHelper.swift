@@ -111,9 +111,10 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             let success = json[0]["success"].asString
             let successInt = json[0]["success"].asInt
             if(successInt! == 1) {
-                if(json.length==1){
-                    errorHelper.displayNewRecommendationsError()
-                    
+                if(json.length==1){                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.errorHelper.displayNewRecommendationsError()
+                    })
                 } else {
                     store.delReccomendations()
                     for var i = 1; i < json.length; i++ {
