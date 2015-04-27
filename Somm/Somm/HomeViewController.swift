@@ -189,25 +189,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func btnRecommendation(sender: AnyObject) {
    
-            spinner.startAnimating()
-            networkHelper.getRecommendations({(success: Bool) -> Void in
-                self.popRestaurantsDict()
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.tableInfo.reloadData()
-                    self.spinner.stopAnimating()
-                    println(self.prefs.boolForKey("RESTAURANTS"))
-                    if (success && self.prefs.boolForKey("RESTAURANTS")){
-                        self.errorHelper.displayCurrentRecommendation()
-                    } else if(self.reachability.isConnectedToNetwork()==false) {
-                        self.errorHelper.displayNetworkError()
-                    }
-                })
-                self.settingsDistanceChange = false
-                self.fromMapView = false
-
-
-            })
         
+            if(self.reachability.isConnectedToNetwork()==false) {
+                self.errorHelper.displayNetworkError()
+            } else {
+                spinner.startAnimating()
+                networkHelper.getRecommendations({(success: Bool) -> Void in
+                    self.popRestaurantsDict()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableInfo.reloadData()
+                        self.spinner.stopAnimating()
+                        println(self.prefs.boolForKey("RESTAURANTS"))
+                        if (success && self.prefs.boolForKey("RESTAURANTS")){
+                            self.errorHelper.displayCurrentRecommendation()
+                        }
+                    })
+                })
+        }
+
+        self.settingsDistanceChange = false
+        self.fromMapView = false
         
     }
     

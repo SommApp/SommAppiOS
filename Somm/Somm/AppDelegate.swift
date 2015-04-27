@@ -41,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var long = visit.coordinate.longitude
         var lat = visit.coordinate.latitude
         var latLong = "Vist loc\(long),\n\(lat)"
-        prefs.setBool(true, forKey: "LOATION")
         
         if(!visit.departureDate.isEqualToDate(NSDate.distantFuture() as! NSDate)){
             store.saveVisit(visit)

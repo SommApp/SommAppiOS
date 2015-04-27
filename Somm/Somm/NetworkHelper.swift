@@ -11,6 +11,7 @@ import CoreLocation
 
 class NetworkHelper: NSObject, CLLocationManagerDelegate {
     let errorHelper = ErrorHelper()
+    let reachability: Reachability = Reachability()
     let store = Store()
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg = ""
@@ -66,12 +67,9 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         coords = ""
         if locationManager.location != nil {
             coords = ("\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
-            prefs.setBool(true, forKey: "LOATION")
         } else {
             coords = ""
-            if(prefs.boolForKey("LOCATION")){
-                errorHelper.displayNetworkError()
-            } else {
+            if (self.reachability.isConnectedToNetwork() == true){
                 errorHelper.displayLocationError()
             }
             completion(success: false)
