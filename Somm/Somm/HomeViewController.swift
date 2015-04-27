@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     let store = Store()
     let errorHelper = ErrorHelper()
+    let reachability = Reachability.reachabilityForInternetConnection()
     let networkHelper = NetworkHelper()
     var dict: [[String:AnyObject]] = []
     var restaurants: [[String:String]] = []
@@ -185,6 +186,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func btnRecommendation(sender: AnyObject) {
    
+        reachability.whenUnreachable = { reachability in
+            self.errorHelper.displayNetworkError()
+        }
+        
+        reachability.startNotifier()
+
         spinner.startAnimating()
             networkHelper.getRecommendations({(success: Bool) -> Void in
                 self.popRestaurantsDict()

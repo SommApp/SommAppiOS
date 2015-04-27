@@ -69,7 +69,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             coords = ("\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
         } else {
             coords = ""
-            errorHelper.displayLocationError()
+            errorHelper.displayNetworkError()
         }
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&gps=\(coords)"
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
@@ -87,13 +87,14 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if let httpResponse = response as? NSHTTPURLResponse {
-
                 if ( data != nil ) {
                     let res = response as! NSHTTPURLResponse!;
                     self.processRecommendationResponse(res, urlData: data)
                         completion(finished: true)
                 } else {
-                    self.errorHelper.displayRecommendationsFailError()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.errorHelper.displayRecommendationsFailError()
+                    })
                     completion(finished: false)
                 }
             }
@@ -122,7 +123,6 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
                     }
                 }
             } else {
-                
                 dispatch_async(dispatch_get_main_queue(), {
                     self.errorHelper.displayRecommendationsFailError()
                 })
