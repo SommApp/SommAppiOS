@@ -63,7 +63,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
 
     
     
-    func getRecommendations(completion: (result: Bool)->()) {
+    func getRecommendations(#fromBtn:Bool, completion: (success: Bool)->()) -> Bool {
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         var session = NSURLSession(configuration: configuration)
         var post:NSString = "timestamp=\(NSDate())&email=con@con.com&gps=38.948655,-92.327862"
@@ -84,36 +84,24 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         let task = session.dataTaskWithRequest(request) { data, response, error in
             
             if let httpResponse = response as? NSHTTPURLResponse {
-                
-                NSLog("Response code: %ld", httpResponse.statusCode);
-                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
-                    var responseData:NSString  = NSString(data:data, encoding:NSUTF8StringEncoding)!
-                    var error: NSError?
-                    let jsonData:[[String:AnyObject]] = []
-                    let json = JSON.parse(responseData as String)
-                    let success = json[0]["success"].asString
-                    let successInt = json[0]["success"].asInt
-    
-                    if(successInt! == 1) {
-                        NSLog("RECOMMENDATION SUCCESS");
-                        self.store.delReccomendations()
-                        for var i = 1; i < json.length; i++ {
-                            self.store.saveRecommendation(json[i])
-                        }
+
+                if ( data != nil ) {
+                    let res = response as! NSHTTPURLResponse!;
+                    if(self.processRecommendationResponse(res, urlData: data, recommendationFromBtn: fromBtn)){
+                        completion(success: true)
+                    } else {
+                        completion(success: false)
                     }
-                    
-                completion(result: true)
-                
+                } else {
+                    self.errorHelper.displayHttpError("Failed to grab recommendations")
+                    completion(success: false)
                 }
+
             }
-            if (error != nil) {
-                println("error submitting request: \(error)")
-                completion(result: false)
-            }
+                            
         }
         task.resume()
-        
-        
+        return true
     }
 
     func updateRecommendationRequest(#fromBtn:Bool) -> Bool {
