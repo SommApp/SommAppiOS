@@ -27,6 +27,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var dict: [[String:AnyObject]] = []
     var restaurants: [[String:String]] = []
     var settingsDistanceChange = false
+    var fromSettingsView = false
     var fromMapView = false
 
     
@@ -42,10 +43,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             nameString += "!"
             self.emailLabel.text = nameString
             
-            if(!settingsDistanceChange) {
-                popRestaurantsDict()
-                self.tableInfo.reloadData()
-            } else if(settingsDistanceChange) {
+            if(settingsDistanceChange){
                 networkHelper.getRec({(result: Bool) -> Void in
                     NSLog("CALLBACK")
                     self.popRestaurantsDict()
@@ -53,8 +51,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         self.tableInfo.reloadData()
                     })
                 })
-            }
+            } else if (!settingsDistanceChange) {
+                popRestaurantsDict()
+                self.tableInfo.reloadData()
 
+                
+            }
+           
         }
     }
     
@@ -69,15 +72,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             sendVisits()
             
-            if(!settingsDistanceChange && !fromMapView){
+            if(!fromSettingsView && !fromMapView && !settingsDistanceChange){
                 networkHelper.getRec({(result: Bool) -> Void in
                     NSLog("CALLBACK")
                     self.popRestaurantsDict()
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
                     })
-                    settingsDistanceChange = false
-                    fromMapView = false
+                    self.settingsDistanceChange = false
+                    self.fromMapView = false
                     
                 })
             }
