@@ -189,20 +189,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func btnRecommendation(sender: AnyObject) {
    
-        
-        networkHelper.getRecommendations(fromBtn: true, completion: {(success: Bool) -> Void in
-            println(success)
-            
-            /*
-            self.popRestaurantsDict()
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableInfo.reloadData()
-                self.spinner.stopAnimating()
+        spinner.startAnimating()
+            networkHelper.getRecommendations(fromBtn: false, completion: {(success: Bool) -> Void in
+                self.popRestaurantsDict()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableInfo.reloadData()
+                    self.spinner.stopAnimating()
+                })
+                self.settingsDistanceChange = false
+                self.fromMapView = false
             })
-            self.settingsDistanceChange = false
-            self.fromMapView = false*/
-            
-        })
+        errorHelper.displayCurrentRecommendation()
+        
 
         //mocking no recommendations for demo
         //errorHelper.displayNoRecommendationsError()

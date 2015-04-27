@@ -59,7 +59,16 @@ class ErrorHelper: NSObject {
         alertView.delegate = self
         alertView.addButtonWithTitle("OK")
         alertView.show()
-
     }
+    
+    func displayCurrentRecommendation(){
+        alertView.title = "Recommendations"
+        alertView.message = "We have grabbed your current restaurant recommendations"
+        alertView.delegate = self
+        alertView.addButtonWithTitle("OK")
+        alertView.show()
+        
+    }
+
 
 }
