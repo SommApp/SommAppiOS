@@ -32,6 +32,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var fromMapView = false
     var cancelBtnSelected = false
     
+    
     let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var error_msg:NSString = ""
     
@@ -72,10 +73,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidAppear(true)
         tableInfo.dataSource = self
         tableInfo.delegate = self
-        
+
+
+        let tutorial:Bool = prefs.boolForKey("TUTORIAL")
+        println("NEEDS TUTORIAL \(tutorial)")
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
-        if (isLoggedIn != 1) {
+        if (!tutorial) {
+            self.performSegueWithIdentifier("goto_tutorial", sender: self)
+        } else if(isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_login", sender: self)
+            
         } else {
             sendVisits()
             
@@ -93,12 +100,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     
                 })
             }
-
-//            if(networkHelper.updateRecommendationRequest(fromBtn: false)){
-//                popRestaurantsDict()
-//                self.tableInfo.reloadData()
-//                NSLog("DONE")
-//            }
         }
         
         if(!CLLocationManager.locationServicesEnabled()){
