@@ -85,6 +85,14 @@ class ErrorHelper: NSObject {
         alertView.show()
     }
     
+    func displayTextLengthError(){
+        alertView.title = "Text Box Input"
+        alertView.message = "You are limited to 25 characters"
+        alertView.delegate = self
+        alertView.addButtonWithTitle("OK")
+        alertView.show()
+    }
+
     
 
 }

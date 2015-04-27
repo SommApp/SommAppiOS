@@ -15,7 +15,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtPassword2: UITextField!
     @IBOutlet weak var btnSignUp: UIButton!
     
-    let stringHelper :StringHelper = StringHelper()
+    let stringHelper: StringHelper = StringHelper()
+    let errorHelper: ErrorHelper = ErrorHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +134,17 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBAction func gotoLogin(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if (count(textField.text) >= 25 && range.length == 0){
+            errorHelper.displayTextLengthError()
+            return false
+        } else {
+            return true
+        }
+        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

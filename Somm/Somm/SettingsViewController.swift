@@ -14,8 +14,9 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
-
     @IBOutlet weak var btnSave: UIButton!
+    
+    let errorHelper: ErrorHelper = ErrorHelper()
     let networkHelper = NetworkHelper()
     let stringHelper = StringHelper()
     let milesText:[String] = ["1 mile", "3 miles", "5 miles", "10 miles", "15 miles"]
@@ -109,6 +110,17 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             textField.resignFirstResponder()
         }
         return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if (count(textField.text) >= 25 && range.length == 0){
+            errorHelper.displayTextLengthError()
+            return false
+        } else {
+            return true
+        }
+        
     }
     
     
