@@ -25,6 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let store = Store()
     let errorHelper = ErrorHelper()
     let networkHelper = NetworkHelper()
+    let reachability: Reachability = Reachability()
     var dict: [[String:AnyObject]] = []
     var restaurants: [[String:String]] = []
     var settingsDistanceChange = false
@@ -194,9 +195,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableInfo.reloadData()
                     self.spinner.stopAnimating()
-                    if (success){
+                    println(self.prefs.boolForKey("RESTAURANTS"))
+                    if (success && self.prefs.boolForKey("RESTAURANTS")){
                         self.errorHelper.displayCurrentRecommendation()
-                    } else {
+                    } else if(self.reachability.isConnectedToNetwork()==false) {
                         self.errorHelper.displayNetworkError()
                     }
                 })

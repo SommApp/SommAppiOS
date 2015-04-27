@@ -21,6 +21,7 @@
 		B34951EF1AD4623300513C31 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34951EE1AD4623300513C31 /* MapKit.framework */; };
 		B3563ADE1AEE9BC00062B999 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3563ADD1AEE9BC00062B999 /* TutorialViewController.swift */; };
 		B3563AE21AEEBFC90062B999 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3563AE11AEEBFC90062B999 /* AboutViewController.swift */; };
+		B3563AE41AEED4030062B999 /* Reachibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3563AE31AEED4030062B999 /* Reachibility.swift */; };
 		B375A2571ACC642000B99011 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B375A2561ACC642000B99011 /* CoreLocation.framework */; };
 		B37F5C211ACC674600A28483 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37F5C201ACC674600A28483 /* Store.swift */; };
 		B37F5C231ACC675C00A28483 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37F5C221ACC675C00A28483 /* StringHelper.swift */; };
@@ -64,6 +65,7 @@
 		B34951EE1AD4623300513C31 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B3563ADD1AEE9BC00062B999 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		B3563AE11AEEBFC90062B999 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		B3563AE31AEED4030062B999 /* Reachibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachibility.swift; sourceTree = "<group>"; };
 		B375A2561ACC642000B99011 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B37F5C201ACC674600A28483 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B37F5C221ACC675C00A28483 /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				B37F5C221ACC675C00A28483 /* StringHelper.swift */,
 				B3DF87651ACF08E900CD5660 /* ErrorHelper.swift */,
 				B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */,
+				B3563AE31AEED4030062B999 /* Reachibility.swift */,
 			);
 			name = "Helper Files";
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				B33544981AD58C9F0038BDE9 /* NetworkHelper.swift in Sources */,
 				B3563ADE1AEE9BC00062B999 /* TutorialViewController.swift in Sources */,
 				B37F5C211ACC674600A28483 /* Store.swift in Sources */,
+				B3563AE41AEED4030062B999 /* Reachibility.swift in Sources */,
 				B33FDECE1ACC618D0086B4C2 /* AppDelegate.swift in Sources */,
 				B335449A1AD58F4B0038BDE9 /* MapViewController.swift in Sources */,
 				B3563AE21AEEBFC90062B999 /* AboutViewController.swift in Sources */,

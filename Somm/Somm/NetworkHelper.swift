@@ -127,8 +127,10 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.errorHelper.displayNewRecommendationsError()
                     })
+                    prefs.setBool(false, forKey: "RESTAURANTS")
                     return false
                 } else {
+                    prefs.setBool(true, forKey: "RESTAURANTS")
                     store.delReccomendations()
                     for var i = 1; i < json.length; i++ {
                         store.saveRecommendation(json[i])
