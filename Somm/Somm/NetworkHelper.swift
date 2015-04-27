@@ -74,7 +74,12 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             coords = ("\(locationManager.location.coordinate.latitude),\(locationManager.location.coordinate.longitude)")
         } else {
             coords = ""
+            errorHelper.displayLocationError()
         }
+        
+
+        
+        println("Coords are \(coords)")
         
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&gps=\(coords)"
         var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!

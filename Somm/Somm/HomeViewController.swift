@@ -188,9 +188,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func btnRecommendation(sender: AnyObject) {
-        /*if(networkHelper.updateRecommendationRequest(fromBtn: true)){
-            popRestaurantsDict()
-        }*/
+   
         
         networkHelper.getRecommendations(fromBtn: true, completion: {(success: Bool) -> Void in
             println(success)
