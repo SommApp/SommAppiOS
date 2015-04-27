@@ -85,15 +85,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             var error: NSError?
             let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
             let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
-            // let maxMiles:NSInteger = jsonData.valueForKey("maxMiles") as NSInteger
+            let maxMiles:Double = jsonData.valueForKey("maxMiles") as! Double
             NSLog("Success: %ld", success);
+            NSLog("MAX MILES %ld", maxMiles)
+            println(round(maxMiles))
+            
+            println(maxMiles)
+            
+            var roundedMiles = 10 * Int(round(maxMiles/10.0))
+            println(roundedMiles)
             if(success == 1) {
                 let name:String = jsonData.valueForKey("firstname") as! String
                 NSLog("Login SUCCESS");
                 var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
                 prefs.setObject(email, forKey: "EMAIL")
                 prefs.setObject(name, forKey: "NAME")
-                /* this needs to be changed to take in json value*/  prefs.setObject(5, forKey: "MAXMILES")
+                prefs.setObject(roundedMiles, forKey: "MAXMILES")
                 prefs.setInteger(1, forKey: "ISLOGGEDIN")
                 prefs.synchronize()
                 self.performSegueWithIdentifier("goto_home_from_login", sender: self)
