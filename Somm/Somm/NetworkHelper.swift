@@ -30,7 +30,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
   
-    func sendSettings(name:String, password:String, miles:Int) {
+    func sendSettings(name:String, password:String, miles:Int)->Bool {
         let email = prefs.valueForKey("EMAIL") as! NSString
         var post:NSString = "timestamp=\(NSDate())&email=\(email)&name=\(name)&password=\(password)&miles=\(miles)"
         NSLog("Email\(email)");
@@ -49,7 +49,11 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
         if ( urlData != nil ) {
             let res = response as! NSHTTPURLResponse!;
-            processSettingsResponse(res, urlData: urlData!)
+            if(processSettingsResponse(res, urlData: urlData!)){
+                return true
+            } else {
+                return false
+            }
         } else {
             errorHelper.displayHttpError(error_msg)
         }
@@ -64,7 +68,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         } else {
             coords = ""
         }
-        var post:NSString = "timestamp=\(NSDate())&email=\(email)&coords=\(coords)"
+        var post:NSString = "timestamp=\(NSDate())&email=\(email)&gps=38.948655,-92.327862"
         NSLog("Email\(email)");
         NSLog("PostData: %@",post);
         var url:NSURL = NSURL(string:"http://52.11.190.66/middleware/recommendationRequest.php")!
@@ -97,6 +101,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
             var error: NSError?
+            NSLog(responseData as String)
             let jsonData:[[String:AnyObject]] = []
             let json = JSON.parse(responseData as String)
             let success = json[0]["success"].asString
@@ -125,7 +130,7 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
         return false
     }
     
-    func processSettingsResponse(res: NSHTTPURLResponse,urlData: NSData) {
+    func processSettingsResponse(res: NSHTTPURLResponse,urlData: NSData)->Bool {
         NSLog("Response code: %ld", res.statusCode);
         if (res.statusCode >= 200 && res.statusCode < 300) {
             var responseData:NSString  = NSString(data:urlData, encoding:NSUTF8StringEncoding)!
@@ -133,8 +138,10 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
             let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
             let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
             NSLog("Success: %ld", success);
+
             if(success == 1) {
                 NSLog("SETTINGS SUCCESS");
+                return true
             } else {
                 if jsonData["error_message"] as? NSString != nil {
                     error_msg = jsonData["error_message"] as! NSString as String
@@ -142,9 +149,11 @@ class NetworkHelper: NSObject, CLLocationManagerDelegate {
                     error_msg = "Unknown Error"
                 }
                 errorHelper.displayHttpError(error_msg)
+                return false
             }
         } else {
             errorHelper.displayHttpError(error_msg)
+            return false
         }
     }
     

@@ -61,11 +61,14 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
             alertView.addButtonWithTitle("OK")
             alertView.show()
         } else {
-            networkHelper.sendSettings(txtName.text, password: txtPassword.text, miles: selectedMiles)
-            self.prefs.setObject(selectedMiles, forKey: "MAXMILES")
-            //needs to verify server recieved this info
-            prefs.setObject(txtName.text, forKey: "NAME")
-            self.performSegueWithIdentifier("goto_home", sender: self)
+            
+            if(networkHelper.sendSettings(txtName.text, password: txtPassword.text, miles: selectedMiles)){
+                self.prefs.setObject(selectedMiles, forKey: "MAXMILES")
+                prefs.setObject(txtName.text, forKey: "NAME")
+                self.performSegueWithIdentifier("goto_home", sender: self)
+            }
+        
+            
         }
         
         

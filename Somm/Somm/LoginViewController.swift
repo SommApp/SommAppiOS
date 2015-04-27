@@ -45,14 +45,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         var email:NSString = txtEmail.text
         var password:NSString = txtPassword.text
 
-        if (stringHelper.isEmailPassBlank(email: email, password: password)) {
-            var alertView:UIAlertView = UIAlertView()
-            alertView.title = "Sign in Failed!"
-            alertView.message = "Please enter Email and Password"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
-            alertView.show()
-        }  else if (!stringHelper.containsEmail(email as String)) {
+      if (!stringHelper.containsEmail(email as String)) {
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign in Failed!"
             alertView.message = "You did not enter a correct email address!"

@@ -42,7 +42,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             networkHelper.updateRecommendationRequest(fromBtn: false)
             popRestaurantsDict()
         }
-        
     }
     
     override func viewDidAppear(animated: Bool) {
