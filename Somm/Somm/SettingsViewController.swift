@@ -52,12 +52,15 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return milesText[row]
         
+        return milesText[row]
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedMiles = mileNumVal[row]
+        if (milesFromPrefs as Int != selectedMiles as Int){
+            settingsDistanceChange = true
+        }
     }
     
     @IBAction func btnSave(sender: AnyObject) {
@@ -83,12 +86,15 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier=="goto_home"){
-            if (milesFromPrefs as Int != selectedMiles as Int){
-                settingsDistanceChange = true
-            }
             let destViewController: ViewController = segue.destinationViewController as! ViewController
             destViewController.fromSettingsView = true
-            destViewController.settingsDistanceChange = settingsDistanceChange
+            
+            if(cancelBtnSelected){
+                destViewController.settingsDistanceChange = settingsDistanceChange
+            } else {
+                destViewController.settingsDistanceChange = false
+            }
+            
             destViewController.cancelBtnSelected = cancelBtnSelected
         }
     }
