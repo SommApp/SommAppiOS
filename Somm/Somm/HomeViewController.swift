@@ -203,7 +203,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
                         if (success && self.prefs.boolForKey("RESTAURANTS") && self.isViewLoaded()){
                             //Check current view to make sure you are still on home screen
-                            self.errorHelper.displayCurrentRecommendation()
+                            if (self.view.window != nil){
+                                self.errorHelper.displayCurrentRecommendation()    
+                            }
+                            
                         }
                     })
                 })
