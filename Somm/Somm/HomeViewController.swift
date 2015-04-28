@@ -199,7 +199,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
                         self.spinner.stopAnimating()
-                        if (success && self.prefs.boolForKey("RESTAURANTS")){
+
+
+                        if (success && self.prefs.boolForKey("RESTAURANTS") && self.isViewLoaded()){
+                            //Check current view to make sure you are still on home screen
                             self.errorHelper.displayCurrentRecommendation()
                         }
                     })
