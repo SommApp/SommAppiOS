@@ -516,7 +516,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="0r1-Oc-sUH" kind="presentation" modalTransitionStyle="partialCurl" id="acG-ue-ShM"/>
+                                    <segue destination="0r1-Oc-sUH" kind="presentation" modalTransitionStyle="crossDissolve" id="acG-ue-ShM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBU-hE-hdk">
