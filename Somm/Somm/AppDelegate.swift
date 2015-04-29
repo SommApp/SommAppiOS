@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let notificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        
         //Monitor visits
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -82,7 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
         if ( urlData != nil ) {
             let res = response as! NSHTTPURLResponse!;
-            //processResponse(email, res: res, urlData: urlData!)
         } else {
             errorHelper.displayHttpError(error_msg)
         }

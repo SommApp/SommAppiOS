@@ -41,8 +41,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewWillAppear(true)
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         spinner.hidesWhenStopped = true
-
-        
         if (isLoggedIn == 1) {
             var nameString = "Welcome "
             nameString += prefs.valueForKey("NAME") as! String
@@ -199,8 +197,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableInfo.reloadData()
                         self.spinner.stopAnimating()
-
-
                         if (success && self.prefs.boolForKey("RESTAURANTS") && self.isViewLoaded()){
                             //Check current view to make sure you are still on home screen
                             if (self.view.window != nil){
