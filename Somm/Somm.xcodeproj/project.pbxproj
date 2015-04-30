@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B30556911ADC5BDE006FBEEB /* TestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30556901ADC5BDE006FBEEB /* TestStore.swift */; };
 		B30556931ADEC540006FBEEB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30556921ADEC540006FBEEB /* JSON.swift */; };
 		B33544981AD58C9F0038BDE9 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */; };
 		B335449A1AD58F4B0038BDE9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33544991AD58F4B0038BDE9 /* MapViewController.swift */; };
@@ -47,7 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B30556901ADC5BDE006FBEEB /* TestStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStore.swift; sourceTree = "<group>"; };
 		B30556921ADEC540006FBEEB /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		B33544971AD58C9F0038BDE9 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B33544991AD58F4B0038BDE9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				B37F5C261ACC67DC00A28483 /* TestStringHelper.swift */,
-				B30556901ADC5BDE006FBEEB /* TestStore.swift */,
 				B33FDEE61ACC618D0086B4C2 /* SommTests.swift */,
 				B33FDEE41ACC618D0086B4C2 /* Supporting Files */,
 			);
@@ -344,7 +341,6 @@
 				B37F5C281ACC681400A28483 /* StringHelper.swift in Sources */,
 				B37F5C271ACC67DC00A28483 /* TestStringHelper.swift in Sources */,
 				B33FDEE71ACC618D0086B4C2 /* SommTests.swift in Sources */,
-				B30556911ADC5BDE006FBEEB /* TestStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
