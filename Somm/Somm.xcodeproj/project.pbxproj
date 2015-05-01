@@ -16,7 +16,6 @@
 		B33FDECE1ACC618D0086B4C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FDECD1ACC618D0086B4C2 /* AppDelegate.swift */; };
 		B33FDED11ACC618D0086B4C2 /* Somm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B33FDECF1ACC618D0086B4C2 /* Somm.xcdatamodeld */; };
 		B33FDED81ACC618D0086B4C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33FDED71ACC618D0086B4C2 /* Images.xcassets */; };
-		B33FDEE71ACC618D0086B4C2 /* SommTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FDEE61ACC618D0086B4C2 /* SommTests.swift */; };
 		B34951EF1AD4623300513C31 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34951EE1AD4623300513C31 /* MapKit.framework */; };
 		B3563ADE1AEE9BC00062B999 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3563ADD1AEE9BC00062B999 /* TutorialViewController.swift */; };
 		B3563AE21AEEBFC90062B999 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3563AE11AEEBFC90062B999 /* AboutViewController.swift */; };
@@ -59,7 +58,6 @@
 		B33FDED71ACC618D0086B4C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B33FDEE01ACC618D0086B4C2 /* SommTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SommTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33FDEE51ACC618D0086B4C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B33FDEE61ACC618D0086B4C2 /* SommTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SommTests.swift; sourceTree = "<group>"; };
 		B34951EE1AD4623300513C31 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B3563ADD1AEE9BC00062B999 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		B3563AE11AEEBFC90062B999 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				B37F5C261ACC67DC00A28483 /* TestStringHelper.swift */,
-				B33FDEE61ACC618D0086B4C2 /* SommTests.swift */,
 				B33FDEE41ACC618D0086B4C2 /* Supporting Files */,
 			);
 			path = SommTests;
@@ -340,7 +337,6 @@
 			files = (
 				B37F5C281ACC681400A28483 /* StringHelper.swift in Sources */,
 				B37F5C271ACC67DC00A28483 /* TestStringHelper.swift in Sources */,
-				B33FDEE71ACC618D0086B4C2 /* SommTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
